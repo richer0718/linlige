@@ -15,6 +15,8 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+Route::get('/test', 'TestController@test') ;
+
 //首页微信跳转
 Route::get('/homeJump', 'Home\HomeController@indexjump') ;
 
