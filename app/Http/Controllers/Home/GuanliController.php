@@ -46,7 +46,7 @@ class GuanliController extends Controller
             'status' => 0
         ]) -> get();
 
-        return view('guanli/select')->with([
+        return view('home/guanli/select')->with([
             'xiaoqu' => $xiaoqu
         ]);
     }
