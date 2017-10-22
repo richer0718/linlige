@@ -56,6 +56,7 @@ class GuanliController extends Controller
 
     //选择好小区后，跳转
     public function jumpHome($id){
+        var_dump($id);exit;
         return redirect('home')->with('is_manage_jump',$id);
     }
 
