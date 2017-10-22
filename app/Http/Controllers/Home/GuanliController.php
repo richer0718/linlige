@@ -41,4 +41,19 @@ class GuanliController extends Controller
         return redirect('home')->with('is_manage','yes');
     }
 
+    public function select(){
+        $xiaoqu = DB::table('shequ') -> where([
+            'status' => 0
+        ]) -> get();
+
+        return view('guanli/select')->with([
+            'xiaoqu' => $xiaoqu
+        ]);
+    }
+
+    //选择好小区后，跳转
+    public function jumpHome($id){
+        return redirect('home')->with('is_manage_jump',$id);
+    }
+
 }

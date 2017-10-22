@@ -75,7 +75,18 @@ class HomeController extends Controller
                 'xiaoqu' => $manage_xiaoqu -> title
             ]);
         }
-
+        if(session('is_manage_jump')){
+            session([
+                'is_manage' => 1
+            ]);
+            //把第一个小区拿出来
+            $manage_xiaoqu = DB::table('shequ') -> where([
+                'id' => session('is_manage_jump')
+            ]) -> first();
+            session([
+                'xiaoqu' => $manage_xiaoqu -> title
+            ]);
+        }
         $usertype = 'person';
         $model = new WxModel();
         $mark = $model -> checkOpenid();

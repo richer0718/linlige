@@ -54,8 +54,8 @@
 
     @if(session('is_manage'))
     <header class="public-header" id="header-fanhui">
-        <i class="iconfont icon-fanhui"></i>
-        <span><i class="iconfont icon-dizhi"></i>{{ $manage_xiaoqu -> title }}</span>
+
+        <span onclick="location.href='{{ url('guanjia/select') }}' "><i class="iconfont icon-dizhi"></i>{{ $manage_xiaoqu -> title }}</span>
     </header>
     @else
     <header class="public-header" id="header-fanhui">

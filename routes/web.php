@@ -139,6 +139,8 @@ Route::any('/home/wuye/jiejue', 'Home\WuyeController@jiejue');
 Route::any('/home/guanliLogin', 'Home\GuanliController@login');
 Route::any('/home/guanliLoginRes', 'Home\GuanliController@loginRes');
 Route::any('/home/guanli/index', 'Home\GuanliController@index');
+Route::any('/guanjia/select', 'Home\GuanliController@select');
+Route::any('/guanli/jumpHome/{id}', 'Home\GuanliController@jumpHome');
 
 
 
