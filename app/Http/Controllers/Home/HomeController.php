@@ -70,7 +70,7 @@ class HomeController extends Controller
                 'is_manage' => 1
             ]);
             //把第一个小区拿出来
-            $manage_xiaoqu = DB::table('shequ') -> orderBy('created_at','desc') -> first();
+            $manage_xiaoqu = DB::table('shequ') -> orderBy('created_at','asc') -> first();
             session([
                 'xiaoqu' => $manage_xiaoqu -> title
             ]);
