@@ -217,7 +217,7 @@
                 type: 'POST',
                 url: url,
                 data: formData,
-                dataType:'json',
+                //dataType:'json',
                 // 告诉jQuery不要去处理发送的数据
                 processData : false,
                 // 告诉jQuery不要去设置Content-Type请求头
@@ -277,7 +277,7 @@
 
                 },
                 error: function(xhr, type){
-                    alert('Ajax error!')
+                    layer.msg('Ajax error!')
                 }
             });
         });
