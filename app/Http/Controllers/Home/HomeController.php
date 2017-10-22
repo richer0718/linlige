@@ -70,17 +70,17 @@ class HomeController extends Controller
             //把第一个小区拿出来
             $manage_xiaoqu = DB::table('shequ') -> orderBy('created_at','asc') -> first();
             session([
-                'xiaoqu' => $manage_xiaoqu -> title
+                'xiaoqu' => $manage_xiaoqu -> id
             ]);
         }
         if(session('is_manage_jump')){
-            var_dump(session('is_manage_jump'));exit;
+
             //把第一个小区拿出来
             $manage_xiaoqu = DB::table('shequ') -> where([
                 'id' => session('is_manage_jump')
             ]) -> first();
             session([
-                'xiaoqu' => $manage_xiaoqu -> title
+                'xiaoqu' => $manage_xiaoqu -> id
             ]);
         }
         $usertype = 'person';
