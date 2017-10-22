@@ -74,7 +74,7 @@ class HomeController extends Controller
             ]);
         }
         if(session('is_manage_jump')){
-
+            var_dump(session('is_manage_jump'));exit;
             //把第一个小区拿出来
             $manage_xiaoqu = DB::table('shequ') -> where([
                 'id' => session('is_manage_jump')
