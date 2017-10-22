@@ -78,6 +78,16 @@
                             <td>订单状态：</td>
                             <td>@if($res -> fukuan_status == 0)未付款@else已付款@endif</td>
                         </tr>
+                        @if($res -> fahuo_status)
+                        <tr>
+                            <td>快递名称：</td>
+                            <td>{{ $res -> kuaidi }}</td>
+                        </tr>
+                            <tr>
+                                <td>快递单号：</td>
+                                <td>{{ $res -> danhao }}</td>
+                            </tr>
+                        @endif
                         <tr>
                             <td>评价星级：</td>
                             <td>{{ $res -> star }}</td>

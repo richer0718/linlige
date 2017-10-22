@@ -290,6 +290,7 @@ Route::group(['as' => 'toupiao'],function(){
 Route::group(['as' => 'order'],function(){
     Route::any('/admin/orderlist', 'Admin\OrderController@index');
     Route::any('/admin/tuihuolist', 'Admin\OrderController@tuihuolist');
+    Route::any('/admin/fahuoRes', 'Admin\OrderController@fahuoRes');
 
     Route::any('/admin/orderDetail/{id}', 'Admin\OrderController@orderDetail');
     Route::any('/admin/fahuo/{id}', 'Admin\OrderController@fahuo');

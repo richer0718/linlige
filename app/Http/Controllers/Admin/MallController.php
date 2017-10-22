@@ -321,6 +321,7 @@ class MallController extends Controller
             'gongying_id' => $request -> input('gongying_id'),
             'peisongfangshi' => implode(',',$peisong),
             'status' => $request -> input('status'),
+            'zitiaddress' => $request -> input('zitiaddress'),
             'updated_at' => time(),
             'created_at' => time(),
         ];

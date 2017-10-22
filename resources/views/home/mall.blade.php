@@ -6,6 +6,7 @@
 <body>
 <header class="public-header">
     <img src="{{asset('images/logo.png')}}">
+    <span onclick="location.href='{{ url('home/myorder') }}' " >我的订单</span>
 </header>
 <article class="vote vote-shop">
     <header class="flex-justify" id="top-fenlei">

@@ -154,4 +154,17 @@ class OrderController extends Controller
 
         return redirect('admin/orderlist');
     }
+
+    public function fahuoRes(Request $request){
+        DB::table('order') -> where([
+            'id' => $request -> input('id')
+        ]) -> update([
+            'kuaidi' => $request -> input('kuaidi'),
+            'danhao' => $request -> input('danhao'),
+            'fahuo_status' => 1,
+            'show_status' => '已发货',
+        ]);
+        return redirect('admin/orderlist') -> with('fahuores','yes');
+
+    }
 }

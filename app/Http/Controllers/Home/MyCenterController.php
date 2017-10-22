@@ -273,16 +273,20 @@ class MyCenterController extends Controller
             $res[$k] -> goods_info = DB::table('goods') -> where([
                 'id'=> $vo -> goods_id
             ]) -> first();
-
-            if($vo -> peisong_type == 0){
-                $res[$k] -> peisong_type = '货物自提';
-            }else{
-                $res[$k] -> peisong_type = '送货上门';
-            }
-
             $res[$k] -> user_info = DB::table('user') -> where([
                 'openid'=> $vo -> openid
             ]) -> first();
+
+            if($vo -> peisong_type == 0){
+                $res[$k] -> peisong_type = '货物自提';
+                //如果显示货物自提，则显示地址和电话
+                $res[$k] -> xianshi =  $vo -> address.' '.$vo -> user_info -> tel;
+            }else{
+                $res[$k] -> peisong_type = '送货上门';
+                $res[$k] -> xianshi = $vo -> kuaidi.' '.$vo -> danhao;
+            }
+
+
 
 
         }

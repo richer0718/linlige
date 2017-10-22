@@ -29,7 +29,7 @@
                 'chooseWXPay',
                 'getLatestAddress',
                 'openCard',
-                'getLocation'), true)
+                'getLocation'), false)
             ?>);
 
         wx.ready(function(){
@@ -68,6 +68,7 @@
 </div>
 <div class="delivery-mode">
     <h3>配送方式</h3>
+    @if(in_array(1,$res -> peisongfangshi))
     <div class="flex-justify layout pick-goods">
         <span>货物自提</span>
         <div class="pick-radio">
@@ -76,6 +77,7 @@
         </div>
     </div>
     <div class="since hide">
+        <!--
         <div class="flex-justify layout">
             <span>选择城区</span>
             <select>
@@ -88,10 +90,14 @@
                 <option>海悦花园</option>
             </select>
         </div>
+        -->
         <div class="flex-justify layout">
-            <span>海悦花园七区2栋102室 18256565566</span>
+            <span>自提地址  {{ $res -> zitiaddress }}</span>
         </div>
     </div>
+    @endif
+
+    @if(in_array(2,$res -> peisongfangshi))
     <div class="flex-justify pick-goods layout">
         <span>送货上门</span>
         <div class="pick-radio">
@@ -120,6 +126,7 @@
             <textarea placeholder="请输入详细地址" class="flex-1"></textarea>
         </div>
     </div>
+    @endif
 </div>
 <div class="flex-align pay-type">
     <span>支付方式</span>

@@ -119,7 +119,7 @@
                             <td>@if($vo -> fahuo_status == 0)未发货@else已发货@endif</td>
                             <td>@if($vo -> shouhou_status == 0)未售后@else已售后@endif</td>
                             <td>@if($vo -> peisong_type == 0)货物自提@else送货上门@endif</td>
-                            <td data="{{$vo -> id}}">@if($vo -> fukuan_status == 1 && $vo -> fahuo_status == 0 )<a  name="edit"  href="{{ url('admin/fahuo').'/'.$vo -> id }}">发货</a>@endif <a href="{{ url('admin/orderDetail',['id'=>$vo -> id ]) }}" >详情</a> </td>
+                            <td data="{{$vo -> id}}">@if($vo -> fukuan_status == 1 && $vo -> fahuo_status == 0 )<a  id="fahuo" data="{{ $vo -> id }}" >发货</a>@endif <a href="{{ url('admin/orderDetail',['id'=>$vo -> id ]) }}" >详情</a> </td>
                         </tr>
                     @endforeach
                 @endunless
@@ -134,6 +134,47 @@
     </div>
 
 
+    <div class="modal fade " id="fahuo-box" tabindex="-1" role="dialog"  >
+        <div class="modal-dialog" role="document" style="max-width:450px;">
+            <form action="{{ url('admin/fahuoRes') }}" method="post" autocomplete="off" draggable="false" id="myAddShequForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >发货</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" style="margin-bottom:0px;">
+                            <thead>
+                            <tr> </tr>
+                            </thead>
+                            <tbody>
+                            <input type="hidden" id="super_id" name="id" />
+                            <tr>
+                                <td wdith="30%">快递名称:</td>
+                                <td width="70%"><input type="text" value="" class="form-control" name="kuaidi" maxlength="10" autocomplete="off" required/></td>
+                            </tr>
+                            <tr>
+                                <td wdith="30%">快递单号:</td>
+                                <td width="70%"><input type="text" value="" class="form-control" name="danhao"  autocomplete="off" required/></td>
+                            </tr>
+
+                            {{ csrf_field() }}
+                            </tbody>
+                            <tfoot>
+                            <tr></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
     <script>
         @if (session('insertres'))
@@ -142,6 +183,10 @@
         @if (session('editres'))
             layer.alert('修改成功！');
         @endif
+        @if (session('fahuores'))
+            layer.alert('发货成功！');
+        @endif
+
 
     </script>
     <script>
@@ -149,6 +194,13 @@
             @if (session('show'))
                 $('#editShequ').modal('show')
             @endif
+
+            $('#fahuo').click(function(){
+                //alert(111);
+                var id = $(this).attr('data');
+                $('#super_id').val(id);
+                $('#fahuo-box').modal('show');
+            })
 
             //数据验证
             $('#myAddShequForm').submit(function(){

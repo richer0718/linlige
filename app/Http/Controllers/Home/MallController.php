@@ -116,6 +116,7 @@ class MallController extends Controller
 
         //dd(session('openid'));
         $res = DB::table('goods') -> where(['id'=>$id]) -> first();
+        $res -> peisongfangshi = explode(',',$res -> peisongfangshi);
         return view('home/mall/buynow') -> with([
             'res' => $res,
             'number' => $number,

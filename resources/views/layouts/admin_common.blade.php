@@ -3,7 +3,7 @@
 <head>
     @include('layouts.common_admin')
 </head>
-<body class="user-select">
+<body>
 <section class="container-fluid">
     @include('layouts.admin_header')
 

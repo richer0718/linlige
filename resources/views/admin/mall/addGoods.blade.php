@@ -164,6 +164,13 @@
                         </div>
                     </div>
                     <div class="add-article-box">
+                        <h2 class="add-article-box-title"><span>自提地址(如没有自提，则不需要填写)</span></h2>
+                        <div class="add-article-box-content">
+                            <label>自提地址：<input type="text" name="zitiaddress"  /></label>
+                        </div>
+                    </div>
+
+                    <div class="add-article-box">
                         <h2 class="add-article-box-title"><span>商品分类</span></h2>
                         <div class="add-article-box-content">
                             <select name="type">
