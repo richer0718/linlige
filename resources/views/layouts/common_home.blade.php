@@ -52,7 +52,7 @@
     </header>
 
 
-    @if(session('is_manage'))
+    @if($manage_xiaoqu)
     <header class="public-header" id="header-fanhui">
 
         <span onclick="location.href='{{ url('guanjia/select') }}' "><i class="iconfont icon-dizhi"></i>{{ $manage_xiaoqu -> title }}</span>

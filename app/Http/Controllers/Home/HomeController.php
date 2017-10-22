@@ -66,9 +66,7 @@ class HomeController extends Controller
     {
         $manage_xiaoqu = '';
         if(session('is_manage')){
-            session([
-                'is_manage' => 1
-            ]);
+
             //把第一个小区拿出来
             $manage_xiaoqu = DB::table('shequ') -> orderBy('created_at','asc') -> first();
             session([
@@ -76,9 +74,7 @@ class HomeController extends Controller
             ]);
         }
         if(session('is_manage_jump')){
-            session([
-                'is_manage' => 1
-            ]);
+
             //把第一个小区拿出来
             $manage_xiaoqu = DB::table('shequ') -> where([
                 'id' => session('is_manage_jump')

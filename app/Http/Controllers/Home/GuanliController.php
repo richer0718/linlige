@@ -10,6 +10,9 @@ class GuanliController extends Controller
 {
     //
     public function login(){
+        session([
+            'login_type' => ''
+        ]);
         //dd(session());
         if(session('login_type') == 'guanli' && session('adminusername')){
             return redirect('home/guanli/index');
