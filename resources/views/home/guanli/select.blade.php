@@ -19,7 +19,7 @@
 
 </header>
 
-<article class="search-page none" id="search-box" style="top:43px;">
+<article class="search-page" id="search-box" style="top:43px;">
     <div class="search">
         <div class="search-main">
             <label for="key"><i class="iconfont icon-search-copy"></i></label>
