@@ -135,7 +135,10 @@ Route::any('/home/wuye/wuyehuifu', 'Home\WuyeController@wuyehuifu');
 Route::any('/home/wuye/jiejue', 'Home\WuyeController@jiejue');
 
 
-
+//后台管理员
+Route::any('/home/guanliLogin', 'Home\GuanliController@login');
+Route::any('/home/guanliLoginRes', 'Home\GuanliController@loginRes');
+Route::any('/home/guanli/index', 'Home\GuanliController@index');
 
 
 

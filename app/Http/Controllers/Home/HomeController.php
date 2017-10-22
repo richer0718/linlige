@@ -64,6 +64,18 @@ class HomeController extends Controller
     //首页
     public function index()
     {
+        $manage_xiaoqu = '';
+        if(session('is_manage')){
+            session([
+                'is_manage' => 1
+            ]);
+            //把第一个小区拿出来
+            $manage_xiaoqu = DB::table('shequ') -> orderBy('created_at','desc') -> first();
+            session([
+                'xiaoqu' => $manage_xiaoqu -> title
+            ]);
+        }
+
         $usertype = 'person';
         $model = new WxModel();
         $mark = $model -> checkOpenid();
@@ -127,7 +139,8 @@ class HomeController extends Controller
             'ismark' => $ismark,
             'hover'=>'linlihudong',
             'userinfo' => $userinfo,
-            'usertype' => $usertype
+            'usertype' => $usertype,
+            'manage_xiaoqu' => $manage_xiaoqu
 
         ]);
     }

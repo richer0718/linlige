@@ -76,7 +76,12 @@ class ToupiaoController extends Controller
             $loudong = 0;
         }else{
             $loudong = $request -> input('loudong');
-            $loudong = implode(',',$loudong);
+            if($loudong){
+                $loudong = implode(',',$loudong);
+            }else{
+                $loudong = 0;
+            }
+
         }
         //dd($loudong);
         //小title

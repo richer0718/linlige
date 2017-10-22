@@ -52,10 +52,17 @@
     </header>
 
 
+    @if(session('is_manage'))
+    <header class="public-header" id="header-fanhui">
+        <i class="iconfont icon-fanhui"></i>
+        <span><i class="iconfont icon-dizhi"></i>{{ $manage_xiaoqu -> title }}</span>
+    </header>
+    @else
     <header class="public-header" id="header-fanhui">
 
         <img src="{{asset('images/logo.png')}}">
     </header>
+    @endif
 
 
 @include('layouts.common_zhide')
