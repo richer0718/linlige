@@ -82,6 +82,7 @@ class HomeController extends Controller
             session([
                 'xiaoqu' => $manage_xiaoqu -> id
             ]);
+            var_dump(session('xiaoqu'));
         }
         $usertype = 'person';
         $model = new WxModel();
