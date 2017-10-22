@@ -73,6 +73,10 @@ class HomeController extends Controller
                 'xiaoqu' => $manage_xiaoqu -> id
             ]);
         }
+
+        $usertype = 'person';
+        $model = new WxModel();
+        $mark = $model -> checkOpenid();
         if(session('is_manage_jump')){
 
             //把第一个小区拿出来
@@ -82,11 +86,9 @@ class HomeController extends Controller
             session([
                 'xiaoqu' => $manage_xiaoqu -> id
             ]);
-            var_dump(session('xiaoqu'));
+            //var_dump(session('xiaoqu'));
         }
-        $usertype = 'person';
-        $model = new WxModel();
-        $mark = $model -> checkOpenid();
+
         if($mark == 'redirect_reg'){
             return redirect('home/reg/isreg');
         }
