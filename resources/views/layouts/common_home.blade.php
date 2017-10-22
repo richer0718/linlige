@@ -94,8 +94,10 @@
 
 
 </article>
-    @if(!isset($usertype) || $usertype != 'visit' )
+    @if(!isset($usertype) || $usertype != 'visit' || !$manage_xiaoqu)
+
         <img src="{{asset('images/user-comment.png')}}" class="user-comment" id="user-comment"/>
+
     @endif
 <div class="fixed-height"></div>
     @if(!isset($usertype) || $usertype != 'visit' )
