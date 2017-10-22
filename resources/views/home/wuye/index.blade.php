@@ -286,7 +286,7 @@
         //确认已解决
         $('.submitform').click(function(){
             var id = $(this).attr('data');
-            layer.confirm('确认已解决后，该条信息将从这里移除，<br>如未解决可能会让业主不满，您要确认吗？', {
+            layer.confirm('确认已解决后，该条信息将从这里移除，如未解决可能会让业主不满，您要确认吗？', {
                 btn: ['确定','取消'] //按钮
             }, function(){
 

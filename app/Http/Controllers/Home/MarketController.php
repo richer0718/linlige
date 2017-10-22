@@ -44,6 +44,7 @@ class MarketController extends Controller
             $res[$k]['userinfo'] = DB::table('user') -> where([
                 'openid' => $vo['openid'],
             ]) -> first();
+
             if($vo['status'] == 0){
                 $res[$k]['status'] = '待解决';
             }else{

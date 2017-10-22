@@ -436,7 +436,17 @@
 
 
                 html += '<footer class="comment-foot flex-justify">';
-                html += '<span>'+data[i].created_at+'</span>';
+                html += '<span>'+data[i].created_at;
+                if(data[i].is_manage){
+                    html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
+                    if(data[i].status == 0){
+                        html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
+                    }else{
+                        html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
+                    }
+                }
+
+                html += '</span>';
                 html += '<div><i class="iconfont icon-good"></i> ';
                 html += '<span  onclick="dianzan(this,'+data[i].id+')" >'+data[i].dianzan+'</span>';
                 html += '<img src="{{asset('images/comment.png')}}" /> <span>'+data[i].liulan+'</span>';

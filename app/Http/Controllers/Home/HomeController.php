@@ -934,6 +934,10 @@ class HomeController extends Controller
     }
 
     public function likeman($openid){
+        //如果是他自己  则跳个人中心
+        if($openid == session('openid')){
+            return redirect('home/mycenter');
+        }
         $res = DB::table('user') -> where([
             'openid' => $openid
         ]) -> first();

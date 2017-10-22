@@ -66,8 +66,14 @@
                 <span>{{ date('Y-m-d H:i',$vo['created_at'] ) }}</span>
                 <div>
                     @if(session('openid') == $vo['userinfo'] -> openid)
-                    <a style="font-size:10px;" onclick="shanchu({{ $vo['id'] }})">删除</a>
+                    <a style="font-size:10px;" onclick="shanchu({{ $vo['id'] }})">删除 </a>
+                        @if($vo['status'] == 1)
+                            <a style="font-size:10px;" onclick="open_data({{ $vo['id'] }})">开启</a>
+                            @else
+                            <a style="font-size:10px;" onclick="close_data({{ $vo['id'] }})">关闭</a>
+                        @endif
                     @endif
+
                     <i class="iconfont icon-good" ></i>
                     <span onclick="dianzan(this,'{{ $vo['id'] }}')">{{ $vo['dianzan'] }}</span>
                     <img src="{{asset('images/comment.png')}}" />
@@ -157,6 +163,84 @@
             layer.msg('已取消');
         });
     }
+
+    function close_data(id){
+        layer.confirm('您确认关闭吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+
+            //alert(id);return false;
+            var url = '{{ url('home/close_data') }}';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id},
+
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if(data == 'success'){
+                        layer.msg('已关闭');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+
+                    }
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+        }, function(){
+
+            layer.msg('您已取消', {time:200});
+
+
+        });
+    }
+
+
+    function open_data(id){
+        layer.confirm('您确认开启吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+
+            //alert(id);return false;
+            var url = '{{ url('home/open_data') }}';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id},
+
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if(data == 'success'){
+                        layer.msg('已开启');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+
+                    }
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+        }, function(){
+
+            layer.msg('您已取消', {time:200});
+
+
+        });
+    }
+
 </script>
 <script>
     $("img.lazy").lazyload({

@@ -274,35 +274,38 @@ class ToupiaoController extends Controller
             'toupiao_id' => $id
         ]) -> get();
 
-        foreach($result_list as $k => $vo){
-            //$result_list[$k] -> results = explode(',',$vo -> result);
-            $temp = json_decode($vo -> result);
-            //dd($temp);
-            foreach($temp as $key => $value){
-                if(!is_array($value)){
-                    //不是array 直接显示结果
-                    $temp_new[$key] = DB::table('toupiao_detail') -> where([
-                        'id' => $value
-                    ]) -> first()->name;
-                }else{
-                    //多选 遍历value 拼接结果
-                    $temp_value = [];
-                    foreach($value as $value_value){
-                        $temp_value[] = DB::table('toupiao_detail') -> where([
-                            'id' => $value_value
+        if($result_list){
+            foreach($result_list as $k => $vo){
+                //$result_list[$k] -> results = explode(',',$vo -> result);
+                $temp = json_decode($vo -> result);
+                //dd($temp);
+                foreach($temp as $key => $value){
+                    if(!is_array($value)){
+                        //不是array 直接显示结果
+                        $temp_new[$key] = DB::table('toupiao_detail') -> where([
+                            'id' => $value
                         ]) -> first()->name;
+                    }else{
+                        //多选 遍历value 拼接结果
+                        $temp_value = [];
+                        foreach($value as $value_value){
+                            $temp_value[] = DB::table('toupiao_detail') -> where([
+                                'id' => $value_value
+                            ]) -> first()->name;
+                        }
+                        $temp_new[$key] = implode(',',$temp_value);
                     }
-                    $temp_new[$key] = implode(',',$temp_value);
+
                 }
 
+                $result_list[$k] -> results = $temp_new;
+
+                $result_list[$k] -> userinfo = DB::table('user') -> where([
+                    'openid' => $vo -> openid
+                ]) -> first();
             }
-
-            $result_list[$k] -> results = $temp_new;
-
-            $result_list[$k] -> userinfo = DB::table('user') -> where([
-                'openid' => $vo -> openid
-            ]) -> first();
         }
+
         //dd($result_list);
         return view('admin/toupiao/toupiaoRes') -> with([
             'title_list' => $title_list,

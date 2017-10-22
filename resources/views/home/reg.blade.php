@@ -154,7 +154,7 @@
             return false;
         }
         if(!check){
-            layer.msg('请同意邻里格用户协议');
+            layer.msg('请阅读注册协议');
             return false;
         }
 
@@ -221,7 +221,7 @@
                         html += '<a class="xiaoqu_name" onclick="searchXiaoquName('+"'" +data[i].title+"'"+','+data[i].id+')" data="'+data[i].id+'">'+ data[i].title +'</a>';
                     }
                 }else{
-                    html += '<p>当前不存在该小区</p>';
+                    html += '<a class="xiaoqu_name">当前不存在该小区</a>';
                 }
                 $('.key-list').empty();
                 $('.key-list').append(html);

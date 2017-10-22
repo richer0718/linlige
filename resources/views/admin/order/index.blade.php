@@ -25,6 +25,7 @@
                 <td>配送方式</td>
                 <td>
                     <select name="peisong">
+                        <option value="">全部</option>
                         <option value="0" @if(!empty($_POST['peisong']) && $_POST['peisong'] == 0)selected @endif >货物自提</option>
                         <option value="1" @if(!empty($_POST['peisong']) && $_POST['peisong'] == 1)selected @endif >送货上门</option>
                     </select>
@@ -33,6 +34,7 @@
                 <td>发货状态</td>
                 <td>
                     <select name="status">
+                        <option value="">全部</option>
                         <option value="0"  @if(!empty($_POST['status']) && $_POST['status'] == 0)selected @endif  >待收货</option>
                         <option value="1"  @if(!empty($_POST['status']) && $_POST['status'] == 1)selected @endif  >待评价</option>
                         <option value="2"   @if(!empty($_POST['status']) && $_POST['status'] == 2)selected @endif   >已完成</option>
@@ -47,7 +49,7 @@
                 <td>售后状态</td>
                 <td>
                     <select name="shouhou">
-                        <option value="">请选择</option>
+                        <option value="">全部</option>
                         <option value="1"   @if(!empty($_POST['shouhou']) && $_POST['shouhou'] == 1)selected @endif  >申请售后</option>
                         <option value="0"   @if(!empty($_POST['shouhou']) && $_POST['shouhou'] == 0)selected @endif  >未售后</option>
                     </select>

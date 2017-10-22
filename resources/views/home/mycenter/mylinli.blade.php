@@ -79,7 +79,7 @@
         <div class="selectbox" data="no"><i class="iconfont icon-bumanyi"></i>不满意</div>
     </div>
 </div>
-<a onclick="fabuwuyu()" class="property-release">发布</a>
+<a onclick="fabuwuyu()" class="property-release">评价</a>
 @endif
 <!--
 <footer class="property-tips">已转派给物业，请注意跟进</footer>
@@ -132,6 +132,7 @@
             success: function(data){
                 if(data == 'success'){
                     layer.msg('发布成功');
+                    location.reload();
                 }else{
                     layer.msg('发布失败');
                 }
@@ -243,10 +244,13 @@
             if(fabu == 1){
                 fabuindex = 2;
                 $('#fabuindex').val(2);
+                $('.property-evaluate').show();
             }else{
                 fabuindex = 1;
                 $('#fabuindex').val(1);
+                $('.property-evaluate').hide();
             }
+
 
             var index = $('#index').val();
             $('.release a').removeClass('hover');
