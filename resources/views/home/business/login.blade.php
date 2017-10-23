@@ -29,7 +29,7 @@
 <form id="myForm"  style="height:100%;">
     <article class="register-data" style="height:100%;">
 
-        <input type="tel" name="username" class="phone" id="username" placeholder="请输入用户名"/>
+        <input type="text" name="username" class="phone" id="username" placeholder="请输入用户名"/>
         <input type="password" name="password" class="verification-code" placeholder="请输入密码" id="password"/>
 
         <a  class="submit">登录</a>
