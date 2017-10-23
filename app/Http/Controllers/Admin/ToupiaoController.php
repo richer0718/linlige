@@ -278,7 +278,7 @@ class ToupiaoController extends Controller
             foreach($result_list as $k => $vo){
                 //$result_list[$k] -> results = explode(',',$vo -> result);
                 $temp = json_decode($vo -> result,true);
-                //dd($temp);
+                dd($temp);
                 foreach($temp as $key => $value){
                     if(!is_array($value)){
                         //不是array 直接显示结果
