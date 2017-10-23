@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="public-header">
-    <i class="iconfont icon-fanhui" onclick="{{ url('home').'/'.$res['type'] }}" ></i>
+    <i class="iconfont icon-fanhui" onclick="location.href='{{ url('home').'/'.$res['type'] }}'" ></i>
     <img src="{{asset('images/logo.png')}}" />
 </header>
 <section class="comment-title">
