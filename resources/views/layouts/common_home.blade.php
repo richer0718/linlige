@@ -611,7 +611,7 @@
 
 
                 html += '<div><i class="iconfont icon-good"></i>';
-                html += '<span>'+data[i].dianzan+'</span><img src="images/comment.png" /><span>'+data[i].liulan+'</span>';
+                html += '<span>'+data[i].dianzan+'</span><img src="{{ asset('images/comment.png') }}" /><span>'+data[i].liulan+'</span>';
                 html += '</div></footer></section>';
 
             }
