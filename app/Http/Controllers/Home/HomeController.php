@@ -158,9 +158,9 @@ class HomeController extends Controller
     //查看人气小区
     public function look(){
         session([
-            'xiaoqu'=>'6'
+            'xiaoqu'=>'13'
         ]);
-        $xiaoqu = 6;
+        $xiaoqu = 13;
         //循环数据 - 今日值得看
         $model_article = new Article();
         $list_article = $model_article -> where(['flag'=>'0','xiaoqu'=>$xiaoqu,'flag'=>0]) -> orderBy('created_at','desc') -> limit(2) -> get();
