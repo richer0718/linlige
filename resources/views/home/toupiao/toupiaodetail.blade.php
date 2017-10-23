@@ -146,7 +146,7 @@
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: {data:data},
+                data: {json:data},
 
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -154,11 +154,11 @@
                 success: function(data){
                     if(data == 'success'){
                         layer.msg('投票成功');
-                        /*
+
                         setTimeout(function () {
                             location.href='{{ url('home') }}';
                         }, 1000);
-                        */
+
                     }else if(data == 'isset'){
                         layer.msg('您已经投票');
                         setTimeout(function () {
