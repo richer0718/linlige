@@ -134,6 +134,7 @@
                 //提交form
                 $('#superform').submit();
                 return false;
+
             @endif
 
 
@@ -153,9 +154,11 @@
                 success: function(data){
                     if(data == 'success'){
                         layer.msg('投票成功');
+                        /*
                         setTimeout(function () {
                             location.href='{{ url('home') }}';
                         }, 1000);
+                        */
                     }else if(data == 'isset'){
                         layer.msg('您已经投票');
                         setTimeout(function () {
