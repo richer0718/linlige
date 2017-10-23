@@ -564,14 +564,16 @@
                 var img_list = data[i].img;
 
                 html += '<section class="comment-title" ';
+
+                html +='>';
+                html += '<header class="comment-head flex-justify">';
+                html += '<h3';
                 @if($usertype == 'person')
-                html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
+                    html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
                 @else
                     html += 'onclick="noReg()"';
                 @endif
-                html +='>';
-                html += '<header class="comment-head flex-justify">';
-                html += '<h3>'+data[i].title+'</h3>';
+                html += '>'+data[i].title+'</h3>';
                 html += '<span>';
                 html += '<a style="color:#999;" href="{{ url('home/likeman')}}'+'/'+data[i]['userinfo'].openid+'"  >'+data[i]['userinfo'].name+'</a>';
                 html += '</span></header>';

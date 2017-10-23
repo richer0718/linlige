@@ -6,7 +6,10 @@
 	
 </head>
 <body>
-@include('layouts.common_fanhui')
+<header class="public-header">
+    <i class="iconfont icon-fanhui" onclick="{{ url('home').'/'.$index }}"></i>
+    <img src="{{asset('images/logo.png')}}" />
+</header>
 
 @if($index == 0)
 <article class="sale">
@@ -381,7 +384,7 @@
                 success: function(data){
                     layer.msg('发布成功');
                     setTimeout(function () {
-                        location.href='{{ url('home') }}';
+                        location.href='{{ url('home/1') }}';
                     }, 1000);
                 },
                 error: function(xhr, type){
@@ -416,7 +419,7 @@
                 success: function(data){
                     layer.msg('发布成功');
                     setTimeout(function () {
-                        location.href='{{ url('home') }}';
+                        location.href='{{ url('home/2') }}';
                     }, 1000);
                 },
                 error: function(xhr, type){
@@ -467,7 +470,7 @@
                 success: function(data){
                     layer.msg('发布成功');
                     setTimeout(function () {
-                        location.href='{{ url('home') }}';
+                        location.href='{{ url('home/3') }}';
                     }, 1000);
                 },
                 error: function(xhr, type){

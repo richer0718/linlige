@@ -10,7 +10,10 @@
     </style>
 </head>
 <body>
-@include('layouts.common_fanhui')
+<header class="public-header">
+    <i class="iconfont icon-fanhui" onclick="{{ url('home').'/'.$res['type'] }}" ></i>
+    <img src="{{asset('images/logo.png')}}" />
+</header>
 <section class="comment-title">
     <header class="comment-head flex-justify">
         <h3>{{$res['title']}}@if($res['type'] == 3)<strong><em>¥ </em>{{ $res['price'] }}</strong> <a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif @if($res['type'] == 4)<a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif </h3>
