@@ -585,12 +585,13 @@ input:-webkit-autofill,textarea:-webkit-autofill{
 
 .personal-data{margin-top:0.2rem;background:#fff;}
 .data-list{position:relative;padding:0 0.2rem;border-bottom:1px solid #f7f7f7;}
-.data-name span{}
-.data-name  div{margin-left:0.06rem;padding:0.06rem 0.1rem;background:#ebf7f1;border-radius:10px;font-size:0.2rem;color:#bbb;}
-.data-name  div i{font-size:0.2rem;color:#ff6a6f;}
-.data-name label{margin-left:0.1rem;}
-.data-list>input{padding-right:0.26rem;font-size:0.28rem;text-align:right;}
+.data-name span{width:1.3rem;}
+.data-name  div{display:inline-block;margin-left:0.06rem;width:2.2rem;text-align:center;padding:0.06rem 0;background:#ebf7f1;border-radius:10px;font-size:0.2rem;color:#bbb;}
+.data-name  div i{font-size:0.2rem;color:#ff6a6f;margin-right:0.03rem;}
+.data-name label{}
+.data-list>input{font-size:0.28rem;text-align:right;}
 .data-list{height:0.85rem;}
+.data-list>div{display:inline-block;white-space:nowrap;}
 .data-list .label-switch {width: 0.54rem;height: 0.33rem;}
 .data-list .label-switch .checkbox {width: 0.54rem;height: 0.33rem;}
 .data-list .label-switch input[type="checkbox"]:checked + .checkbox:after {
@@ -607,8 +608,8 @@ input:-webkit-autofill,textarea:-webkit-autofill{
   width: 0.29rem;
   border-radius: 0.29rem;
 }
-.data-code input:first-child{width:100%;padding-right:2.2rem;text-align:right;}
-.data-code input:last-child{position:absolute;right:0.46rem;top:0.135rem;width:1.7rem;height:0.58rem;border-radius:15px;line-height:0.58rem;text-align:center;background:#3fb994;color:#fff;font-size:0.24rem;}
+.data-code input:first-child{width:100%;padding-right:2rem;text-align:right;}
+.data-code input:last-child{position:absolute;right:0.2rem;top:0.135rem;width:1.7rem;height:0.58rem;border-radius:15px;line-height:0.58rem;text-align:center;background:#3fb994;color:#fff;font-size:0.24rem;}
 .data-list select{padding-right: 0.26rem;background:url('../images/right.png') no-repeat 95% center;background-size:0.13rem;}
 .id{margin-top:0.2rem;background:#fff;padding:0.37rem 0.25rem 0.4rem;}
 .id h3{margin-bottom:0.3rem;font-size:0.28rem;color:#666;}
