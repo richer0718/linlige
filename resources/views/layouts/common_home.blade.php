@@ -551,7 +551,7 @@
                     html += 'class="hover" onclick="helphim('+data[i].id+')" ';
                 }
 
-                html += ' >帮TA</a><a href="tel:'+ data[i]['userinfo'].tel +'">联系看看</a></div></div></section>';
+                html += ' >帮TA</a><a href="tel:'+data[i]['userinfo'].tel+'">联系看看</a></div></div></section>';
             }
 
         }
