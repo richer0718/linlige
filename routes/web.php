@@ -31,7 +31,7 @@ Route::any('/home/close_data', 'Home\HomeController@close_data') ;
 //便民服务 ajax 请求
 Route::any('/home/ajax2', 'Home\HomeController@ajax2') ;
 //行家在线
-Route::any('/home/hangjia', 'Home\HomeController@hangjia') ;
+Route::any('/hangjia', 'Home\HomeController@hangjia') ;
 Route::any('/home/fankuiRes', 'Home\HomeController@fankuiRes') ;
 
 

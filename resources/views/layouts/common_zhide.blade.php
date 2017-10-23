@@ -48,7 +48,7 @@
         </a>
     </div>
     <div>
-        <a id="hangjiazaixian" href="{{url('home/hangjia')}}" >
+        <a id="hangjiazaixian" href="{{url('/hangjia')}}" >
             <img src="{{asset('images/online.png')}}" />
             <h4>行家在线</h4>
         </a>
