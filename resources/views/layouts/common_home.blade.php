@@ -79,10 +79,10 @@
         </div>
 
         <div class="flex-justify community-nav" id="navigation" >
-            <a @if($id == 0)class="hover"@endif>邻居说@if($id == 0)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
-            <a @if($id == 1)class="hover"@endif >友邻互助@if($id == 1)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
-            <a @if($id == 2)class="hover"@endif>社区活动@if($id == 2)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
-            <a @if($id == 3)class="hover"@endif>共享车位@if($id == 3)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
+            <a @if($select_id == 0)class="hover"@endif>邻居说@if($select_id == 0)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
+            <a @if($select_id == 1)class="hover"@endif >友邻互助@if($select_id == 1)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
+            <a @if($select_id == 2)class="hover"@endif>社区活动@if($select_id == 2)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
+            <a @if($select_id == 3)class="hover"@endif>共享车位@if($select_id == 3)<div><img src="{{asset('images/interaction-up2.png')}}" /></div>@endif</a>
         </div>
 
 
