@@ -132,10 +132,16 @@
         $('#closepop').click(function(){
             $('.pop-bg').hide();
         })
+        var temp = '{{ $select_id }}';
+        if(temp == 'hangjia'){
+            temp = 0;
+        }else{
+            temp = {{ $select_id }};
+        }
         //alert(111);
-        var index = {{ $select_id }};
+        var index = temp;
         var page = 0;
-        $('#box-index').val({{ $select_id }});
+        $('#box-index').val(temp);
         $('#box-0').val(0);
         $('#box-1').val(0);
         $('#box-2').val(0);
