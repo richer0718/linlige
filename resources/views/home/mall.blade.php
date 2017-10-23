@@ -6,7 +6,7 @@
 <body>
 <header class="public-header">
     <img src="{{asset('images/logo.png')}}">
-    <span onclick="location.href='{{ url('home/myorder') }}' " >我的订单</span>
+    <span onclick="location.href='{{ url('home/myorder') }}' " style="position:absolute;top:10px;right:5px;" >我的订单</span>
 </header>
 <article class="vote vote-shop">
     <header class="flex-justify" id="top-fenlei">
@@ -30,7 +30,7 @@
     @if(!empty($res))
         @foreach($res as $vo)
             <div class="shop-goods">
-                <div class="shop-img" onclick="location.href='{{ url('home/malldetail').'/'.$vo -> id }}'" style="background:url('{{asset('uploads/').'/'.$vo->img}}') no-repeat center;background-size:cover;"></div>
+                <div class="shop-img" onclick="location.href='{{ url('home/malldetail').'/'.$vo -> id }}'" style="background:url('{{asset('uploads/').'/'.$vo->img}}') no-repeat center;background-size:100% 100%;"></div>
                 <h3>{{ $vo -> title }}</h3>
                 <div class="flex-align shop-data">
                     <div class="flex-1"><i>¥</i> {{ $vo -> price_no }} <span>¥ {{ $vo -> price_pre }}</span></div>

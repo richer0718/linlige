@@ -133,9 +133,9 @@
             $('.pop-bg').hide();
         })
         //alert(111);
-        var index = 0;
+        var index = {{ $select_id }};
         var page = 0;
-        $('#box-index').val(0);
+        $('#box-index').val({{ $select_id }});
         $('#box-0').val(0);
         $('#box-1').val(0);
         $('#box-2').val(0);
@@ -673,7 +673,7 @@
             html += '<div class="flex-justify"><div class="concact-main">';
             html += '<h3>'+data[i].title+'</h3>';
             html += '<div class="concact-icon flex-align"><i class="iconfont icon-good"></i>';
-            html += '<span onclick="dianzan2(this,'+data[i].id+')"  >'+data[i].dianzan+'</span><i class="iconfont icon-dianhua1"></i><span>'+data[i].boda+'</span></div></div><a href="tel:+'+ data[i].tel +'" onclick="tel('+data[i].id+')">马上联系</a></div>';
+            html += '<span onclick="dianzan2(this,'+data[i].id+')"  >'+data[i].dianzan+'</span><i class="iconfont icon-dianhua1"></i><span>'+data[i].boda+'</span></div></div><a href="tel:'+ data[i].tel +'" onclick="tel('+data[i].id+')">马上联系</a></div>';
 
 
         }

@@ -21,7 +21,7 @@ Route::get('/test', 'TestController@test') ;
 Route::get('/homeJump', 'Home\HomeController@indexjump') ;
 
 //邻里互助
-Route::get('/home', 'Home\HomeController@index') ;
+Route::get('/home/{id?}', 'Home\HomeController@index') ;
 Route::get('/home/look', 'Home\HomeController@look') ;
 //邻里互助ajax 请求
 Route::any('/home/ajax', 'Home\HomeController@ajax') ;

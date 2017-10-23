@@ -353,7 +353,7 @@
 
             if(price){
                 if(!isNumber(price)){
-                    layer.msg('请输入数值');return false;
+                    layer.msg('金额输入有误，请填写整数金额');return false;
                 }
             }
 
@@ -437,7 +437,7 @@
 
             if(price){
                 if(!isNumber(price)){
-                    layer.msg('请输入数值');return false;
+                    layer.msg('金额输入有误，请填写整数金额');return false;
                 }
             }
 

@@ -62,7 +62,7 @@ class HomeController extends Controller
     }
 
     //首页
-    public function index()
+    public function index($id=0)
     {
         $manage_xiaoqu = '';
         if(session('is_manage')){
@@ -150,8 +150,8 @@ class HomeController extends Controller
             'hover'=>'linlihudong',
             'userinfo' => $userinfo,
             'usertype' => $usertype,
-            'manage_xiaoqu' => $manage_xiaoqu
-
+            'manage_xiaoqu' => $manage_xiaoqu,
+            'select_id' => $id
         ]);
     }
 
