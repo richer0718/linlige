@@ -177,7 +177,8 @@ class HomeController extends Controller
             'hover'=>'linlihudong',
             'userinfo' => $userinfo,
             //身份为游客
-            'usertype' => 'visit'
+            'usertype' => 'visit',
+            'manage_xiaoqu' => ''
 
         ]);
     }
