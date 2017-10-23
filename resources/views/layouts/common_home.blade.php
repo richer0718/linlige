@@ -569,9 +569,9 @@
                 html += '<header class="comment-head flex-justify">';
                 html += '<h3';
                 @if($usertype == 'person')
-                    html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
+                    html += ' onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
                 @else
-                    html += 'onclick="noReg()"';
+                    html += ' onclick="noReg()"';
                 @endif
                 html += '>'+data[i].title+'</h3>';
                 html += '<span>';
