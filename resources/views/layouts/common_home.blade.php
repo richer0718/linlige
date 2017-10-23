@@ -551,8 +551,8 @@
                     html += 'class="hover" onclick="helphim('+data[i].id+')" ';
                 }
                 //tel:'+data[i]['userinfo'].tel+'
-                html += ' >帮TA</a><a href="';
-                html += 'tel:'+data[i]['userinfo'].tel;
+                html += ' >帮TA</a><a href="tel:';
+                html += data[i]['userinfo'].tel;
                 html += '">联系看看</a></div></div></section>';
             }
 
