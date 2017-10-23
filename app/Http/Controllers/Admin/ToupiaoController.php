@@ -276,6 +276,8 @@ class ToupiaoController extends Controller
 
         if($result_list){
             foreach($result_list as $k => $vo){
+                var_dump($vo);
+                var_dump($result_list);
                 //$result_list[$k] -> results = explode(',',$vo -> result);
                 $temp = json_decode($vo -> result,true);
                 dd($temp);
