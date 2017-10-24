@@ -170,7 +170,7 @@ class HomeController extends Controller
         $list_toupiao = $model_toupiao -> where(['flag'=>'0','xiaoqu' => $xiaoqu,'flag'=>0]) -> orderBy('created_at','desc') ->limit(2) -> get();
         $userinfo = [];
 
-        //dd($userinfo);
+        dd($userinfo);
         return view('home/home') -> with([
             'list_article'=>$list_article,
             'list_toupiao'=>$list_toupiao,
