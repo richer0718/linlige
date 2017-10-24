@@ -17,7 +17,7 @@
     <i class="iconfont icon-cancel"></i>
     <div>
         <img src="{{asset('images/popularity.png')}}" />
-        <a href="{{ url('home/look') }}">看看人气小区</a>
+        <a href="{{ url('homes/look') }}">看看人气小区</a>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
     <i class="iconfont icon-fanhui" style="display:none;"></i>
 
     <img src="{{asset('images/logo.png')}}" />
-    <span onclick="location.href='{{ url('home/look') }}' "  style="position:absolute;right:5px;top:10px;">人气小区</span>
+    <span onclick="location.href='{{ url('homes/look') }}' "  style="position:absolute;right:5px;top:10px;">人气小区</span>
 </header>
 
 <article class="search-page none" id="search-box" style="top:43px;">
