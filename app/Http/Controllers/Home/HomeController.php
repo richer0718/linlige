@@ -180,7 +180,8 @@ class HomeController extends Controller
             //身份为游客
             'usertype' => 'visit',
             'manage_xiaoqu' => '',
-            'select_id' => $select_id
+            'select_id' => $select_id,
+            'first_look' => 1
 
         ]);
     }
