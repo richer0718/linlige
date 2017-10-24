@@ -151,7 +151,8 @@ class HomeController extends Controller
             'userinfo' => $userinfo,
             'usertype' => $usertype,
             'manage_xiaoqu' => $manage_xiaoqu,
-            'select_id' => $id
+            'select_id' => $id,
+            'first_look' => 0
         ]);
     }
 
