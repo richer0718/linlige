@@ -34,7 +34,7 @@
                 <h3>{{ $vo -> title }}</h3>
                 <div class="flex-align shop-data">
                     <div class="flex-1"><i>¥</i> {{ $vo -> price_no }} <span>¥ {{ $vo -> price_pre }}</span></div>
-                    <span>已售 {{$vo -> number}}</span>
+                    <span>已售 {{$vo -> xuni}}</span>
                     <a href="{{ url('home/malldetail').'/'.$vo -> id }}">立即购买</a>
                 </div>
             </div>

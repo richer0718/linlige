@@ -20,7 +20,7 @@
     <h3>{{ $res -> title }}</h3>
     <div class="flex-justify">
         <div class="send-goods-data"><i>¥</i> {{ $res -> price_no }} <span>¥ {{ $res -> price_pre }}</span></div>
-        <div class="send-goods-price"><span>库存 {{ $res -> kucun }}</span> <span>已售{{ $res -> number }}</span></div>
+        <div class="send-goods-price"><span>库存 {{ $res -> kucun }}</span> <span>已售{{ $res -> xuni }}</span></div>
     </div>
 </div>
 <div class="baby-description">

@@ -50,6 +50,11 @@
                             <input type="number"  name="xiangou" class="form-control" @if(isset($res))value="{{ $res->xiangou }}"@endif placeholder="" required autofocus autocomplete="off">
 
                         </div>
+                        <div class="col-md-3">
+                            <label for="article-title" style="color:red;">虚拟销量</label>
+                            <input type="number"  name="xuni" class="form-control" @if(isset($res))value="{{ $res->xuni }}"@endif placeholder="" required autofocus autocomplete="off">
+
+                        </div>
 
                     </div>
 

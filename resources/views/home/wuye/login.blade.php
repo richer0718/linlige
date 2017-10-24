@@ -13,9 +13,9 @@
 
 <header class="public-header">
 
-    <i class="iconfont icon-fanhui" style="display:none;"></i>
 
     <img src="{{asset('images/logo.png')}}" />
+    <span   style="position:absolute;right:5px;top:10px;">申请</span>
 </header>
 
 
