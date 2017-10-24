@@ -157,6 +157,7 @@ class HomeController extends Controller
 
     //查看人气小区
     public function look(){
+        $select_id = 0;
         session([
             'xiaoqu'=>'13'
         ]);
@@ -178,7 +179,8 @@ class HomeController extends Controller
             'userinfo' => $userinfo,
             //身份为游客
             'usertype' => 'visit',
-            'manage_xiaoqu' => ''
+            'manage_xiaoqu' => '',
+            'select_id' => $select_id
 
         ]);
     }
