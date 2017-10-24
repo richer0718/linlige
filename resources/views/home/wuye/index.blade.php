@@ -212,6 +212,10 @@
             var formData = new FormData(document.getElementById(i));
             //console.info(formData);
             var url = '{{url('home/saveImg')}}';
+            if(!$('input[name=file]').val()){
+                $('#loading').hide();
+                return false;
+            }
             //alert(url);
             $.ajax({
                 type: 'POST',

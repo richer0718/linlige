@@ -254,6 +254,10 @@
 		$('#loading').show();
         var formData = new FormData(document.getElementById("myForm"));
         var url = '{{url('home/saveImg')}}';
+        if(!$('input[name=file]').val()){
+            $('#loading').hide();
+            return false;
+        }
         $.ajax({
             type: 'POST',
             url: url,
@@ -267,6 +271,7 @@
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
             success: function(data){
+                //console.log(111111);
                 var img = '{{asset('images')}}'+'/'+data.img;
                 //alert(img);
                 var length = $(".sale-upload>div").length;

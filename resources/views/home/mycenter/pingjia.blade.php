@@ -99,7 +99,8 @@
 
             var count = $('#count').val();
             $('#count').val(parseInt(count)-1);
-            if(count < 2){
+            var count = $('#count').val();
+            if(count <= 2){
                 $('#uploadfile').show();
             }
 
@@ -142,6 +143,10 @@
             $('#loading').show();
             var formData = new FormData(document.getElementById("myForm"));
             var url = '{{url('home/saveImg')}}';
+            if(!$('input[name=file]').val()){
+                $('#loading').hide();
+                return false;
+            }
             $.ajax({
                 type: 'POST',
                 url: url,
