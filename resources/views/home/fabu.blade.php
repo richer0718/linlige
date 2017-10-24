@@ -239,7 +239,7 @@
 		var count = $('#count').val();
         $('#count').val(parseInt(count)-1);
         var count = $('#count').val();
-		if(count < 2){
+		if(count <= 2){
 			$('#uploadfile').show();
 		}		
 		
