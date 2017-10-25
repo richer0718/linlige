@@ -74,8 +74,8 @@
                         <span>{{ $vo['liulan'] }}</span>
                     </div>
                 </footer>
-                @if(!empty($vo['huifu']))
-                <div class="property-reply">物业回复：{{$vo['huifu']}}</div>
+                @if(!empty($vo['wuyehuifu']))
+                <div class="property-reply">物业回复：{{$vo['wuyehuifu']}}</div>
                 @endif
             </section>
 

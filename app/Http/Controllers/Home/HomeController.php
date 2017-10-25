@@ -915,7 +915,19 @@ class HomeController extends Controller
             $res[$k]['userinfo'] = DB::table('user') -> where([
                 'openid' => $vo['openid'],
             ]) -> first();
+
+            //查找每条记录的物业回复
+            $temp = DB::table('wuye_huifu') -> where([
+                'news_id' => $vo['id']
+            ]) -> get();
+            $temp = $this -> object_array($temp);
+            if($temp){
+                $res[$k]['wuyehuifu'] = $temp;
+            }
+
         }
+
+
 
         return view('home/jindu_all') -> with([
             'res' => $res
