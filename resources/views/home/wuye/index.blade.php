@@ -53,6 +53,16 @@
                 @if(!empty($vo['wuyehuifu']))
                     @foreach($vo['wuyehuifu'] as $vol)
                     <div class="property-reply">物业：{{$vol -> content}}</div>
+                        @if($vol -> imgs[0])
+                            <div class="answer-img flex">
+                                @foreach($vol -> imgs as $value)
+                                    <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;">
+                                        <input type="file" />
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        @endif
                     @endforeach
                 @endif
 

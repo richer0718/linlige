@@ -419,6 +419,7 @@ class HomeController extends Controller
             'news_id' => $res['id']
         ]) -> get();
 
+
         foreach($res['wuye_huifu'] as $k => $vo){
             $res['wuye_huifu'][$k]-> imgs = explode(',',$vo -> imgs);
         }

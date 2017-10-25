@@ -58,10 +58,17 @@ class WuyeController extends Controller
                 'openid' => $vo['openid'],
             ]) -> first();
 
-            //查找每条的物业回复
-            $res[$k]['wuyehuifu']=DB::table('wuye_huifu') -> where([
+            $temp = DB::table('wuye_huifu') -> where([
                 'news_id' => $vo['id']
             ]) -> get();
+            //查找每条的物业回复
+            $res[$k]['wuyehuifu']= $temp;
+            if($temp){
+                foreach($temp as $key =>$value ){
+                    $temp[$key] -> imgs = explode(',',$value -> imgs);
+                }
+            }
+
         }
         //dd($res);
         return view('home/wuye/index') -> with([
