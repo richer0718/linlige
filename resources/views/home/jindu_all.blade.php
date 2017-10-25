@@ -75,7 +75,9 @@
                     </div>
                 </footer>
                 @if(!empty($vo['wuyehuifu']))
-                <div class="property-reply">物业回复：{{$vo['wuyehuifu']}}</div>
+                    @foreach($vo['wuyehuifu'] as $vol)
+                <div class="property-reply">物业回复：{{$vol['content']}}</div>
+                    @endforeach
                 @endif
             </section>
 
