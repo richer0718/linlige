@@ -462,6 +462,11 @@
             if(!date_right){
                 layer.msg('请填写日期');return false;
             }
+            var start = new Date(date.replace("-", "/").replace("-", "/"));
+            var end = new Date(date_right.replace("-", "/").replace("-", "/"));
+            if(end<start){
+                layer.msg('日期区间错误');return false;
+            }
 
             var index = '{{$index}}';
             var url = '{{url('home/fabuRes')}}';
