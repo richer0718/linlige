@@ -184,7 +184,7 @@ class BusinessController extends Controller
     }
 
     public function shenqingPage(){
-        return view('home/business/shenqingpage');
+        return view('home/business/shenqing');
     }
     public function shenqingBusinessRes(Request $request){
         //申请
