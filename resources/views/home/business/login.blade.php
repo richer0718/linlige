@@ -119,8 +119,8 @@
                     }else{
                         //业主
                         //data 是json
-                        var json = JSON.parse(data);
-                        console.info(json);
+                        layer.msg('发送模版消息');
+                        console.info(data);
                     }
 
                 },
