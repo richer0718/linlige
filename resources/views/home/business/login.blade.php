@@ -120,7 +120,7 @@
                     //data 是json
                     var json = JSON.parse(data);
                     //发送模版消息
-                    layer.msg('发送模版消息:姓名：'+json.name+' '+json.tel);
+                    //layer.msg('发送模版消息:姓名：'+json.name+' '+json.tel);
                     console.info(json);
                 }
 
