@@ -15,7 +15,7 @@
 
 
     <img src="{{asset('images/logo.png')}}" />
-    <span   style="position:absolute;right:5px;top:10px;">申请</span>
+
 </header>
 
 

@@ -154,4 +154,49 @@ class BusinessController extends Controller
         echo 'success';
 
     }
+
+    //申请商户
+    public function shenqing(){
+        if(!session('openid')){
+            echo 'error';exit;
+        }else{
+            //如果有openid 判断他是否注册 并通过审核
+            $is_check = DB::table('user') -> where([
+                'openid' => session('openid'),
+                'status' => 1
+            ]) -> first();
+            if(!$is_check){
+                //没有通过审核
+                echo 'error';exit;
+            }else{
+                //判断下 他是业主还是啥
+                //0产权人1居民2业委会主任3业委会副主任4业委会秘书5业委会委员6业主代表
+                $shenfen = $is_check -> shenfen ;
+                if($shenfen == 0){
+                    return response() -> json($is_check);
+                }else{
+                    //非业主 要填写
+                    echo 'showpage';exit;
+                }
+            }
+        }
+    }
+
+    public function shenqingPage(){
+        return view('home/business/shenqingpage');
+    }
+    public function shenqingBusinessRes(Request $request){
+        //申请
+        $is_shenqing = DB::table('shenqing') -> where([
+            'tel' => $request -> input('tel')
+        ]) -> first();
+        if($is_shenqing){
+            echo 'isset';exit;
+        }
+        DB::table('shenqing') -> insert([
+            'tel' => $request -> input('tel'),
+            'name' => $request -> input('name'),
+        ]);
+        echo 'success';
+    }
 }

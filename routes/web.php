@@ -125,6 +125,10 @@ Route::any('/home/business/index', 'Home\BusinessController@index');
 Route::any('/home/business/fabufuwu/{ids?}', 'Home\BusinessController@fabufuwu');
 Route::any('/home/business/selectxiaoqu', 'Home\BusinessController@selectxiaoqu');
 Route::any('/home/business/fabuRes', 'Home\BusinessController@fabuRes');
+Route::any('/home/shenqingBusiness', 'Home\BusinessController@shenqing');
+Route::any('/home/shenqingPage', 'Home\BusinessController@shenqingPage');
+Route::any('/home/shenqingBusinessRes', 'Home\BusinessController@shenqingBusinessRes');
+
 
 //物业登陆
 

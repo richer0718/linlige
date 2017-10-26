@@ -21,7 +21,6 @@
 
 
     <img src="{{asset('images/logo.png')}}" />
-    <span   style="position:absolute;right:5px;top:10px;" id="shenqing">申请</span>
 </header>
 
 
@@ -29,8 +28,9 @@
 <form id="myForm"  style="height:100%;">
     <article class="register-data" style="height:100%;">
 
-        <input type="text" name="username" class="phone" id="username" placeholder="请输入用户名"/>
-        <input type="password" name="password" class="verification-code" placeholder="请输入密码" id="password"/>
+        <input type="text" name="username" class="name" id="name" placeholder="请输入姓名"/>
+        <input type="text" name="username" class="phone" id="tel" placeholder="请输入手机号"/>
+
 
         <a  class="submit">登录</a>
     </article>
@@ -39,39 +39,46 @@
 <script>
 
     $(".submit").click(function(){
-        var username = $("#username").val();
-        var password = $("#password").val();
+        var name = $.trim($("#name").val());
+        var tel = $.trim($("#tel").val());
 
-        if(username == ''){
-            layer.msg('请输入用户名');
+        if(name == ''){
+            layer.msg('请输入姓名');
             return false;
         }
-        if(password == ''){
-            layer.msg('请输入密码');
+        if(tel == ''){
+            layer.msg('请输入手机号');
+            return false;
+        }
+        var reg = /^1[3578]\d{9}$/;
+        if (!reg.test(tel)) {
+            layer.msg('请输入正确手机号');
             return false;
         }
 
 
 
-        var url = '{{ url('home/businessLoginRes') }}';
-        var data = $('#myForm').serialize();
+        var url = '{{ url('home/shenqingBusinessRes') }}';
+
         $.ajax({
             type: 'POST',
             url: url,
-            data: data,
+            data: {name:name,tel:tel},
 
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
             success: function(data){
+
                 if(data == 'success'){
-                    location.href='{{ url('home/business/index') }}';
+                    layer.msg('申请成功');
+                    //location.href='{{ url('home/business/index') }}';
                 }else{
-                    layer.msg('登陆失败');
+                    layer.msg('申请失败');
                 }
             },
             error: function(xhr, type){
-                layer.msg('登陆失败');
+                layer.msg('申请失败');
             }
         });
 
