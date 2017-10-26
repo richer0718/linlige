@@ -99,34 +99,36 @@
         $('#search-box').hide();
     })
 
-    $('#shenqing').click(function(){
-        var url = '{{ url('home/shenqingBusiness') }}';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            //data: data,
+    $(function(){
+        $('#shenqing').click(function(){
+            var url = '{{ url('home/shenqingBusiness') }}';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                //data: data,
 
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            },
-            success: function(data){
-                if(data == 'error'){
-                    layer.msg('您没有权限');
-                }else if(data == 'showpage'){
-                    //跳转
-                    location.href='{{ url('home/shenqingPage') }}';
-                }else{
-                    //业主
-                    //data 是json
-                    var json = JSON.parse(data);
-                    console.info(json);
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if(data == 'error'){
+                        layer.msg('您没有权限');
+                    }else if(data == 'showpage'){
+                        //跳转
+                        location.href='{{ url('home/shenqingPage') }}';
+                    }else{
+                        //业主
+                        //data 是json
+                        var json = JSON.parse(data);
+                        console.info(json);
+                    }
+
+                },
+                error: function(xhr, type){
+                    layer.msg('登陆失败');
                 }
-
-            },
-            error: function(xhr, type){
-                layer.msg('登陆失败');
-            }
-        });
+            });
+        })
     })
 
 

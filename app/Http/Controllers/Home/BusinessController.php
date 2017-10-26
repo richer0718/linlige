@@ -155,6 +155,7 @@ class BusinessController extends Controller
 
     }
 
+
     //申请商户
     public function shenqing(){
         if(!session('openid')){
