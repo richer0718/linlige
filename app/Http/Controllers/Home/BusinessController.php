@@ -196,6 +196,7 @@ class BusinessController extends Controller
         DB::table('shenqing') -> insert([
             'tel' => $request -> input('tel'),
             'name' => $request -> input('name'),
+            'created_at' => time()
         ]);
         echo 'success';
     }
