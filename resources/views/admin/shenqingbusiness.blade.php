@@ -18,16 +18,16 @@
                 @unless(!$res)
                     @foreach($res as $vo)
                         <tr>
-                            <td>{{$vo['id']}}</td>
-                            <td>{{$vo['name']}}</td>
-                            <td>{{$vo['tel']}}</td>
-                            <td>{{ date('Y-m-d H:i',$vo['created_at']) }}</td>
+                            <td>{{$vo -> id}}</td>
+                            <td>{{$vo -> name}}</td>
+                            <td>{{$vo -> tel}}</td>
+                            <td>{{ date('Y-m-d H:i',$vo -> created_at) }}</td>
 
                         </tr>
                     @endforeach
                 @endunless
                 </tbody>
-                
+
             </table>
         </div>
     </div>
