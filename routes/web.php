@@ -176,6 +176,7 @@ Route::group(['as' => 'number'], function () {
     Route::any('/admin/editBusiness/{id}', 'Admin\NumberController@editBusiness');
     Route::any('/admin/editBusinessRes', 'Admin\NumberController@editBusinessRes');
     Route::any('/admin/deleteBusiness', 'Admin\NumberController@deleteBusiness');
+    Route::any('/admin/shenqingbusiness', 'Admin\NumberController@shenqingbusiness');
     Route::any('/admin/changeBusiness/{id}/{status}', 'Admin\NumberController@changeBusiness');
 
     //社区管理员功能-账号管理

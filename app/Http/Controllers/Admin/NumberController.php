@@ -189,5 +189,13 @@ class NumberController extends Controller
         }
     }
 
+    //商户申请表
+    public function shenqingbusiness(){
+        $res =DB::table('shenqing') -> orderBy('created_at','desc') -> get();
+        return view('admin/shenqingbusiness') -> with([
+            'res' => $res
+        ]);
+    }
+
 
 }

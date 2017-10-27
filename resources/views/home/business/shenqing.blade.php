@@ -73,6 +73,8 @@
                 if(data == 'success'){
                     layer.msg('申请成功');
                     //location.href='{{ url('home/business/index') }}';
+                }else if(data == 'isset'){
+                    layer.msg('您已经申请过了');
                 }else{
                     layer.msg('申请失败');
                 }

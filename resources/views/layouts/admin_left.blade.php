@@ -55,6 +55,7 @@
                 @if(session('type') == 0)
                 <li><a href="{{url('admin/numberBack')}}">后台账户</a></li>
                 <li><a href="{{url('admin/numberBusiness')}}">商户设置</a></li>
+                <li><a href="{{url('admin/shenqingbusiness')}}">商户申请</a></li>
                 @else
                 <li><a href="{{url('admin/shequ_number')}}">账户列表</a></li>
                 <li><a href="{{url('admin/wuye_number')}}">物业设置</a></li>
