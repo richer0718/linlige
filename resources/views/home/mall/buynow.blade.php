@@ -30,7 +30,7 @@
                 'getLatestAddress',
                 'openCard',
                 'getLocation',
-                'openAddress'), faltruese)
+                'openAddress'), true)
             ?>);
 
         wx.ready(function(){
