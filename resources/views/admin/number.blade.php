@@ -1,6 +1,12 @@
 @extends('layouts.admin_common')
 @section('right-box')
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+        @if(isset($type) && $type=='wuye')
+        <ol class="breadcrumb">
+            <li><a>总解决数：{{$count_number[0]}} 满意数：{{$count_number[1]}} 不满意数：{{$count_number[2]}} </a></li>
+        </ol>
+        @endif
+
         <h1 class="page-header">@if(isset($type) && $type=='shequ')社区管理员@elseif(isset($type) && $type=='wuye')物业@else后台@endif账户</h1>
         <ol class="breadcrumb">
             <li><a data-toggle="modal" data-target="#addUser">增加用户</a></li>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\AdminUser;
 use App\Business;
+use Illuminate\Support\Facades\DB;
 
 class ShequNumberController extends Controller
 {
@@ -75,9 +76,27 @@ class ShequNumberController extends Controller
         $model = new Business();
         $res = $model -> where(['type' => 1,'xiaoqu'=>session('xiaoqu')]) ->paginate(15);
 
+        //计算总解决数
+        $count_number[] = DB::table('news') -> where(function($query){
+            $query -> where('xiaoqu','=',session('xiaoqu'));
+            $query -> where('type','=',0);
+            $query -> where('status','=',1);
+        }) -> count();
+        //满意数
+        $count_number[] = DB::table('user') -> where(function($query){
+            $query -> where('xiaoqu','=',session('xiaoqu'));
+            $query -> where('wuye_pingjia','=','yes');
+        }) -> count();
+        //不满意数
+        $count_number[] = DB::table('user') -> where(function($query){
+            $query -> where('xiaoqu','=',session('xiaoqu'));
+            $query -> where('wuye_pingjia','=','no');
+        }) -> count();
+
         return view('admin/number') -> with([
             'res' => $res,
             'type'=>'wuye',
+            'count_number' => $count_number
         ]);
     }
 

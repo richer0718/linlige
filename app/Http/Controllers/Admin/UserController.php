@@ -45,27 +45,11 @@ class UserController extends Controller
             $res[$k] -> shenfen = $shenfen_arr[$vo -> shenfen];
         }
 
-        //计算总解决数
-        $count_number[] = DB::table('news') -> where(function($query){
-            $query -> where('xiaoqu','=',session('xiaoqu'));
-            $query -> where('type','=',0);
-            $query -> where('status','=',1);
-        }) -> count();
-        //满意数
-        $count_number[] = DB::table('user') -> where(function($query){
-            $query -> where('xiaoqu','=',session('xiaoqu'));
-            $query -> where('wuye_pingjia','=','yes');
-        }) -> count();
-        //不满意数
-        $count_number[] = DB::table('user') -> where(function($query){
-            $query -> where('xiaoqu','=',session('xiaoqu'));
-            $query -> where('wuye_pingjia','=','no');
-        }) -> count();
+
         //dd($res);
         return view('admin/user/index') -> with([
             'res' => $res,
-            'type' => $type,
-            'count_number' => $count_number
+            'type' => $type
         ]);
     }
 

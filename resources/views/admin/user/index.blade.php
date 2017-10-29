@@ -2,9 +2,7 @@
 @section('right-box')
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main" style="max-height:800px;overflow: scroll;" >
 
-        <ol class="breadcrumb">
-            <li><a>总解决数：{{$count_number[0]}} 满意数：{{$count_number[1]}} 不满意数：{{$count_number[2]}} </a></li>
-        </ol>
+
         <h1 class="page-header">@if($type == 0)待审核列表@else用户列表@endif <span class="badge">{{ count($res) }}</span></h1>
         <div class="table-responsive"  >
             <table class="table table-striped table-hover" >
