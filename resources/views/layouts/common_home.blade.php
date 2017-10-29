@@ -574,7 +574,18 @@
                 @else
                     html += ' onclick="noReg()"';
                 @endif
-                html += '>'+data[i].title+'</h3>';
+                html += '>'+data[i].title;
+
+                html += '<span class="';
+                if(data[i].status == 1){
+                    html  += 'resolved';
+                }else{
+                    html += 'pending';
+                }
+                html += '">'+data[i].status_manage_name+'</span>';
+
+                html += '</h3>';
+
                 html += '<span>';
                 html += '<a style="color:#999;" href="{{ url('home/likeman')}}'+'/'+data[i]['userinfo'].openid+'"  >'+data[i]['userinfo'].name+'</a>';
                 html += '</span></header>';
@@ -629,7 +640,17 @@
                 @endif
                 html +='>';
                 html += '<header class="comment-head flex-justify">';
-                html += '<h3>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong></h3>';
+                html += '<h3>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong>';
+
+                html += '<span class="';
+                if(data[i].status == 1){
+                    html  += 'resolved';
+                }else{
+                    html += 'pending';
+                }
+                html += '">'+data[i].status_manage_name+'</span>';
+
+                html += '</h3>';
                 html += '<span>';
                 html += '<a style="color:#999;" href="{{ url('home/likeman')}}'+'/'+data[i]['userinfo'].openid+'"  >'+data[i]['userinfo'].name+'</a>';
                 html += '</span></header>';
