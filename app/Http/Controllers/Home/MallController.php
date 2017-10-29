@@ -126,7 +126,7 @@ class MallController extends Controller
         $app = new Application($options);
         $payment = $app->payment;
         if (empty($_GET['code'])) {
-            $currentUrl = $_SERVER['REQUEST_URI']; // 获取当前页 URL
+            $currentUrl = url()->full();; // 获取当前页 URL
             var_dump($currentUrl);exit;
             $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
             return $response; // or echo $response;
