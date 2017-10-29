@@ -14,7 +14,7 @@ class MallController extends Controller
     public function indexJump(){
         $url = urlencode('http://m.tianluyangfa.com/laravel/public/home/mall');
 
-        $appId = 'wx68099d0c30ed4f39';
+        $appId = 'wx0259817a6f67cd5f';
 
         $trueurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appId."&redirect_uri=".$url."&response_type=code&scope=snsapi_base&state=state#wechat_redirect";
         //echo 11;exit;
@@ -25,6 +25,9 @@ class MallController extends Controller
 
     //商城
     public function index(){
+        session([
+            'openid' => null
+        ]);
         $model = new WxModel();
         $model -> checkOpenid();
         //轮播
