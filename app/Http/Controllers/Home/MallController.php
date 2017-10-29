@@ -135,10 +135,10 @@ class MallController extends Controller
         $oauthUser = $app->oauth->user();
         $token = $oauthUser->getAccessToken();
         $configForPickAddress = $payment->configForShareAddress($token);
-        dd($configForPickAddress);
+        //dd($configForPickAddress);
 
 
-        //$js = $app -> js;
+        $js = $app -> js;
 
         //dd(session('openid'));
         $res = DB::table('goods') -> where(['id'=>$id]) -> first();
@@ -146,7 +146,8 @@ class MallController extends Controller
         return view('home/mall/buynow') -> with([
             'res' => $res,
             'number' => $number,
-            'configForPickAddress' => $configForPickAddress
+            'configForPickAddress' => $configForPickAddress,
+            'js' => $js
         ]);
     }
 
