@@ -25,9 +25,6 @@ class MallController extends Controller
 
     //商城
     public function index(){
-        session([
-            'openid' => null
-        ]);
         $model = new WxModel();
         $model -> checkOpenid();
         //轮播

@@ -122,7 +122,7 @@ class WxModel extends Model
         //得到token 和 openid
         $open_token = file_get_contents($url_token);
         $open_token = json_decode($open_token,true);
-        var_dump($open_token);exit;
+        //var_dump($open_token);exit;
         //获取到了openid
         //存储openid
         session([
