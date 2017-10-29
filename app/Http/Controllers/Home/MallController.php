@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\WxModel;
+use EasyWeChat\Url\Url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -102,9 +103,20 @@ class MallController extends Controller
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */
-            'app_id'  => 'wx68099d0c30ed4f39',         // AppID
-            'secret'  => 'd4624c36b6795d1d99dcf0547af5443d',     // AppSecret
-            'token'   => 'yangxiaojie',          // Token
+            'app_id'  => 'wx0259817a6f67cd5f',         // AppID
+            'secret'  => 'b90653eddcbbf035a7b6478e6cc43c8d',     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => '1313535001',
+                'key'                => 'abcdefghijklmnopqrstxyz123456789',
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+                'notify_url'         => 'https://tianluyangfa.com',       // 你也可以在下单时单独设置来想覆盖它
+                // 'device_info'     => '013467007045764',
+                // 'sub_app_id'      => '',
+                // 'sub_merchant_id' => '',
+                // ...
+            ],
             'log' => [
                 'level'      => 'debug',
                 'permission' => 0777,
@@ -112,7 +124,20 @@ class MallController extends Controller
             ],
         ];
         $app = new Application($options);
-        $js = $app -> js;
+        $payment = $app->payment;
+        if (empty($_GET['code'])) {
+            $currentUrl = $_SERVER['REQUEST_URI']; // 获取当前页 URL
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+// 授权回来
+        $oauthUser = $app->oauth->user();
+        $token = $oauthUser->getAccessToken();
+        $configForPickAddress = $payment->configForShareAddress($token);
+        dd($configForPickAddress);
+
+
+        //$js = $app -> js;
 
         //dd(session('openid'));
         $res = DB::table('goods') -> where(['id'=>$id]) -> first();
@@ -120,7 +145,7 @@ class MallController extends Controller
         return view('home/mall/buynow') -> with([
             'res' => $res,
             'number' => $number,
-            'js' => $js
+            'configForPickAddress' => $configForPickAddress
         ]);
     }
 
