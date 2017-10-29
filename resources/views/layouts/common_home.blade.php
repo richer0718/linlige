@@ -632,15 +632,17 @@
         if(index == 3){
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
-                html += '<section class="comment-title" ';
+                html += '<section class="comment-title" >';
+                html += '<header class="comment-head flex-justify">';
+                html += '<h3 ';
+
                 @if($usertype == 'person')
-                html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
+                    html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
                 @else
                     html += 'onclick="noReg()"';
                 @endif
-                html +='>';
-                html += '<header class="comment-head flex-justify">';
-                html += '<h3>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong>';
+
+                html +='>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong>';
 
                 html += '<span class="';
                 if(data[i].status == 1){
@@ -648,6 +650,7 @@
                 }else{
                     html += 'pending';
                 }
+
                 html += '">'+data[i].status_manage_name+'</span>';
 
                 html += '</h3>';
