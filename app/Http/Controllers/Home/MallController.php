@@ -14,7 +14,7 @@ class MallController extends Controller
     public function indexJump(){
         $url = urlencode('http://m.tianluyangfa.com/laravel/public/home/mall');
 
-        $appId = 'wx7ea0b386bde93f94';
+        $appId = 'wx68099d0c30ed4f39';
 
         $trueurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appId."&redirect_uri=".$url."&response_type=code&scope=snsapi_base&state=state#wechat_redirect";
         //echo 11;exit;
@@ -103,8 +103,8 @@ class MallController extends Controller
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */
-            'app_id'  => 'wx7ea0b386bde93f94',         // AppID
-            'secret'  => '83d1e9ab61a9c30fa9d08f160e5c6f78',     // AppSecret
+            'app_id'  => 'wx68099d0c30ed4f39',         // AppID
+            'secret'  => 'd4624c36b6795d1d99dcf0547af5443d',     // AppSecret
             //'token'   => 'yangxiaojie',          // Token
             'payment' => [
                 'merchant_id'        => '1313535001',

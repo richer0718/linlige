@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-define('APPID','wx7ea0b386bde93f94');
-define('SECRET','83d1e9ab61a9c30fa9d08f160e5c6f78');
+define('APPID','wx68099d0c30ed4f39');  //测试
+//define('APPID','wx7ea0b386bde93f94'); //邻里格
+define('SECRET','d4624c36b6795d1d99dcf0547af5443d');//测试
+//define('SECRET','83d1e9ab61a9c30fa9d08f160e5c6f78');//邻里格
+
 class WxModel extends Model
 {
 
