@@ -13,8 +13,10 @@ define('SECRET','d4624c36b6795d1d99dcf0547af5443d');//测试
 class WxModel extends Model
 {
 
+
     //检查openid在不在user表中，如果不在 则储存
     public function checkOpenid(){
+        session(['openid' => null]);
         if(!session('openid')){
             //获取openid
             $this -> getOpenId();
