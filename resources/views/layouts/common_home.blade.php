@@ -861,7 +861,9 @@
         })
 
         function noReg(){
+            @if(!$manage_xiaoqu)
             layer.msg('您的身份还未审核通过，<br>请耐心等待下');
+            @endif
         }
     </script>
 	

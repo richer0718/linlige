@@ -6,7 +6,7 @@
     <div class="worth-see">
         <h3 class="flex-justify">
             <span><img src="{{asset('images/eye.png')}}"/> 今日值得看</span>
-            <a href="{{url('/home/zhidelist')}}">更多>></a>
+            <a @if($usertype == 'person')href="{{url('/home/zhidelist')}}" @else onclick="noReg()" @endif >更多>></a>
         </h3>
         <div class="worth-main">
             @if(!empty($list_toupiao))

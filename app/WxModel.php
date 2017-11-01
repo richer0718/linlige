@@ -16,7 +16,7 @@ class WxModel extends Model
 
     //检查openid在不在user表中，如果不在 则储存
     public function checkOpenid(){
-        session(['openid' => null]);
+        //session(['openid' => null]);
         if(!session('openid')){
             //获取openid
             $this -> getOpenId();
