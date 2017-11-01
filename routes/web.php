@@ -67,7 +67,6 @@ Route::any('/home/getLoudongFromXiaoqu', 'Home\HomeController@getLoudongFromXiao
 Route::any('/home/regSearch', 'Home\HomeController@regSearch');
 Route::any('/home/xieyi', 'Home\HomeController@xieyi');
 //商城
-Route::any('/home/mail', 'Home\MailController@index');
 //值得看列表
 Route::any('/home/zhidelist', 'Home\HomeController@zhidelist');
 //值得看详情

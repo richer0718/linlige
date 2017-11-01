@@ -59,6 +59,8 @@
                         }, function(){
                             layer.msg('ok');
                         });
+                        setTimeout(function(){location.href='{{ url('/home') }}';},1000);
+
                     }
 
                 },

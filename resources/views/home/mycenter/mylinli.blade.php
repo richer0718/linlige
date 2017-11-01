@@ -831,7 +831,7 @@
     })
 
     function noReg(){
-        layer.msg('您的身份还未审核通过，请耐心等待下');
+        layer.msg('您的身份还未审核通过，<br>请耐心等待下');
     }
 </script>
 <script src="{{asset('js/jquery.lazyload.min.js')}}"></script>
