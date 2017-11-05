@@ -31,14 +31,14 @@
             @endforeach
             <div class="questionnaire-model">
                 <h3><span>1.</span>这是道填空题，请填写</h3>
-                <div class="radio-model">
-                    <input type="text" style="width:100%;"/>
+                <div class="radio-model" style="width:100%;height:30px;">
+                    <input type="text" style="width:100%;height:30px;"/>
                 </div>
             </div>
                 <div class="questionnaire-model">
-                    <h3><span>2.</span>这是道填空题，请填写</h3>
-                    <div class="radio-model">
-                        <input type="text" style="width:100%;"/>
+                    <h3><span>1.</span>这是道填空题，请填写</h3>
+                    <div class="radio-model" style="width:100%;height:30px;">
+                        <input type="text" style="width:100%;height:30px;"/>
                     </div>
                 </div>
             <p style="padding:10px;text-indent: 2em">{!! $toupiaodetail -> jieshu !!}</p>
