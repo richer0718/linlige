@@ -105,6 +105,15 @@
 
                     <input type="hidden" id="markk" />
 
+                    <h4 style="margin-top:10px;margin-bottom:10px;">填空题</h4>
+                    <div class="row" >
+
+                        <div class="col-md-12 title-box">
+
+                            <input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn addtiankong" type="button" style="">添加</button>
+                        </div>
+
+                    </div>
                     <!--
                     <div class="add-article-box">
                         <h2 class="add-article-box-title"><span>关键字</span></h2>
