@@ -59,7 +59,7 @@
 </section>
 
 
-@if(count($res['who']) && $type == 2)
+@if(count($res['who']) && $res['type'] == 2)
 <div class="interested">
     <h3>感兴趣</h3>
     <div class="interested-foot">
