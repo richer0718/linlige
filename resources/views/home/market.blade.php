@@ -47,7 +47,7 @@
         <section class="comment-title" style="border-bottom: 1px solid #efefef;" >
             <header class="comment-head flex-justify" onclick="location.href='{{ url('home/pinlun',['id'=>$vo['id']]) }}'"  >
                 <h3>{{ $vo['title'] }}</h3>
-                <span>{{ $vo['userinfo'] -> name }}</span>
+                <span onclick="location.href='{{ url('home/likeman').'/'.$vo['userinfo'] -> openid }}'"  >{{ $vo['userinfo'] -> name }}</span>
             </header>
             <p>{{  $vo['miaoshu'] }}</p>
 

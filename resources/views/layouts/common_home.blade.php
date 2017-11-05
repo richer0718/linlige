@@ -646,7 +646,7 @@
                     html += 'onclick="noReg()"';
                 @endif
 
-                html +='>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong><a href="tel:'+ data[i].tel +'"><i class="iconfont icon-dianhua" ></i></a>';
+                html +='>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong><a href="tel:'+ data[i]['userinfo'].tel +'"><i class="iconfont icon-dianhua" ></i></a>';
 
                 html += '<span class="';
                 if(data[i].status == 1){
