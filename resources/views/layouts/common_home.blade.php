@@ -873,7 +873,7 @@
         <span class="weui-gallery__img" id="galleryImg" ></span>
         -->
         <img id="galleryImg" class="weui-gallery__img" />
-        <div class="weui-gallery__opr" style="padding-top:6px;width:48px;position:absolute;top:0;right:0;">
+        <div class="weui-gallery__opr" style="padding-top:6px;width:48px;position:absolute;top:0;right:0;left:auto;bottom:auto;">
             <a href="javascript:" class="weui-gallery__del">
                 <img src="{{ asset('images/close.png') }}" />
             </a>
