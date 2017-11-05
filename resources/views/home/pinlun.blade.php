@@ -17,7 +17,7 @@
 <section class="comment-title">
     <header class="comment-head flex-justify">
         <h3>{{$res['title']}}@if($res['type'] == 3)<strong><em>¥ </em>{{ $res['price'] }}</strong> <a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif @if($res['type'] == 4)<a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif </h3>
-        <span>{{ $res['userinfo'] -> name }}</span>
+        <span onclick="location.href='{{ url('home/likeman').'/'.$vo -> openid }}'" >{{ $res['userinfo'] -> name }}</span>
     </header>
     @if($res['type'] == 3) <div class="comment-time"><span>时间</span> {{ $res['date'] }} 至 {{ $res['date_right'] }} </div> @endif
     <p>{{$res['miaoshu']}}</p>
@@ -58,7 +58,8 @@
 
 </section>
 
-@if(count($res['who']))
+
+@if(count($res['who']) && $type == 2)
 <div class="interested">
     <h3>感兴趣</h3>
     <div class="interested-foot">
@@ -80,14 +81,14 @@
     <div class="comment-content">
 
             @foreach($res_pinlun as $vo)
-                <div class="flex comment-list">
+                <div class="flex comment-list" style="position:relative;">
                     <div style="background:url('@if(!empty($vo -> userinfo)){{$vo -> userinfo ->img}}@endif') no-repeat center;background-size:cover;" onclick="location.href='{{ url('home/likeman').'/'.$vo -> openid }}'"></div>
                     <div class="flex-1 comment-main">
                         <div class="flex-justify"><span>{{ $vo -> userinfo -> name }}</span><span>{{ date('Y-m-d H:i',$vo -> created_at) }}</span></div>
                         <p>{!! $vo -> content !!}</p>
                     </div>
                     @if(session('openid') == $vo -> userinfo -> openid)
-                    <a style="font-size:10px;padding-left:5px;" onclick="shanchu({{ $vo -> id }})">删除</a>
+                    <a style="font-size:10px;position:absolute;right:10px;bottom:10px;" onclick="shanchu({{ $vo -> id }})">删除</a>
                         @endif
                 </div>
             @endforeach

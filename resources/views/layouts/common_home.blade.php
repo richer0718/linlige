@@ -548,6 +548,7 @@
                 //html += '<span>'+data[i].created_at+'</span>';
                 html += '<div><i class="iconfont icon-good"></i> ';
                 html += '<span onclick="dianzan(this,'+data[i].id+')" >'+data[i].dianzan+'</span> ';
+                html += '<img src="{{asset('images/comment.png')}}" /> <span>'+data[i].liulan+'</span>';
                 html += '</div></footer><div class="property-reply flex-justify"><div class="demand-time">';
                 html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
                 html += '<div class="demand-btn"><a  ';

@@ -77,7 +77,7 @@
                 </div>
 				<p style="font-size:13px;color:eeeeee;margin-top:5px;">如不填写，默认为面议</p>
                 <input type="text" class="help-title" placeholder="请输入标题（25字以内）" name="title"/>
-                <input type="date" class="help-date" id="date"/>
+                <input type="date" class="help-date" id="date" />
             </section>
 
             <div class="sale-text">
@@ -462,6 +462,8 @@
             if(!date_right){
                 layer.msg('请填写日期');return false;
             }
+
+
             var start = new Date(date.replace("-", "/").replace("-", "/"));
             var end = new Date(date_right.replace("-", "/").replace("-", "/"));
             if(end<start){

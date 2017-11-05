@@ -13,7 +13,7 @@
         <a  class="hover" id="zhide"><span>值得看</span></a>
         <a id="toupiao"><span>投票</span></a>
     </header>
-    <article class="vote-main" id="article1" style="padding: 0.25rem 0.25rem 0.32rem;">
+    <article class="vote-main" id="article1" >
         @if(!empty($list_article))
             @foreach($list_article as $vo)
                 <section class="vote-list flex-justify" onclick="location.href='{{url('/home/zhidedetail/'.$vo->id)}}' ">

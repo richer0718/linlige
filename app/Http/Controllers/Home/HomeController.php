@@ -501,7 +501,8 @@ class HomeController extends Controller
     public function newszan(Request $request){
         //先查他有没有点过赞
         $isset = DB::table('zan_news') -> where([
-            'news_id' => $request -> input('news_id')
+            'news_id' => $request -> input('news_id'),
+            'openid' => session('openid'),
         ]) -> first();
         if(!$isset){
             DB::table('zan_news') -> insert([
@@ -520,7 +521,8 @@ class HomeController extends Controller
     public function newszant(Request $request){
         //先查他有没有点过赞
         $isset = DB::table('zan_service') -> where([
-            'news_id' => $request -> input('news_id')
+            'news_id' => $request -> input('news_id'),
+            'openid' => session('openid'),
         ]) -> first();
         if(!$isset){
             DB::table('zan_service') -> insert([
