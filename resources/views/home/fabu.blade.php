@@ -472,7 +472,11 @@
             //开始不能早于现在
             var sysDate = new Date();//获取系统时间
 
+
             var  start_date = new Date(start);//把用户输入的字符串转换成日期格式；
+console.log(sysDate);
+console.log(start_date);
+console.log(start);
             if(sysDate > start_date){
                 layer.msg('开始时间不能早于现在');return false;
             }
