@@ -873,7 +873,7 @@
         <span class="weui-gallery__img" id="galleryImg" ></span>
         -->
         <img id="galleryImg" class="weui-gallery__img" />
-        <div class="weui-gallery__opr" style="padding-top:6px;">
+        <div class="weui-gallery__opr" style="padding-top:6px;width:48px;position:absolute;top:0;right:0;">
             <a href="javascript:" class="weui-gallery__del">
                 <img src="{{ asset('images/close.png') }}" />
             </a>
@@ -883,8 +883,8 @@
 	<script>
         var hei = $(window).height();
         var win = $(window).width();
-        $('#galleryImg').css('height',hei - 60);
-        $('#galleryImg').css('width',win);
+        //$('#galleryImg').css('height',hei - 60);
+        //$('#galleryImg').css('width',win);
 		function showimg(th){
             $('#galleryImg').attr('src',$(th).attr('src'));
             //计算galleryImg的宽高
