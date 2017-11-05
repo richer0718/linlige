@@ -110,7 +110,8 @@
 
                         <div class="col-md-12 title-box">
 
-                            <input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn addtiankong" type="button" style="">添加</button>
+                            <div id="super-tiankong"><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn addtiankong" type="button" style="margin-left:3px;">添加</button></div>
+                            <div id="tiankong_mark"></div>
                         </div>
 
                     </div>
@@ -154,6 +155,18 @@
     </div>
     <script>
         $(function(){
+            //填空题
+            $('.addtiankong').click(function(){
+                var html  = '';
+                html += '<div style="margin-top:4px;" class=newtiankong><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn delete-tiankong" type="button" style="margin-left:3px;">删除</button></div>';
+                $('#tiankong_mark').before(html);
+            })
+            $('.row .col-md-9').on('click','.delete-tiankong',function(){
+                $(this).parent('.newtiankong').remove();
+            })
+
+
+
 
             //添加选项按钮
             $('.row .col-md-9').on('click','.add-option',function(){

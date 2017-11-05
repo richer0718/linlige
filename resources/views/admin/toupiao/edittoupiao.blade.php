@@ -127,6 +127,29 @@
                     @endforeach
 
                     <input type="hidden" id="markk" />
+                    <h4 style="margin-top:10px;margin-bottom:10px;">填空题</h4>
+
+
+                    <div class="row" >
+
+                        <div class="col-md-12 title-box">
+                            @if(!$tiankongs)
+                            <div id="super-tiankong"><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn addtiankong" type="button" style="margin-left:3px;">添加</button></div>
+
+                            @else
+                                @foreach($tiankongs as $k => $vo)
+                                   @if($k == 0)
+                                        <div id="super-tiankong"><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  value="{{ $vo->title }}" autofocus autocomplete="off"><button class="btn addtiankong" type="button" style="margin-left:3px;">添加</button></div>
+                                    @else
+                                        <div style="margin-top:4px;" class=newtiankong><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  value="{{ $vo->title }}" autofocus autocomplete="off"><button class="btn delete-tiankong" type="button" style="margin-left:3px;">删除</button></div>
+                                    @endif
+                                @endforeach
+
+                            @endif
+                                <div id="tiankong_mark"></div>
+                        </div>
+
+                    </div>
 
                     <!--
                     <div class="add-article-box">
@@ -168,6 +191,15 @@
     </div>
     <script>
         $(function(){
+            //填空题
+            $('.addtiankong').click(function(){
+                var html  = '';
+                html += '<div style="margin-top:4px;" class=newtiankong><input type="text" name="tiankong[]" class="myinput" placeholder="在此处输入填空题"  autofocus autocomplete="off"><button class="btn delete-tiankong" type="button" style="margin-left:3px;">删除</button></div>';
+                $('#tiankong_mark').before(html);
+            })
+            $('.row .col-md-9').on('click','.delete-tiankong',function(){
+                $(this).parent('.newtiankong').remove();
+            })
 
             //添加选项按钮
             $('.row .col-md-9').on('click','.add-option',function(){

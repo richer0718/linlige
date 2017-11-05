@@ -71,6 +71,7 @@ class ToupiaoController extends Controller
 
     //增加投票处理
     public function addToupiaoRes(Request $request){
+        //dd($request);
         if($request -> loudong_type == 0){
             //全部
             $loudong = 0;
@@ -127,6 +128,19 @@ class ToupiaoController extends Controller
             $item = $item + intval($temp_number);
 
         }
+
+        //如果有填空题
+        $temp = $request -> tiankong;
+        if($temp[0]){
+            foreach($temp as $vo){
+                //加入填空题表
+                DB::table('tiankong') -> insert([
+                    'toupiao_id' => $toupiao_id,
+                    'title' => $vo
+                ]);
+            }
+        }
+
 
         return redirect('admin/toupiao')->with([
             'insertres' => 'yes'
@@ -192,6 +206,23 @@ class ToupiaoController extends Controller
 
         }
 
+        //如果有填空题
+        $temp = $request -> tiankong;
+        if($temp[0]){
+            //把旧的全部删掉
+            DB::table('tiankong') -> where([
+                'toupiao_id' => $toupiao_id,
+            ]) -> delete();
+            foreach($temp as $vo){
+                //加入填空题表
+                DB::table('tiankong') -> insert([
+                    'toupiao_id' => $toupiao_id,
+                    'title' => $vo
+                ]);
+            }
+        }
+
+
         return redirect('admin/toupiao')->with([
             'editres' => 'yes'
         ]);
@@ -231,11 +262,18 @@ class ToupiaoController extends Controller
             'id' => session('xiaoqu')
         ]) -> first();
 
+        //查看下有没有填空题
+        $tiankongs = DB::table('tiankong') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
+
+
         //dd($detail);
         return view('admin/toupiao/edittoupiao')->with([
             'res' => $toupiao,
             'detail' => $detail,
-            'louhao' => $louhao
+            'louhao' => $louhao,
+            'tiankongs' => $tiankongs
         ]);
     }
 
