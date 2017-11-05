@@ -453,15 +453,17 @@
             if(!title){
                 layer.msg('请填写标题');return false;
             }
-            if(!content){
-                layer.msg('请填写内容');return false;
-            }
             if(!date){
                 layer.msg('请填写日期');return false;
             }
             if(!date_right){
                 layer.msg('请填写日期');return false;
             }
+
+            if(!content){
+                layer.msg('请填写内容');return false;
+            }
+
 
 
 
@@ -474,9 +476,7 @@
 
 
             var  start_date = new Date(start);//把用户输入的字符串转换成日期格式；
-console.log(sysDate);
-console.log(start_date);
-console.log(start);
+
             if(sysDate > start_date){
                 layer.msg('开始时间不能早于现在');return false;
             }
