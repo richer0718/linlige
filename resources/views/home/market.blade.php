@@ -45,8 +45,8 @@
 @if(!empty($res))
     @foreach($res as $vo)
         <section class="comment-title" style="border-bottom: 1px solid #efefef;" >
-            <header class="comment-head flex-justify" onclick="location.href='{{ url('home/pinlun',['id'=>$vo['id']]) }}'"  >
-                <h3>{{ $vo['title'] }}</h3>
+            <header class="comment-head flex-justify"  >
+                <h3 onclick="location.href='{{ url('home/pinlun',['id'=>$vo['id']]) }}'"  >{{ $vo['title'] }}</h3>
                 <span onclick="location.href='{{ url('home/likeman').'/'.$vo['userinfo'] -> openid }}'"  >{{ $vo['userinfo'] -> name }}</span>
             </header>
             <p>{{  $vo['miaoshu'] }}</p>
