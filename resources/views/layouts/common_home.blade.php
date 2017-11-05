@@ -892,14 +892,14 @@
             var hei = $(window).height();
             var img_w = $(th).width();//图片宽度
             var img_h = $(th).height();//图片高度
+            console.log(img_w);
+            console.log(img_h);
             var top = (hei - img_h)/2;
-            $('#galleryImg').css( {
-                "position":'fixed',"top":top,'bottom':'auto'
-            });//设置缩放后的宽度和高度
+
             if (img_w > w) {//如果图片宽度超出指定最大宽度
                 var height = (w * img_h) / img_w; //高度等比缩放
                 $('#galleryImg').css( {
-                    "width" : w,"height" : height,"top":top
+                    "width" : w,"height" : height
                 });//设置缩放后的宽度和高度
             }
 
