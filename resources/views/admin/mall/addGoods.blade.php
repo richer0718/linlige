@@ -5,7 +5,7 @@
     <script src="{{ asset('admin/lib/ueditor/ueditor.all.min.js') }}"> </script>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main" style="height:700px;overflow-y: auto;padding-bottom:100px;">
         <div class="row">
-            <form action="{{ url('admin/addGoodsRes') }}" method="post" class="add-article-form" enctype="multipart/form-data">
+            <form @if(!isset($res))action="{{ url('admin/addGoodsRes') }}" @else action="{{ url('admin/editGoodsRes') }}" @endif method="post" class="add-article-form" enctype="multipart/form-data">
                 <div class="col-md-9" >
                     <h1 class="page-header">@if(isset($res))编辑@else添加新商品@endif</h1>
                     @if(isset($res)) <input type="hidden" name="id" value="{{ $res -> id }}" /> @endif
@@ -204,10 +204,18 @@
                     </div>
                     <div class="add-article-box">
                         <h2 class="add-article-box-title"><span>商品主图（412*217px）</span></h2>
+                        <p>如果不修改请勿添加</p>
+                        @if(isset($res))<img src="{{ asset('uploads') }}/{{ $res->img }}" style="width:80px;height:100px;" />@endif
                         <div class="add-article-box-content">
                             <input type="file" class="form-control" placeholder="" id="pictureUpload" name="img" autocomplete="off" @if(empty($res)){{ 'required' }}@endif>
                         </div>
                         <h2 class="add-article-box-title"><span>轮播图 (421*321px)</span></h2>
+                        <p>如果不修改请勿添加</p>
+                        @if(isset($res))
+                            @foreach( $res->imgs as $vo )
+                            <img src="{{ asset('uploads') }}/{{ $vo }}" style="width:80px;height:100px;" />
+                            @endforeach
+                        @endif
                         <div class="add-article-box-content">
                             <input type="file" class="form-control" placeholder="" id="pictureUpload" name="imgs[]" multiple @if(empty($res)){{ 'required' }}@endif>
                         </div>

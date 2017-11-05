@@ -9,6 +9,7 @@
                 <thead>
                 <tr>
                     <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">ID</span></th>
+                    <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">头像</span></th>
                     <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">姓名</span></th>
                     <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">性别</span></th>
                     <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">签名</span></th>
@@ -17,7 +18,6 @@
                     <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">楼号</span></th>
                     <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">门牌号</span></th>
                     <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">身份</span></th>
-                    <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">状态</span></th>
                     <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">创建时间</span></th>
                     <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                 </tr>
@@ -27,6 +27,7 @@
                     @foreach($res as $vo)
                         <tr>
                             <td>{{$vo -> id}}</td>
+                            <td><img style="width:80px;height:80px;" src="{{$vo -> img}}" /></td>
                             <td>{{$vo -> name}}</td>
                             <td>@if($vo -> sex == 1)男@else女@endif</td>
                             <td><img src="{{ $vo -> sign }}" style="width:80px;height:100px;" /></td>
@@ -35,7 +36,6 @@
                             <td>{{$vo -> louhao}}</td>
                             <td>{{$vo -> menpaihao}}</td>
                             <td>{{$vo -> shenfen}}</td>
-                            <td>@if($vo -> status == 0)待审核@elseif($vo -> status == 1)审核通过@else禁用@endif</td>
                             <td>{{ date('Y-m-d H:i',$vo -> created_at) }}</td>
                             <td data="{{$vo -> id}}" >
                                 <a  class="shezhi">设置身份</a>

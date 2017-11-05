@@ -373,6 +373,9 @@ class MallController extends Controller
 
         $res = DB::table('goods') -> where(['id'=>$id]) -> first();
         $res -> peisongfangshi = explode(',',$res -> peisongfangshi);
+
+        $res -> imgs = explode(',',$res -> imgs);
+        //dd($res);
         return view('admin/mall/addGoods') -> with([
             'res'=>$res,
             'res_fenlei' => $res_fenlei,
@@ -392,7 +395,7 @@ class MallController extends Controller
             'content' => $request -> input('content'),
             'type' => $request -> input('type'),
             'gongying_id' => $request -> input('gongying_id'),
-            'peisongfangshi' => $request -> input('peisongfangshi'),
+            'peisongfangshi' => implode(',',$request -> input('peisongfangshi')),
             'xuni' => $request -> input('xuni'),
             'updated_at' => time(),
             'created_at' => time(),
@@ -422,6 +425,7 @@ class MallController extends Controller
             $savearr['imgs'] = implode(',',$temp_imgs);
 
         }
+        //dd($savearr);
 
 
 

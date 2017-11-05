@@ -54,6 +54,14 @@
                         <option value="0"   @if(!empty($_POST['shouhou']) && $_POST['shouhou'] == 0)selected @endif  >未售后</option>
                     </select>
                 </td>
+                <td>付款状态</td>
+                <td>
+                    <select name="fukuan">
+                        <option value="">全部</option>
+                        <option value="1"   @if(!empty($_POST['fukuan']) && $_POST['fukuan'] == 1)selected @endif  >已付款</option>
+                        <option value="0"   @if(!empty($_POST['fukuan']) && $_POST['fukuan'] == 0)selected @endif  >未付款</option>
+                    </select>
+                </td>
                 <td>订单起始时间</td>
                 <td>
                     <input type="text" name="createtime_left"  value="@if(!empty($_POST['createtime_left'])){{ $_POST['createtime_left'] }}@endif" class="form-control" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"/>

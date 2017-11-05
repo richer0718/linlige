@@ -16,7 +16,7 @@
                 <div class="expert-main flex-1">
                     <h3 class="flex-align">{{$vo['title']}}@if($vo['is_mark'] == 0)<span>邻里格</span>@endif</h3>
                     <div>
-                        {{$vo['name']}}<span><a href="tel:{{ $vo['tel_rel'] }}">{{$vo['tel_rel']}}</a></span>
+                        {{$vo['name']}}<span style="color: #3fb994;"><a href="tel:{{ $vo['tel_rel'] }}">{{$vo['tel_rel']}}</a></span>
                     </div>
                     <p>{{$vo['content']}}</p>
                 </div>

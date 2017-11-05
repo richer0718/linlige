@@ -42,6 +42,9 @@ class OrderController extends Controller
             if(!empty($_POST['shouhou'])){
                 $query -> where('shouhou_status','=',$_POST['shouhou']);
             }
+            if(!empty($_POST['fukuan'])){
+                $query -> where('fukuan_status','=',$_POST['fukuan']);
+            }
 
             if(!empty($_POST['createtime_left'])){
                 $query -> where('created_at','>',strtotime($_POST['createtime_left']));
