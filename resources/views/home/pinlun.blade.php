@@ -230,7 +230,7 @@
                 },
                 success: function(data){
                     if(data == 'success'){
-                        $('#dianzan_num').text(parseInt($('#dianzan_num').text() + 1));
+                        $('#dianzan_num').text(parseInt($('#dianzan_num').text()) + 1);
                         layer.msg('点赞+1');
                     }else{
                         layer.msg('您已经点过赞了');
