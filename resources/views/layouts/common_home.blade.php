@@ -893,6 +893,9 @@
             var img_w = $(th).width();//图片宽度
             var img_h = $(th).height();//图片高度
             var top = (hei - img_h)/2;
+            $('#galleryImg').css( {
+                "top":top
+            });//设置缩放后的宽度和高度
             if (img_w > w) {//如果图片宽度超出指定最大宽度
                 var height = (w * img_h) / img_w; //高度等比缩放
                 $('#galleryImg').css( {
