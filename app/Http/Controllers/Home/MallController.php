@@ -125,7 +125,7 @@ class MallController extends Controller
             ],
         ];
         $app = new Application($options);
-        $payment = $app->payment;
+        //$payment = $app->payment;
 
 
         if (empty($_GET['code'])) {
@@ -134,11 +134,7 @@ class MallController extends Controller
             $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
             return $response; // or echo $response;
         }
-        // 授权回来
-        $oauthUser = $app->oauth->user();
-        $token = $oauthUser->getAccessToken();
-        $configForPickAddress = $payment->configForShareAddress($token);
-        //dd($configForPickAddress);
+
 
 
         $js = $app -> js;
@@ -149,7 +145,7 @@ class MallController extends Controller
         return view('home/mall/buynow') -> with([
             'res' => $res,
             'number' => $number,
-            'configForPickAddress' => $configForPickAddress,
+            //'configForPickAddress' => $configForPickAddress,
             'js' => $js
         ]);
     }
