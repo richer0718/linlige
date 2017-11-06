@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
 
 class UserController extends Controller
 {
@@ -80,6 +81,50 @@ class UserController extends Controller
 
     //修改用户状态
     public function checkstatus(Request $request){
+        //先查下他的openid
+        $info = DB::table('user') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+
+
+
+        if($request -> input('status') == 3){
+            //审核不通过
+            $messageId = $notice->send([
+                'touser' => $info -> openid,
+                'template_id' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8',
+                'url' => 'http://m.tianluyangfa.com/laravel/public/homeJump',
+                'data' => [
+                    'first' => '尊敬的'.$info -> name,
+                    'keyword1' => '您的注册申请已被退回，请重新申请',
+                    'keyword2' => date('Y-m-d'),
+                    'keyword3' => '',
+                    'remark' => '感谢您的使用'
+                ],
+            ]);
+        }else{
+            $messageId = $notice->send([
+                'touser' => $info -> openid,
+                'template_id' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8',
+                'url' => 'http://m.tianluyangfa.com/laravel/public/homeJump',
+                'data' => [
+                    'first' => '尊敬的'.$info -> name,
+                    'keyword1' => '您的注册申请已被审核通过',
+                    'keyword2' => date('Y-m-d'),
+                    'keyword3' => '',
+                    'remark' => '感谢您的使用'
+                ],
+            ]);
+        }
         //如果是审核不通过，就把他删了，让他重新提交
         if($request -> input('status') == 3){
             DB::table('user') -> where([

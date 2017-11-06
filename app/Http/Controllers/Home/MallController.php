@@ -125,8 +125,8 @@ class MallController extends Controller
             ],
         ];
         $app = new Application($options);
-        //$payment = $app->payment;
-
+        $payment = $app->payment;
+        //$config = $payment->configForJSSDKPayment($prepayId);
 
         if (empty($_GET['code'])) {
             $currentUrl = url()->full();; // 获取当前页 URL
