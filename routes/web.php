@@ -37,6 +37,8 @@ Route::any('/home/fankuiRes', 'Home\HomeController@fankuiRes') ;
 
 //发布
 Route::any('/home/fabu/{id}', 'Home\HomeController@fabu') ;
+//被帮助点击的链接 news id
+Route::any('/home/helpPage/{id}', 'Home\HomeController@helpPage') ;
 
 //发布结果
 Route::any('/home/fabuRes', 'Home\HomeController@fabuRes') ;

@@ -716,7 +716,41 @@
 
 </script>
     <script>
+        @if(session('helpres') == 'yes' )
+        layer.confirm('确定帮他（她）么', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            //确定帮他
+            var url = '{{url('home/helphim')}}';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id},
 
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if(data == 'success'){
+                        layer.msg('帮助成功');
+                        setTimeout(function(){location.reload()},1000);
+                    }else{
+                        layer.msg('请找他人帮忙');
+                    }
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+        }, function(){
+
+            layer.msg('您已取消', {time:200});
+
+
+        });
+        @endif
 
         function tel(id){
             layer.msg('正在呼叫');

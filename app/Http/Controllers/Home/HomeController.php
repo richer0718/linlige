@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,29 @@ class HomeController extends Controller
         }
 
         return $array;
+    }
+
+    public function helpPage($id){
+        $options = [
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+        //拿到news id 取帮助人的open id
+        $newsinfo = DB::table('news') -> where([
+            'id' => $id
+        ]) -> first();
+        $openid_him = $newsinfo -> openid_help;
+
+        return redirect('home/mylinli/'.$openid_him) -> with('helpres','yes');
+
     }
 
     public function indexJump(){
@@ -766,7 +790,35 @@ class HomeController extends Controller
             'id' => $request -> input('id')
         ]) -> first();
 
+
         if(session('openid') != $isset -> openid){
+            $info = DB::table('user') -> where([
+                'openid' => $isset -> openid
+            ]) -> first();
+            $options = [
+                /**
+                 * 账号基本信息，请从微信公众平台/开放平台获取
+                 */
+                'app_id'  => config('wxsetting.appid'),         // AppID
+                'secret'  => config('wxsetting.secret'),     // AppSecret
+            ];
+            $app = new Application($options);
+            $notice = $app->notice;
+            $messageId = $notice->send([
+                'touser' => $info -> openid,
+                'template_id' => config('wxsetting.moban1'),
+                'url' => config('wxsetting.helpurl').$request -> input('id'),
+                'data' => [
+                    'first' => '尊敬的'.$info -> name,
+                    'keyword1' => '您发布的需求已有邻居愿意帮忙，快去看看吧~',
+                    'keyword2' => date('Y-m-d'),
+                    'keyword3' => '',
+                    'remark' => '感谢您的使用'
+                ],
+            ]);
+
+
+
             DB::table('news') -> where([
                 'id' => $request -> input('id')
             ]) -> update([

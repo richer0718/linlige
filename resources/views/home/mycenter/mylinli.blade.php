@@ -846,6 +846,11 @@
     function noReg(){
         layer.msg('您的身份还未审核通过，<br>请耐心等待下');
     }
+
+    @if(session('helpres'))
+        layer.alert('ta愿意帮你，请确认');
+    @endif
+
 </script>
 <script src="{{asset('js/jquery.lazyload.min.js')}}"></script>
 </html>
