@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class MallController extends Controller
 {
@@ -126,13 +127,14 @@ class MallController extends Controller
         $app = new Application($options);
         $payment = $app->payment;
 
+
         if (empty($_GET['code'])) {
             $currentUrl = url()->full();; // 获取当前页 URL
             //var_dump($currentUrl);exit;
             $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
             return $response; // or echo $response;
         }
-// 授权回来
+        // 授权回来
         $oauthUser = $app->oauth->user();
         $token = $oauthUser->getAccessToken();
         $configForPickAddress = $payment->configForShareAddress($token);
