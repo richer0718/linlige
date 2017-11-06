@@ -20,9 +20,7 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         wx.config(<?php echo $js->config(
-            array('onMenuShareQQ',
-                'onMenuShareWeibo',
-                'openAddress',
+            array('openAddress',
                 'checkJsApi',
                 'editAddress',
                 'chooseWXPay',
@@ -38,19 +36,9 @@
                     'openAddress',
                 ],
                 success: function (res) {
-                    wx.openAddress({
-                        success: function (res) {
-                            console.info(res);
-                            var userName = res.userName; // 收货人姓名
-                            var postalCode = res.postalCode; // 邮编
-                            var provinceName = res.provinceName; // 国标收货地址第一级地址（省）
-                            var cityName = res.cityName; // 国标收货地址第二级地址（市）
-                            var countryName = res.countryName; // 国标收货地址第三级地址（国家）
-                            var detailInfo = res.detailInfo; // 详细收货地址信息
-                            var nationalCode = res.nationalCode; // 收货地址国家码
-                            var telNumber = res.telNumber; // 收货人手机号码
-                        }
-                    });
+
+                   
+
                 }
             });
 
@@ -58,7 +46,7 @@
 
 
         });
-        
+
     </script>
 </head>
 <body>
