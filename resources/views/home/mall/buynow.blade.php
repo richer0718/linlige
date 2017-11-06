@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no, email=no">
     <meta name="keywords" content="关键字" >
     <meta name="description" content="描述" >
-
+    <script src="{{asset('js/script.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/swiper.3.2.0.min.css')}}">
     <link href="{{asset('css/iconfont.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
