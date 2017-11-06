@@ -12,9 +12,9 @@ use EasyWeChat\Foundation\Application;
 class MallController extends Controller
 {
     public function indexJump(){
-        $url = urlencode('http://m.tianluyangfa.com/laravel/public/home/mall');
+        $url = urlencode(config('wxsetting.url2'));
 
-        $appId = 'wx68099d0c30ed4f39';
+        $appId = config('wxsetting.appid');
 
         $trueurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appId."&redirect_uri=".$url."&response_type=code&scope=snsapi_base&state=state#wechat_redirect";
         //echo 11;exit;
