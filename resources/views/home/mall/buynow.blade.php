@@ -26,16 +26,7 @@
 
         wx.ready(function(){
 
-            wx.checkJsApi({
-                jsApiList: [
-                    'openAddress',
-                ],
-                success: function (res) {
-
-                    console.info(res);
-
-                }
-            });
+            
 
 
 
