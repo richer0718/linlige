@@ -6,6 +6,15 @@
 <body>
 <style>
     body{background:#fff;}
+    .toupiao_tiankong{
+        width: 90%;
+        height: 30px;
+        margin: 0 auto;
+        border: 1px solid #dedede;
+        border-radius: 3px;
+        margin-top: 5px;
+        padding-left: 4px;
+    }
 </style>
 @include('layouts.common_fanhui')
 <article class="questionnaire">
@@ -29,14 +38,15 @@
                 </div>
             </div>
             @endforeach
-            <div class="questionnaire-model">
-                <h3><span>1.</span>这是道填空题，请填写</h3>
-                <input type="text" style="width:100%;height:30px;"/>
-            </div>
-                <div class="questionnaire-model">
-                    <h3><span>1.</span>这是道填空题，请填写</h3>
-                    <input type="text" style="width:100%;height:30px;"/>
-                </div>
+                @if($tiankongtis)
+                    @foreach($tiankongtis as $k => $vo)
+                    <div class="questionnaire-model">
+                        <h3><span></span>{{ $vo -> title }}</h3>
+                        <input type="text" class="toupiao_tiankong" name="tiankong"/>
+                    </div>
+                    @endforeach
+                @endif
+
             <p style="padding:10px;text-indent: 2em">{!! $toupiaodetail -> jieshu !!}</p>
             <a  class="radio-vote" id="newtoupiao">投票</a>
         </div>

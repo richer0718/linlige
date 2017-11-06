@@ -676,11 +676,16 @@ class HomeController extends Controller
             ]) -> get();
         }
         //dd($res);
+        //填空题
+        $tiankongtis = DB::table('tiankong') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
 
         return view('home/toupiao/toupiaodetail')->with([
             'res' => $res,
             'id' => $id,
-            'toupiaodetail'=>$toupiaodetail
+            'toupiaodetail'=>$toupiaodetail,
+            'tiankongtis' => $tiankongtis
         ]);
     }
 
