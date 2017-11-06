@@ -17,23 +17,7 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <script src="{{asset('js/jquery-1.11.1.min.js')}}"></script>
     <script src="{{asset('layer/2.2/layer.js')}}"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-        wx.config(<?php echo $js->config(
-            array('checkJsApi',
-                'openAddress',), true)
-            ?>);
 
-        wx.ready(function(){
-
-
-
-
-
-
-        });
-
-    </script>
 </head>
 <body>
 
@@ -177,6 +161,24 @@
     function tiaozhuan(){
         location.href='{{ url('home/mall') }}';
     }
+</script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(
+            array('checkJsApi',
+                'openAddress',), true)
+        ?>);
+
+    wx.ready(function(){
+
+
+
+
+
+
+    });
+
 </script>
 </body>
 </html>
