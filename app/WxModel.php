@@ -148,7 +148,7 @@ class WxModel extends Model
         $userinfo = file_get_contents($url);
         $userinfo = json_decode($userinfo,true);
 
-        if($userinfo['errcode']){
+        if(isset($userinfo['errcode'])){
             session([
                 'openid'=>null
             ]);
