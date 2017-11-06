@@ -147,7 +147,8 @@ class WxModel extends Model
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$token."&openid=".$openid."&lang=zh_CN";
         $userinfo = file_get_contents($url);
         $userinfo = json_decode($userinfo,true);
-        if(!$userinfo['headimgurl']){
+
+        if($userinfo['errcode']){
             session([
                 'openid'=>null
             ]);
