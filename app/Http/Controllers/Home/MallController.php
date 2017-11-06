@@ -103,12 +103,12 @@ class MallController extends Controller
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */
-            'app_id'  => 'wx68099d0c30ed4f39',         // AppID
-            'secret'  => 'd4624c36b6795d1d99dcf0547af5443d',     // AppSecret
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
             //'token'   => 'yangxiaojie',          // Token
             'payment' => [
-                'merchant_id'        => '1313535001',
-                'key'                => 'abcdefghijklmnopqrstxyz123456789',
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
                 'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
                 'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
                 'notify_url'         => 'https://tianluyangfa.com',       // 你也可以在下单时单独设置来想覆盖它
@@ -125,6 +125,7 @@ class MallController extends Controller
         ];
         $app = new Application($options);
         $payment = $app->payment;
+
         if (empty($_GET['code'])) {
             $currentUrl = url()->full();; // 获取当前页 URL
             //var_dump($currentUrl);exit;
