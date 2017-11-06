@@ -279,8 +279,11 @@ class HomeController extends Controller
             'huifu' => $request -> input('content')
         ]);
         //给此人发送模版消息
-        $info = DB::table('news') -> where([
+        $data = DB::table('news') -> where([
             'id' => $request -> input('id')
+        ]) -> first();
+        $info = DB::table('user') -> where([
+            'openid' => $data -> openid
         ]) -> first();
         $options = [
             /**

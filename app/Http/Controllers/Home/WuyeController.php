@@ -87,9 +87,13 @@ class WuyeController extends Controller
         ]);
 
         //给此人发送模版消息
-        $info = DB::table('news') -> where([
-            'id' => $request -> input('id'),
+        $data = DB::table('news') -> where([
+            'id' => $request -> input('id')
         ]) -> first();
+        $info = DB::table('user') -> where([
+            'openid' => $data -> openid
+        ]) -> first();
+
         $options = [
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
@@ -124,8 +128,11 @@ class WuyeController extends Controller
         ]);
 
         //给此人发送模版消息
-        $info = DB::table('news') -> where([
-            'id' => $request -> input('id'),
+        $data = DB::table('news') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        $info = DB::table('user') -> where([
+            'openid' => $data -> openid
         ]) -> first();
         $options = [
             /**
