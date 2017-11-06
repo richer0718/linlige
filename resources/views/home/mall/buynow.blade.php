@@ -10,7 +10,6 @@
     <meta name="keywords" content="关键字" >
     <meta name="description" content="描述" >
 
-    <script src="{{asset('js/script.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/swiper.3.2.0.min.css')}}">
     <link href="{{asset('css/iconfont.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -43,6 +42,7 @@
         $(function(){
             wx.openAddress({
                 success: function (res) {
+                    console.info(res);
                     var userName = res.userName; // 收货人姓名
                     var postalCode = res.postalCode; // 邮编
                     var provinceName = res.provinceName; // 国标收货地址第一级地址（省）
