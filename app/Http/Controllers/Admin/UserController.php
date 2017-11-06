@@ -101,8 +101,8 @@ class UserController extends Controller
             //审核不通过
             $messageId = $notice->send([
                 'touser' => $info -> openid,
-                'template_id' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8',
-                'url' => 'http://m.tianluyangfa.com/laravel/public/homeJump',
+                'template_id' => config('wxsetting.moban1'),
+                'url' => config('wxsetting.superurl'),
                 'data' => [
                     'first' => '尊敬的'.$info -> name,
                     'keyword1' => '您的注册申请已被退回，请重新申请',
@@ -114,8 +114,8 @@ class UserController extends Controller
         }else{
             $messageId = $notice->send([
                 'touser' => $info -> openid,
-                'template_id' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8',
-                'url' => 'http://m.tianluyangfa.com/laravel/public/homeJump',
+                'template_id' => config('wxsetting.moban1'),
+                'url' => config('wxsetting.superurl'),
                 'data' => [
                     'first' => '尊敬的'.$info -> name,
                     'keyword1' => '您的注册申请已被审核通过',

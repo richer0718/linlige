@@ -278,6 +278,32 @@ class HomeController extends Controller
         ]) -> update([
             'huifu' => $request -> input('content')
         ]);
+        //给此人发送模版消息
+        $info = DB::table('news') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.superurl'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的反馈已提交给物业，请等待处理',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
         echo 'success';
     }
 

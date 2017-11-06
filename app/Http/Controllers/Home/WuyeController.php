@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
 
 class WuyeController extends Controller
 {
@@ -84,6 +85,34 @@ class WuyeController extends Controller
             'imgs' => $request -> input('img'),
             'username' => session('username')
         ]);
+
+        //给此人发送模版消息
+        $info = DB::table('news') -> where([
+            'id' => $request -> input('id'),
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.superurl'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的建议有了新回复，点击查看',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
+
         echo 'success';
     }
 
@@ -93,6 +122,35 @@ class WuyeController extends Controller
         ]) -> update([
             'status' => '1'
         ]);
+
+        //给此人发送模版消息
+        $info = DB::table('news') -> where([
+            'id' => $request -> input('id'),
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.superurl'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的建议已得到了处理回复，点击查看',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
+
+
         echo 'success';
     }
 
