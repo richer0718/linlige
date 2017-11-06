@@ -110,6 +110,25 @@
     <div class="flex-1 total">合计  <span><i>¥</i> {{ $res -> price_no*$number }}</span></div>
     <a id="pay">确认支付</a>
 </footer>
+
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(
+            array('checkJsApi',
+                'openAddress',), true)
+        ?>);
+
+    wx.ready(function(){
+
+
+
+
+
+
+    });
+
+</script>
 <script>
 
     $(".pick-radio").click(function(){
@@ -161,24 +180,6 @@
     function tiaozhuan(){
         location.href='{{ url('home/mall') }}';
     }
-</script>
-
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $js->config(
-            array('checkJsApi',
-                'openAddress',), true)
-        ?>);
-
-    wx.ready(function(){
-
-
-
-
-
-
-    });
-
 </script>
 </body>
 </html>
