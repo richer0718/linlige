@@ -20,13 +20,8 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         wx.config(<?php echo $js->config(
-            array('openAddress',
-                'checkJsApi',
-                'editAddress',
-                'chooseWXPay',
-                'getLatestAddress',
-                'openCard',
-                'getLocation'), true)
+            array('checkJsApi',
+                'openAddress',), true)
             ?>);
 
         wx.ready(function(){
@@ -37,7 +32,7 @@
                 ],
                 success: function (res) {
 
-                   
+
 
                 }
             });
