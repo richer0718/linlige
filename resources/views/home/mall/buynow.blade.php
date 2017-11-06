@@ -32,7 +32,7 @@
                 ],
                 success: function (res) {
 
-
+                    console.info(res);
 
                 }
             });
