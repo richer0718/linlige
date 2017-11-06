@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-define('APPID',config('appid'));
-define('SECRET',config('secret'));
+define('APPID',config('wxsetting.appid'));
+define('SECRET',config('wxsetting.secret'));
 
 class WxModel extends Model
 {
