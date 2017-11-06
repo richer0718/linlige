@@ -26,7 +26,7 @@
 
         wx.ready(function(){
 
-            
+
 
 
 
@@ -85,7 +85,7 @@
     @if(in_array(2,$res -> peisongfangshi))
     <div class="flex-justify pick-goods layout">
         <span>送货上门</span>
-        <div class="pick-radio">
+        <div class="pick-radio openaddress">
             <input type="radio" name="get-type"/>
             <i class="iconfont"></i>
         </div>
@@ -129,6 +129,19 @@
 <script>
 
     $(".pick-radio").click(function(){
+        if($(this).hasClass('openaddress')){
+            wx.openAddress({
+                success: function (res) {
+                    //alert(JSON.stringify(res));
+                    console.info(res)
+                    // 用户成功拉出地址
+                },
+                cancel: function () {
+                    // 用户取消拉出地址
+                }
+
+            });
+        }
         $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
     });
 
