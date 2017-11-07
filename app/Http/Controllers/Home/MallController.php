@@ -273,15 +273,73 @@ class MallController extends Controller
         ];
         $app = new Application($options);
         $response = $app->payment->handleNotify(function($notify, $successful){
-            file_put_contents('super_notice',(string)$notify);
-            // 你的逻辑
+            if($successful){
+                //支付成功
+                //根据订单号更新状态
+                DB::table('order') -> where([
+                    'order_id' => $notify -> out_trade_no
+                ]) -> update([
+                    'status' => 0,
+                    'fukuan_status' => 1,
+                    'show_status' => '待收货',
+
+                ]);
+                //发送模版消息
+                $info = DB::table('user') -> where([
+                    'openid' => $notify -> openid
+                ]) -> first();
+
+                $options = [
+                    /**
+                     * 账号基本信息，请从微信公众平台/开放平台获取
+                     */
+                    'app_id'  => config('wxsetting.appid'),         // AppID
+                    'secret'  => config('wxsetting.secret'),     // AppSecret
+                ];
+                $app = new Application($options);
+                $notice = $app->notice;
+                $messageId = $notice->send([
+                    'touser' => $notify -> openid,
+                    'template_id' => config('wxsetting.moban1'),
+                    'url' => config('wxsetting.superurl'),
+                    'data' => [
+                        'first' => '尊敬的'.$info -> name,
+                        'keyword1' => '您的订单已提交，请等待发货~',
+                        'keyword2' => date('Y-m-d'),
+                        'keyword3' => '',
+                        'remark' => '感谢您的使用'
+                    ],
+                ]);
+
+
+            }
             return true; // 或者错误消息
         });
         return $response;
     }
 
 
+    /*
+{
+    "appid":"wx47ffe2d49c271963",
+    "bank_type":"CFT",
+    "cash_fee":"1",
+    "fee_type":"CNY",
+    "is_subscribe":"Y",
+    "mch_id":"1453827602",
+    "nonce_str":"5a0241caee13e",
+    "openid":"oODSSwLXWcSRPF6gTWW2fUMlmtHk",
+    "out_trade_no":"201711080729143866",
+    "result_code":"SUCCESS",
+    "return_code":"SUCCESS",
+    "sign":"49E7AF536CBD626EE8B06FD138FFE0A6",
+    "time_end":"20171108072919",
+    "total_fee":"1",
+    "trade_type":"JSAPI",
+    "transaction_id":"4200000022201711083186568462"
+}
 
+    */
 
 
 }
