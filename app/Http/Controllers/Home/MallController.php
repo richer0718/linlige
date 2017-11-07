@@ -191,7 +191,7 @@ class MallController extends Controller
             'body'             => 'iPad mini 16G 白色',
             'detail'           => 'iPad mini 16G 白色',
             'out_trade_no'     => date("YmdHis").rand(1,10000),
-            'total_fee'        => 5388, // 单位：分
+            'total_fee'        => "789", // 单位：分
             'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'openid'           => session('openid'), // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
