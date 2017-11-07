@@ -116,7 +116,9 @@
 <script type="text/javascript" charset="utf-8">
     wx.config(<?php echo $js->config(
             array('checkJsApi',
-                'openAddress',), true)
+                'openAddress',
+                'editAddress',
+                'chooseWXPay'), true)
         ?>);
 
     wx.ready(function(){

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use EasyWeChat\Foundation\Application;
 use EasyWeChat\Support\Url as UrlHelper;
+use EasyWeChat\Payment\Order;
 
 class MallController extends Controller
 {
@@ -150,6 +151,58 @@ class MallController extends Controller
         ]);
     }
 
+    //下单
+    public function makeOrder(){
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+                'notify_url'         => 'https://tianluyangfa.com',       // 你也可以在下单时单独设置来想覆盖它
+                // 'device_info'     => '013467007045764',
+                // 'sub_app_id'      => '',
+                // 'sub_merchant_id' => '',
+                // ...
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $payment = $app->payment;
+
+        $attributes = [
+            'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
+            'body'             => 'iPad mini 16G 白色',
+            'detail'           => 'iPad mini 16G 白色',
+            'out_trade_no'     => date("YmdHis").rand(1,10000),
+            'total_fee'        => 5388, // 单位：分
+            'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+            'openid'           => '当前用户的 openid', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            // ...
+        ];
+        $order = new Order($attributes);
+        $result = $payment->prepare($order);
+        if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+            $prepayId = $result->prepay_id;
+        }
+    }
+
     //支付
     public function payAjax(Request $request){
         //dd($request);
@@ -166,8 +219,6 @@ class MallController extends Controller
             'show_status' => '待收货',
         ]);
         echo 'success';
-
-
     }
 
 
