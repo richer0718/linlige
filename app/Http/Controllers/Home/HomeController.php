@@ -1084,7 +1084,7 @@ class HomeController extends Controller
                 'id' => $id
             ]) -> first();
             $info = DB::table('user') -> where([
-                'openid' => $data -> openid
+                'openid' => $data -> openid_help
             ]) -> first();
             $options = [
                 /**
