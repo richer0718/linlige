@@ -88,6 +88,7 @@ Route::any('/home/mallJump', 'Home\MallController@indexJump');
 Route::any('/home/mall', 'Home\MallController@index');
 Route::any('/home/malldetail/{id}', 'Home\MallController@malldetail');
 Route::any('/home/buynow/{id}/{number}', 'Home\MallController@buynow');
+Route::any('/home/buypay', 'Home\MallController@buypay');
 Route::any('/home/payAjax', 'Home\MallController@payAjax');
 
 //个人中心

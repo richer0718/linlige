@@ -95,6 +95,11 @@ class MallController extends Controller
     }
 
     public function buynow($id,$number){
+        return redirect('home/buypay') -> with('data',[$id,$number]);
+    }
+    public function buypay(){
+        $id = session('data')[0];
+        $number = session('data')[1];
         $options = [
             /**
              * Debug 模式，bool 值：true/false
