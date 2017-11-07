@@ -68,7 +68,7 @@ class HomeController extends Controller
         ]) -> first();
         $openid_him = $newsinfo -> openid_help;
 
-        return redirect('home/mylinli/'.$openid_him) -> with('helpres','yes');
+        return redirect('home/likeman/'.$openid_him) -> with('helpres',$id);
 
     }
 
@@ -1070,6 +1070,54 @@ class HomeController extends Controller
             'res' => $res,
             'islook' => $islook
         ]);
+    }
+
+    //确认让他帮
+    public function querenhelp(Request $request){
+        $id = $request -> input('id');
+        $res = $request -> input('res');
+        if($res == 'yes'){
+
+            //允许帮助
+            //给此人发送模版消息
+            $data = DB::table('news') -> where([
+                'id' => $id
+            ]) -> first();
+            $info = DB::table('user') -> where([
+                'openid' => $data -> openid
+            ]) -> first();
+            $options = [
+                /**
+                 * 账号基本信息，请从微信公众平台/开放平台获取
+                 */
+                'app_id'  => config('wxsetting.appid'),         // AppID
+                'secret'  => config('wxsetting.secret'),     // AppSecret
+            ];
+            $app = new Application($options);
+            $notice = $app->notice;
+            $messageId = $notice->send([
+                'touser' => $info -> openid,
+                'template_id' => config('wxsetting.moban1'),
+                'url' => config('wxsetting.superurl'),
+                'data' => [
+                    'first' => '尊敬的'.$info -> name,
+                    'keyword1' => '邻居已接受您的帮助，快去帮忙吧~',
+                    'keyword2' => date('Y-m-d'),
+                    'keyword3' => '',
+                    'remark' => '感谢您的使用'
+                ],
+            ]);
+
+
+        }else{
+            //删除他
+            DB::table('news') -> where([
+                'id' => $id
+            ]) -> update([
+                'openid_help' => ''
+            ]);
+            echo 'success';
+        }
     }
 
 

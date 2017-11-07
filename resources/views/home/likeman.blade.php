@@ -6,10 +6,15 @@
 <body>
 <header class="public-header">
 
-    <i class="iconfont icon-fanhui" onclick="history.go(-1) "></i>
+    <i class="iconfont icon-fanhui" onclick="history.go(-1) " @if(session('helpres')) style="display:none;" @endif ></i>
 
     <img src="{{asset('images/logo.png')}}">
 </header>
+
+@if(session('helpres'))
+<img src="{{asset('images/user-comment.png')}}" class="user-comment" id="user-comment"/>
+@endif
+
 <article class="user-center">
 
     <div class="user-main">
@@ -74,6 +79,69 @@
             });
         })
     })
+
+    @if(session('helpres'))
+        layer.alert('ta愿意帮你，请确认');
+    @endif
+
+    $('#user-comment').click(function(){
+        layer.confirm('确定让ta帮你么', {
+            btn: ['确定','拒绝'] //按钮
+        }, function(){
+            //确定让他帮你
+            var url = '{{url('home/querenhelp')}}';
+            var id = {{session('helpres')}} ;
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id,res:'yes'},
+
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    layer.msg('确认成功');
+                    setTimeout(function(){
+                        location.href='{{ url('home') }}';
+                    },1000);
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+        }, function(){
+//确定让他帮你
+            var url = '{{url('home/querenhelp')}}';
+            var id = {{session('helpres')}} ;
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id,res:'no'},
+
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    layer.msg('您已拒绝');
+                    setTimeout(function(){
+                        location.href='{{ url('home') }}';
+                    },1000);
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+
+        });
+    })
+
+
 </script>
 </body>
 </html>

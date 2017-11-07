@@ -117,6 +117,7 @@ Route::any('/home/orderlist', 'Home\MyCenterController@orderlist');
 //历史预约服务
 Route::any('/home/myservice', 'Home\MyCenterController@myservice');
 Route::any('/home/likeman/{openid}', 'Home\HomeController@likeman');
+Route::any('/home/querenhelp', 'Home\HomeController@querenhelp');
 Route::any('/home/enjoyman', 'Home\HomeController@enjoyman');
 
 //商户登陆
