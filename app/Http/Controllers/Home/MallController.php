@@ -100,6 +100,10 @@ class MallController extends Controller
     public function buypay(){
         $id = session('data')[0];
         $number = session('data')[1];
+        if(!$id){
+            $this -> redirect('home/mall');
+        }
+
         $options = [
             /**
              * Debug 模式，bool 值：true/false

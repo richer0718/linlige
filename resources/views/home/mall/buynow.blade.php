@@ -80,19 +80,19 @@
         </div>
         <div class="flex-align layout">
             <span>收货人姓名</span>
-            <input type="text" placeholder="请输入姓名" class="flex-1" disabled/>
+            <input type="text" id="shouhuoname" placeholder="请输入姓名" class="flex-1" disabled/>
         </div>
         <div class="flex-align layout">
             <span>手机号码</span>
-            <input type="tel" placeholder="请输入手机号码" class="flex-1"  disabled />
+            <input type="tel" id="shouji" placeholder="请输入手机号码" class="flex-1"  disabled />
         </div>
         <div class="flex-align layout area">
             <span>省、市、区</span>
-            <input type="text"  id="city-picker" class="flex-1" value="江苏" disabled/>
+            <input type="text"  id="city" class="flex-1" value="" disabled/>
         </div>
         <div class="flex door-textarea">
             <span>详细地址</span>
-            <textarea placeholder="请输入详细地址" class="flex-1"></textarea>
+            <textarea placeholder="请输入详细地址"  id="address" class="flex-1"></textarea>
         </div>
     </div>
     @endif
@@ -125,10 +125,20 @@
 
 
         wx.checkJsApi({
-            jsApiList: ['openAddress','editAddress'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+            jsApiList: ['openAddress'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
             success: function(res) {
-                // 以键值对的形式返回，可用的api值true，不可用为false
-                // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+                wx.openAddress({
+                    success: function (res) {
+                        $('#shouhuoname').val(res.userName);
+                        $('#shouji').val(res.telNumber);
+                        $('#city').val(res.provinceName+res.cityName+res.countryName);
+                        $('#address').val(res.detailInfo);
+                    },
+                    cancel: function () {
+                        // 用户取消拉出地址
+                    }
+
+                });
             }
         });
 
@@ -141,20 +151,24 @@
     $(function(){
         $(".pick-radio").click(function(){
 
+            /*
             if($(this).hasClass('openaddress')){
-                wx.openAddress({
-                    success: function (res) {
-                        //alert(JSON.stringify(res));
-                        console.info(res)
-                        // 用户成功拉出地址
-                    },
-                    cancel: function () {
-                        // 用户取消拉出地址
-                    }
 
-                });
             }
+            */
 
+            /*
+
+            */
+
+            $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
+        });
+    })
+
+
+
+    $(function(){
+        $('#pay').click(function(){
 
             var url = '{{ url('home/payRequest') }}';
             $.ajax({
@@ -184,14 +198,8 @@
                 }
             });
 
-            $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
-        });
-    })
 
-
-
-    $(function(){
-        $('#pay').click(function(){
+            /*
             var url = '{{url('/home/payAjax')}}';
             var number = '{{$number}}';
             var id = '{{ $res -> id }}';
@@ -215,6 +223,7 @@
                     //alert('Ajax error!')
                 }
             });
+            */
         })
     })
 
