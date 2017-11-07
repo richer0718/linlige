@@ -41,7 +41,7 @@
     <div class="flex-justify layout pick-goods">
         <span>货物自提</span>
         <div class="pick-radio">
-            <input checked type="radio" name="get-type"/>
+            <input checked type="radio" name="get-type" value="0"/>
             <i class="iconfont"></i>
         </div>
     </div>
@@ -70,7 +70,7 @@
     <div class="flex-justify pick-goods layout">
         <span>送货上门</span>
         <div class="pick-radio openaddress">
-            <input type="radio" name="get-type"/>
+            <input type="radio" name="get-type" value="1"/>
             <i class="iconfont"></i>
         </div>
     </div>
@@ -107,7 +107,7 @@
 </div>
 <div class="fixed-height"></div>
 <footer class="apply flex-align">
-    <div class="flex-1 total">合计  <span><i>¥</i> {{ $res -> price_no*$number }}</span></div>
+    <div class="flex-1 total">合计  <span><i>¥</i> <a id="price_number">{{ $res -> price_no*$number }}</a></span></div>
     <a id="pay">确认支付</a>
 </footer>
 
@@ -125,8 +125,20 @@
 
 
         wx.checkJsApi({
-            jsApiList: ['openAddress'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-            success: function(res) {
+
+        });
+
+
+
+    });
+
+</script>
+<script>
+    $(function(){
+        $(".pick-radio").click(function(){
+
+
+            if($(this).hasClass('openaddress')){
                 wx.openAddress({
                     success: function (res) {
                         $('#shouhuoname').val(res.userName);
@@ -139,23 +151,20 @@
                     }
 
                 });
+
+                //价格
+                var price_no = {{ $res -> price_no*$number }};
+                //快递费
+                var price_kuaidi = {{ $res -> price_kuaidi }};
+                $('#price_number').text(price_kuaidi + price_no);
+
+            }else{
+                //价格
+                var price_no = {{ $res -> price_no*$number }};
+
+                $('#price_number').text(price_no);
             }
-        });
 
-
-
-    });
-
-</script>
-<script>
-    $(function(){
-        $(".pick-radio").click(function(){
-
-            /*
-            if($(this).hasClass('openaddress')){
-
-            }
-            */
 
             /*
 
@@ -169,12 +178,24 @@
 
     $(function(){
         $('#pay').click(function(){
-
+            var address = '';
+            if($('input[name=get-type]:checked').val() == 1){
+                //判断地址必填
+                if(!$.trim($('#address').val())){
+                    layer.msg('请填写收货地址');return false;
+                }
+                address = $.trim($('#address').val());
+            }
             var url = '{{ url('home/payRequest') }}';
+            var remark = $('#remark').val();
+            var number = '{{$number}}';
+            var id = '{{ $res -> id }}';
+            var get_type = $('input[name=get-type]:checked').val();
+
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: {},
+                data: {id:id,number:number,remark:remark,address:address,get_type:get_type},
                 dataType:'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -200,9 +221,7 @@
 
 
             /*
-            var url = '{{url('/home/payAjax')}}';
-            var number = '{{$number}}';
-            var id = '{{ $res -> id }}';
+
             var remark = $('#remark').val();
             $.ajax({
                 type: 'POST',

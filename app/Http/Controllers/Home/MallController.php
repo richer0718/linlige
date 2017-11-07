@@ -156,7 +156,7 @@ class MallController extends Controller
     }
 
     //下单
-    public function payRequest(){
+    public function payRequest(Request $request){
         $options = [
             /**
              * Debug 模式，bool 值：true/false
@@ -190,12 +190,18 @@ class MallController extends Controller
         $app = new Application($options);
         $payment = $app->payment;
 
+
+        $goods_info = DB::table('goods') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        $price = intval($goods_info -> price_no * $request -> input('number') * 100 );
+
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
-            'body'             => 'iPad mini 16G 白色',
-            'detail'           => 'iPad mini 16G 白色',
+            'body'             => $goods_info -> name,
+            'detail'           => $goods_info -> name,
             'out_trade_no'     => date("YmdHis").rand(1,10000),
-            'total_fee'        => 789, // 单位：分
+            'total_fee'        => $price, // 单位：分
             'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'openid'           => session('openid'), // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
@@ -205,6 +211,24 @@ class MallController extends Controller
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
         }
+
+        if($result -> prepay_id){
+            $res = DB::table('order') -> insert([
+                'goods_id' => $request -> input('id'),
+                'number' => $request -> input('number'),
+                'address' => $request -> input('address'),
+                'remark' => $request -> input('remark'),
+                'created_at' => time(),
+                'updated_at' => time(),
+                'openid' => session('openid'),
+                'order_id' => time().rand(1000,9999),
+                'fukuan_status' => 1,
+                'show_status' => '待收货',
+            ]);
+        }
+
+
+
         $config = $payment->configForJSSDKPayment($prepayId); // 返回数组
         //dd($config);
         return response() -> json($config);
