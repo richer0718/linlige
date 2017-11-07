@@ -152,7 +152,7 @@ class MallController extends Controller
     }
 
     //下单
-    public function makeOrder(){
+    public function payRequest(){
         $options = [
             /**
              * Debug 模式，bool 值：true/false
@@ -193,7 +193,7 @@ class MallController extends Controller
             'out_trade_no'     => date("YmdHis").rand(1,10000),
             'total_fee'        => 5388, // 单位：分
             'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
-            'openid'           => '当前用户的 openid', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            'openid'           => session('openid'), // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             // ...
         ];
         $order = new Order($attributes);
@@ -201,6 +201,10 @@ class MallController extends Controller
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
         }
+        $config = $payment->configForJSSDKPayment($prepayId); // 返回数组
+        dd($config);
+
+
     }
 
     //支付

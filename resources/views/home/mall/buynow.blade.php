@@ -140,6 +140,7 @@
 <script>
     $(function(){
         $(".pick-radio").click(function(){
+            /*
             if($(this).hasClass('openaddress')){
                 wx.editAddress({
                     success: function (res) {
@@ -153,6 +154,26 @@
 
                 });
             }
+            */
+            var url = '{{ url('home/payRequest') }}';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {},
+                dataType:'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    console.info(data);
+
+
+                },
+                error: function(xhr, type){
+                    layer.msg('Ajax error!')
+                }
+            });
+
             $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
         });
     })

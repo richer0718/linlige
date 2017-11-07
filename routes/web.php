@@ -114,6 +114,7 @@ Route::any('/home/ticket', 'Home\MyCenterController@ticket');
 Route::any('/home/mydata', 'Home\MyCenterController@mydata');
 //商城
 Route::any('/home/orderlist', 'Home\MyCenterController@orderlist');
+Route::any('/home/payRequest', 'Home\MallController@payRequest');
 //历史预约服务
 Route::any('/home/myservice', 'Home\MyCenterController@myservice');
 Route::any('/home/likeman/{openid}', 'Home\HomeController@likeman');
