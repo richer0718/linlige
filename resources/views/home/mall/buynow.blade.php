@@ -118,15 +118,12 @@
             array('checkJsApi',
                 'openAddress',
                 'editAddress',
-                'chooseWXPay'), true)
+                'chooseWXPay'), false)
         ?>);
 
     wx.ready(function(){
 
 
-        wx.checkJsApi({
-
-        });
 
 
 

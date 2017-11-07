@@ -198,8 +198,8 @@ class MallController extends Controller
 
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
-            'body'             => $goods_info -> name,
-            'detail'           => $goods_info -> name,
+            'body'             => $goods_info -> title,
+            'detail'           => $goods_info -> title,
             'out_trade_no'     => date("YmdHis").rand(1,10000),
             'total_fee'        => $price, // 单位：分
             'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
