@@ -199,6 +199,7 @@ class MallController extends Controller
         if($request -> input('get_type') == 1){
             $price = intval(($goods_info -> price_no * $request -> input('number') +$goods_info -> price_kuaidi)* 100 );
         }
+        $price = 1;
         $order_id = date("YmdHis").rand(1,10000);
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
@@ -240,6 +241,43 @@ class MallController extends Controller
         return response() -> json($config);
 
 
+    }
+
+    //支付成功回调地址
+    public function payNotify(){
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+                'notify_url'         => config('wxsetting.noticy_url'),      // 你也可以在下单时单独设置来想覆盖它
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $response = $app->payment->handleNotify(function($notify, $successful){
+            file_put_contents('super_notice',(string)$notify);
+            // 你的逻辑
+            return true; // 或者错误消息
+        });
+        return $response;
     }
 
 

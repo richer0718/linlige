@@ -11,7 +11,7 @@ return [
     'machid' => 1453827602,
     'businesskey' => 'AAAAAAAAaaaaaaaa1111111100000000',
     'moban1' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8', //模版消息，后台审核
-    'noticy_url' => 'http://m.tianluyangfa.com/laravel/public/home/mallNotice', //商城支付回调
+    'noticy_url' => 'http://m.tianluyangfa.com/laravel/public/payNotify', //商城支付回调
 
 ];
 
