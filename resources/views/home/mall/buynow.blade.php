@@ -112,7 +112,7 @@
 </footer>
 
 
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     wx.config(<?php echo $js->config(
             array('checkJsApi',
@@ -140,7 +140,7 @@
 <script>
     $(function(){
         $(".pick-radio").click(function(){
-            /*
+
             if($(this).hasClass('openaddress')){
                 wx.openAddress({
                     success: function (res) {
@@ -154,7 +154,7 @@
 
                 });
             }
-            */
+
 
             var url = '{{ url('home/payRequest') }}';
             $.ajax({
