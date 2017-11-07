@@ -195,6 +195,10 @@ class MallController extends Controller
             'id' => $request -> input('id')
         ]) -> first();
         $price = intval($goods_info -> price_no * $request -> input('number') * 100 );
+        //看需不需要快递费
+        if($request -> input('get_type') == 1){
+            $price = intval(($goods_info -> price_no * $request -> input('number') +$goods_info -> price_kuaidi)* 100 );
+        }
 
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
@@ -222,7 +226,7 @@ class MallController extends Controller
                 'updated_at' => time(),
                 'openid' => session('openid'),
                 'order_id' => time().rand(1000,9999),
-                'fukuan_status' => 1,
+                'fukuan_status' => 0,
                 'show_status' => '待收货',
             ]);
         }
