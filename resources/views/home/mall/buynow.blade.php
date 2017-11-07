@@ -132,23 +132,25 @@
 
 </script>
 <script>
+    $(function(){
+        $(".pick-radio").click(function(){
+            if($(this).hasClass('openaddress')){
+                wx.editAddress({
+                    success: function (res) {
+                        //alert(JSON.stringify(res));
+                        console.info(res)
+                        // 用户成功拉出地址
+                    },
+                    cancel: function () {
+                        // 用户取消拉出地址
+                    }
 
-    $(".pick-radio").click(function(){
-        if($(this).hasClass('openaddress')){
-            wx.editAddress({
-                success: function (res) {
-                    //alert(JSON.stringify(res));
-                    console.info(res)
-                    // 用户成功拉出地址
-                },
-                cancel: function () {
-                    // 用户取消拉出地址
-                }
+                });
+            }
+            $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
+        });
+    })
 
-            });
-        }
-        $(this).parents(".pick-goods").next().show().siblings(".hide").hide();
-    });
 
 
     $(function(){
