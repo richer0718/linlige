@@ -14,13 +14,23 @@
                 <div class="col-md-12">
 
                     <table class="table table-striped table-bordered" >
-                        <tr>题目</tr>
+                        <tr><td colspan="2">选择题</td></tr>
                         @foreach($title_list as $k => $vo)
                         <tr>
                             <td style="width:10px;">{{ $k+1 }}</td>
                             <td class="hovertd"><a  >{{ $vo -> title }}</a></td>
                         </tr>
                         @endforeach
+                        @if($tiankongs)
+                            <tr><td colspan="2">填空题</td></tr>
+                            @foreach($tiankongs as $k => $vo)
+                                <tr>
+                                    <td style="width:10px;">{{ $k+1 }}</td>
+                                    <td class="hovertd"><a  >{{ $vo -> title }}</a></td>
+                                </tr>
+                            @endforeach
+                        @endif
+
                     </table>
 
                 </div>
@@ -30,14 +40,26 @@
                     @foreach($result_list as $vo )
 
                         <table class="table table-striped table-bordered" >
-                            <tr>{{ $vo -> userinfo -> name }}</tr>
+                            <tr><td colspan="2">{{ $vo -> userinfo -> name }}</td></tr>
+                            <tr><td colspan="2">选择题</td></tr>
                             @foreach($vo -> results as $key => $vol)
                                 <tr>
-                                    <td style="width:10px;">{{ $key+1 }}</td>
+                                    <td style="width:10px;">{{ $key+1 }}、</td>
                                     <td class="hovertd"><a  >{{ $vol }}</a></td>
                                 </tr>
                             @endforeach
+                            @if($tiankongs)
+                                <tr><td colspan="2">填空题</td></tr>
+                                @foreach($vo -> tiankong_res as $key => $vol)
+                                    <tr>
+                                        <td style="width:10px;">{{ $key+1 }}、</td>
+                                        <td class="hovertd"><a  >{{ $vol }}</a></td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </table>
+
+
 
                     @endforeach
                 </div>

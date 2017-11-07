@@ -17,6 +17,7 @@
 		<a href="javascript:;" class="submit" style="float:right;width:48%;" onclick="clearCanvas()" >清除</a>
 	</div>
 	<input type="hidden" id="json" value="{{ $data }}"/>
+	<input type="hidden" id="tiankongdata" value="{{ $tiankongdata }}"/>
 	<script type="text/javascript">
 		$(document).on('ready', function() {
             var height_all = parseInt($(window).height()) - 100 ;
@@ -41,10 +42,11 @@
 
             var url = '{{ url('home/toupiaoRes') }}' + '/id/' + '{{ $id }}';
             var data = $('#json').val();
+            var tiankongdata = $('#tiankongdata').val();
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: {json:data,imgurl:dataUrl},
+                data: {json:data,imgurl:dataUrl,tiankongdata:tiankongdata},
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },

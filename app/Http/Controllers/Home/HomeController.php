@@ -745,7 +745,8 @@ class HomeController extends Controller
     public function toupiaosign(Request $request,$id){
         return view('home/toupiao/sign') -> with([
             'id' => $id,
-            'data' => $request -> input('data')
+            'data' => $request -> input('data'),
+            'tiankongdata' => $request -> input('tiankongdata'),
         ]);
     }
 
@@ -762,13 +763,19 @@ class HomeController extends Controller
             echo 'isset';exit;
         }
         //加入记录
+        //如果有填空题 则录入tiankong_res
+
         $res = DB::table('toupiao_result') -> insert([
             'openid' => session('openid'),
             'toupiao_id' => $id,
             'result' => json_encode(json_decode($request -> input('json'),true)),
             'created_at' => time(),
+            'tiankong_res' => $request -> input('tiankongdata'),
             'updated_at' => time(),
         ]);
+
+
+
 
         //加入记录的时候，投票累计人数加一
         DB::table('toupiao') -> where([

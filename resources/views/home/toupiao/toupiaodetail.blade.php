@@ -56,6 +56,7 @@
 <!-- 提交到签名 -->
 <form method="post" action="{{ url('home/toupiaosign').'/id/'.$id }}" id="superform">
     <input type="hidden" name="data" id="formdata"/>
+    <input type="hidden" name="tiankongdata" id="tiankongdata"/>
     {{ csrf_field() }}
 </form>
 <script>
@@ -145,10 +146,26 @@
                 //$('.radio-model:eq'+'('+i+') input:checked').val();
             }
 
+            //填空题
+            var tiankong_length = $('.toupiao_tiankong').length;
+            var tiankongs = '';
+            if(tiankong_length > 0){
+                for(var i=0;i<tiankong_length;i++){
+                    //获取每道填空题
+                    if(!$.trim($('.toupiao_tiankong').eq(i).val())){
+                        layer.msg('请填写全部');return false;
+                    }
+                    tiankongs = tiankongs + $.trim($('.toupiao_tiankong').eq(i).val()) + '&&';
+                }
+                tiankongs = tiankongs.substr(0,tiankongs.length - 2);
+            }
+
+
             //判断下是否需要签名
             @if($toupiaodetail -> is_sign)
                 //赋值给form input
                 $('#formdata').val(JSON.stringify(arr));
+                $('#tiankongdata').val(tiankongs);
                 //提交form
                 $('#superform').submit();
                 return false;
@@ -164,7 +181,7 @@
             $.ajax({
                 type: 'POST',
                 url: url,
-                data: {json:data},
+                data: {json:data,tiankongdata:tiankongs},
 
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

@@ -307,6 +307,12 @@ class ToupiaoController extends Controller
             'fid' => $id
         ]) -> get();
 
+        //查看有没有填空题
+        $tiankongs = DB::table('tiankong') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
+        //看下有没有回答填空题
+
         //查找答案
         $result_list = DB::table('toupiao_result') -> where([
             'toupiao_id' => $id
@@ -345,14 +351,20 @@ class ToupiaoController extends Controller
                         'openid' => $vo -> openid
                     ]) -> first();
                 }
+                if($vo -> tiankong_res){
+                    $vo -> tiankong_res = explode('&&',$vo -> tiankong_res);
+                }
+
 
             }
         }
 
+
         //dd($result_list);
         return view('admin/toupiao/toupiaoRes') -> with([
             'title_list' => $title_list,
-            'result_list' => $result_list
+            'result_list' => $result_list,
+            'tiankongs' => $tiankongs
         ]);
         /*
         foreach($title_list as $k => $vo){
