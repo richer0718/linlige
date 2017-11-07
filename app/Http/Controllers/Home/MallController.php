@@ -134,12 +134,7 @@ class MallController extends Controller
         $payment = $app->payment;
         //$config = $payment->configForJSSDKPayment($prepayId);
 
-        if (empty($_GET['code'])) {
-            $currentUrl = url()->full();; // 获取当前页 URL
-            //var_dump($currentUrl);exit;
-            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
-            return $response; // or echo $response;
-        }
+
 
 
 
