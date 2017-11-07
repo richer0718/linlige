@@ -202,7 +202,8 @@ class MallController extends Controller
             $prepayId = $result->prepay_id;
         }
         $config = $payment->configForJSSDKPayment($prepayId); // 返回数组
-        dd($config);
+        //dd($config);
+        return response() -> json($config);
 
 
     }
