@@ -140,7 +140,7 @@
 <script>
     $(function(){
         $(".pick-radio").click(function(){
-
+            /*
             if($(this).hasClass('openaddress')){
                 wx.openAddress({
                     success: function (res) {
@@ -154,6 +154,7 @@
 
                 });
             }
+            */
 
             var url = '{{ url('home/payRequest') }}';
             $.ajax({
