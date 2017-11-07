@@ -123,17 +123,7 @@
 
     wx.ready(function(){
 
-        wx.editAddress({
-            success: function (res) {
-                //alert(JSON.stringify(res));
-                console.info(res)
-                // 用户成功拉出地址
-            },
-            cancel: function () {
-                // 用户取消拉出地址
-            }
 
-        });
 
 
 
@@ -145,7 +135,7 @@
 
     $(".pick-radio").click(function(){
         if($(this).hasClass('openaddress')){
-            wx.openAddress({
+            wx.editAddress({
                 success: function (res) {
                     //alert(JSON.stringify(res));
                     console.info(res)
