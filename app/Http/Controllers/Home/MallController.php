@@ -199,12 +199,12 @@ class MallController extends Controller
         if($request -> input('get_type') == 1){
             $price = intval(($goods_info -> price_no * $request -> input('number') +$goods_info -> price_kuaidi)* 100 );
         }
-
+        $order_id = date("YmdHis").rand(1,10000);
         $attributes = [
             'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
             'body'             => $goods_info -> title,
             'detail'           => $goods_info -> title,
-            'out_trade_no'     => date("YmdHis").rand(1,10000),
+            'out_trade_no'     => $order_id,
             'total_fee'        => $price, // 单位：分
             'notify_url'       => config('wxsetting.noticy_url'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
             'openid'           => session('openid'), // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
@@ -225,9 +225,11 @@ class MallController extends Controller
                 'created_at' => time(),
                 'updated_at' => time(),
                 'openid' => session('openid'),
-                'order_id' => time().rand(1000,9999),
+                'order_id' => $order_id,
                 'fukuan_status' => 0,
-                'show_status' => '待收货',
+                'status' => 4,
+                'show_status' => '待付款',
+                'peisong_type' => $request -> input('get_type')
             ]);
         }
 
@@ -240,23 +242,7 @@ class MallController extends Controller
 
     }
 
-    //支付
-    public function payAjax(Request $request){
-        //dd($request);
-        $res = DB::table('order') -> insert([
-            'goods_id' => $request -> input('id'),
-            'number' => $request -> input('number'),
-            'address' => '上海市浦东新区',
-            'remark' => $request -> input('remark'),
-            'created_at' => time(),
-            'updated_at' => time(),
-            'openid' => session('openid'),
-            'order_id' => time().rand(1000,9999),
-            'fukuan_status' => 1,
-            'show_status' => '待收货',
-        ]);
-        echo 'success';
-    }
+
 
 
 
