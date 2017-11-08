@@ -467,7 +467,7 @@
                     html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
                 }else{
                     html +='<div class="demand-time neighbor">';
-                    html += '<h4>需求时间</h4><sapn>'+data[i].date+'</sapn><p>好邻居：'+data[i]['helpinfo'].name+'</p><span>(已接任务)</span></div>';
+                    html += '<h4>需求时间<sapn>'+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
                 }
 
 
