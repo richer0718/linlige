@@ -127,6 +127,23 @@
 </article>
 <input type="hidden" id="ids"  />
 </body>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(
+            array('checkJsApi',
+                'openAddress',
+                'editAddress',
+                'chooseWXPay'), false)
+        ?>);
+
+    wx.ready(function(){
+
+
+
+
+
+    });
+</script>
 <script>
     $(function(){
         $('#top-nav a').click(function(){
@@ -172,25 +189,48 @@
 
         $('#pay').click(function(){
 
+
+
              var url = '{{ url('home/business/fabuRes') }}';
-             var servicename = $('#servicename').val();
+             var servicename = $.trim($('#servicename').val());
              var ids = $('#ids').val();
              var tel = $('#tel').val();
              var type = $('#type').val();
+             var price = $('#paynumber').text();
+
+            //判断必填
+            if(!servicename){
+                layer.msg('请填写服务名称');return false;
+            }
+            if(!ids){
+                layer.msg('请选择小区');return false;
+            }
+            if(!tel){
+                layer.msg('请填写联系电话');return false;
+            }
+
+
+
+
              $.ajax({
              type: 'POST',
              url: url,
-             data: {servicename:servicename,ids:ids,tel:tel,type:type},
+             data: {servicename:servicename,ids:ids,tel:tel,type:type,price:price},
 
              headers: {
              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
              },
              success: function(data){
-                if(data == 'success'){
-                    //发布的服务支付成功
-                    layer.msg('支付成功');
-                    setInterval ("zhifuchenggong()", 1000);
-                }
+                 wx.chooseWXPay({
+                     timestamp: data['timestamp'], // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                     nonceStr: data['nonceStr'], // 支付签名随机串，不长于 32 位
+                     package: data['package'], // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                     signType: data['signType'], // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                     paySign: data['paySign'], // 支付签名
+                     success: function (res) {
+
+                     }
+                 });
              },
              error: function(xhr, type){
              //alert('Ajax error!')

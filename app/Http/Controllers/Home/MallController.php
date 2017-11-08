@@ -301,7 +301,7 @@ class MallController extends Controller
                 $messageId = $notice->send([
                     'touser' => $notify -> openid,
                     'template_id' => config('wxsetting.moban1'),
-                    'url' => config('wxsetting.superurl'),
+                    'url' => config('wxsetting.url4'),
                     'data' => [
                         'first' => '尊敬的'.$info -> name,
                         'keyword1' => '您的订单已提交，请等待发货~',

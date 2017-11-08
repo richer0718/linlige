@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
+use EasyWeChat\Payment\Order;
 
 
 //商户登陆
@@ -100,15 +103,48 @@ class BusinessController extends Controller
         $select_res = DB::table('shequ') -> get();
 
 
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $payment = $app->payment;
+        //$config = $payment->configForJSSDKPayment($prepayId);
+
+        $js = $app -> js;
+
 
         //dd($newarr);
         return view('home/business/index')->with([
             'select_res' => $select_res,
             'mycustomer' => $mycustomer,
             'newarr' => $newarr,
-            'titlearr' => $titlearr
+            'titlearr' => $titlearr,
+            'js' => $js
         ]);
     }
+
+
+
 
     //发布服务
     public function fabufuwu($ids = null){
@@ -135,23 +171,88 @@ class BusinessController extends Controller
     }
 
     public function fabuRes(Request $request){
-        $ids = $request -> input('ids');
-        $ids = explode(',',$ids);
-        foreach($ids as $vo){
-            //插入 service
-            DB::table('service') -> insert([
-                'title' => $request -> input('servicename'),
-                'username' => session('username'),
-                'tel' => $request -> input('tel'),
-                'type' => $request -> input('type'),
-                'created_at' => time(),
-                'updated_at' => time(),
-                'xiaoqu' => $vo,
-                'boda' => 0,
-                'dianzan' => 0
-            ]);
+
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+                'notify_url'         => 'https://tianluyangfa.com',       // 你也可以在下单时单独设置来想覆盖它
+                // 'device_info'     => '013467007045764',
+                // 'sub_app_id'      => '',
+                // 'sub_merchant_id' => '',
+                // ...
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $payment = $app->payment;
+        $price = intval($request -> input('price')) * 100;
+
+
+        $order_id = date("YmdHis").rand(1,10000);
+        $attributes = [
+            'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
+            'body'             => $request -> input('servicename'),
+            'detail'           => $request -> input('servicename'),
+            'out_trade_no'     => $order_id,
+            'total_fee'        => $price, // 单位：分
+            'notify_url'       => config('wxsetting.noticy_url_service'), // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+            'openid'           => session('openid'), // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+            // ...
+        ];
+        $order = new Order($attributes);
+        $result = $payment->prepare($order);
+        if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+            $prepayId = $result->prepay_id;
         }
-        echo 'success';
+
+        if($prepayId){
+            $ids = $request -> input('ids');
+            $ids = explode(',',$ids);
+
+            foreach($ids as $vo){
+                //插入 service
+                DB::table('service') -> insert([
+                    'title' => $request -> input('servicename'),
+                    'username' => session('username'),
+                    'tel' => $request -> input('tel'),
+                    'type' => $request -> input('type'),
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                    'xiaoqu' => $vo,
+                    'boda' => 0,
+                    'dianzan' => 0,
+                    'flag' => 1
+                ]);
+            }
+        }
+
+
+        $config = $payment->configForJSSDKPayment($prepayId); // 返回数组
+        //dd($config);
+        return response() -> json($config);
+
+
+
+
 
     }
 

@@ -112,7 +112,9 @@ class NumberController extends Controller
     //商户设置
     public function numberBusiness(){
         $model = new Business();
-        $res = $model  ->paginate(15);
+        $res = $model  -> where([
+            'type' => 0
+        ]) -> paginate(15);
         return view('admin/numberbusiness')->with([
             'res' => $res
         ]);
