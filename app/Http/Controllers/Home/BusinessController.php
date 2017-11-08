@@ -191,7 +191,7 @@ class BusinessController extends Controller
                 'key'                => config('wxsetting.businesskey'),
                 'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
                 'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
-                'notify_url'         => 'https://tianluyangfa.com',       // 你也可以在下单时单独设置来想覆盖它
+                'notify_url'       => config('wxsetting.noticy_url_service'),      // 你也可以在下单时单独设置来想覆盖它
                 // 'device_info'     => '013467007045764',
                 // 'sub_app_id'      => '',
                 // 'sub_merchant_id' => '',
