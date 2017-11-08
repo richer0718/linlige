@@ -226,6 +226,7 @@ class BusinessController extends Controller
 
         if($prepayId){
             $ids = $request -> input('ids');
+            $ids = trim($ids,',');
             $ids = explode(',',$ids);
 
             foreach($ids as $vo){
