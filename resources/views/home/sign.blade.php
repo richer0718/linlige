@@ -51,7 +51,7 @@
                 success: function(data){
 
                     if(data == 'success'){
-                        layer.msg('您已成功提交注册信息，请等待审核<br>您可浏览小区');
+                        layer.msg('您已成功提交注册信息，<br>请等待审核您可浏览小区');
                         setTimeout(function(){location.href='{{ url('/home') }}';},1000);
                     }
                 },
