@@ -91,6 +91,7 @@ class ToupiaoController extends Controller
             'type' => $request -> input('type'),
             'status' => $request -> input('status'),
             'ishot' => $request -> input('ishot'),
+            'is_sign' => $request -> input('is_sign'),
             'qianyan' => $request -> input('qianyan'),
             'jieshu' => $request -> input('jieshu'),
             'loudong' => $loudong,
