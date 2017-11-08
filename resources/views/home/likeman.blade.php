@@ -46,6 +46,13 @@
         </div>
     </a>
 </article>
+<div class="property-evaluate" style="position:fixed;bottom:0;left:0;">
+
+    <div class="flex-align pingjia">
+        <div class="selectbox select" data="yes"><i class="iconfont icon-xiaolian"></i>同意帮助</div>
+        <div class="selectbox" data="no"><i class="iconfont icon-bumanyi"></i>拒绝帮助</div>
+    </div>
+</div>
 <div class="fixed-height"></div>
 <script>
     $(function(){
