@@ -391,8 +391,8 @@
 
     function showimg3(th){
         //alert($(th).attr('src'));
-        $('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
-
+        //$('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
+        $('#galleryImg').css('background-image',$(th).css("background-image"));
         //$('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
         $('#gallery').show();
         $('.weui-gallery__opr').hide();
