@@ -90,6 +90,7 @@ Route::any('/home/malldetail/{id}', 'Home\MallController@malldetail');
 Route::any('/home/buynow/{id}/{number}', 'Home\MallController@buynow');
 Route::any('/home/buypay', 'Home\MallController@buypay');
 Route::any('/payNotify', 'Home\MallController@payNotify');
+Route::any('/payServiceNotify', 'Home\BusinessController@payServiceNotify');
 
 //个人中心
 Route::any('/home/mycenter', 'Home\HomeController@mycenter');

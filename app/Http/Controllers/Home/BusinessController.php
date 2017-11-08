@@ -56,7 +56,8 @@ class BusinessController extends Controller
         //dd(session('username'));
         //找他自己的服务
         $myservice = DB::table('service') -> where([
-            'username' => session('username')
+            'username' => session('username'),
+            'flag' => 0
         ]) -> orderBy('created_at','desc') -> get();
         $newarr = [];
         $titlearr = [];
@@ -205,7 +206,7 @@ class BusinessController extends Controller
         $app = new Application($options);
         $payment = $app->payment;
         $price = intval($request -> input('price')) * 100;
-
+        $price = 1;
 
         $order_id = date("YmdHis").rand(1,10000);
         $attributes = [
@@ -241,7 +242,8 @@ class BusinessController extends Controller
                     'xiaoqu' => $vo,
                     'boda' => 0,
                     'dianzan' => 0,
-                    'flag' => 1
+                    'flag' => 1,
+                    'order_id' => $order_id
                 ]);
             }
         }
@@ -284,6 +286,52 @@ class BusinessController extends Controller
             }
         }
     }
+
+    //支付成功回调地址
+    public function payServiceNotify(){
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+                'notify_url'         => config('wxsetting.noticy_url'),      // 你也可以在下单时单独设置来想覆盖它
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $response = $app->payment->handleNotify(function($notify, $successful){
+            if($successful){
+                //支付成功
+                //根据订单号更新状态
+                DB::table('business') -> where([
+                    'order_id' => $notify -> out_trade_no
+                ]) -> update([
+                    'flag' => 0,
+                ]);
+
+            }
+            return true; // 或者错误消息
+        });
+        return $response;
+    }
+
 
     public function shenqingPage(){
         return view('home/business/shenqing');

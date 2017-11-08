@@ -277,6 +277,7 @@ class HomeController extends Controller
             $res = DB::table('service') -> where(function($query){
                 $query -> where('xiaoqu','=',session('xiaoqu'));
                 $query -> where('status','=','0');
+                $query -> where('flag','=','0');
                 if(isset($_POST['keywords'])){
                     $query -> where('title','like','%'.$_POST['keywords'].'%');
                 }
