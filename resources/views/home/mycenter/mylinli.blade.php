@@ -480,13 +480,17 @@
 
 
 
-
-                html += '<div class="demand-btn"><a  ';
                 if(!data[i].openid_help){
-                    html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
+                html += '<div class="demand-btn"><a  ';
+                html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
+                html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
+                }else{
+                    html += '<div class="demand-btn"><a  ';
+                    html += ' onclick="helphim('+ data[i].id +')" ';
+                    html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
                 }
 
-                html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'">联系TA</a></div></div></section>';
+                html +='</div></section>';
             }
 
         }
