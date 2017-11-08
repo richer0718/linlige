@@ -229,7 +229,11 @@
                      paySign: data['paySign'], // 支付签名
                      success: function (res) {
                          alert(res.error.msg);
-                     }
+                     },
+                     complete: function(res) {
+                         //接口调用完成时执行的回调函数，无论成功或失败都会执行。
+                         alert(res.error.msg);
+                     },
                  });
              },
              error: function(xhr, type){
