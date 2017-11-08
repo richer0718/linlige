@@ -617,11 +617,38 @@ class HomeController extends Controller
 
     //值得看列表
     public function zhidelist(){
+        //判断此人的身份
+        $userinfo = DB::table('user') -> where([
+            'openid' => session('openid')
+        ]) -> first();
+
+
+
         //循环数据 - 今日值得看
         $list_article = DB::table('article') -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')]) -> orderBy('created_at','desc')  -> get();
         //var_dump($list_article);exit;
         //投票
         $list_toupiao = DB::table('toupiao') -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')]) -> orderBy('created_at','desc')  -> get();
+        if($list_toupiao){
+            foreach($list_toupiao as $k => $vo){
+
+                //如果存在楼号，则显示固定楼号的
+                if($vo -> loudong){
+                    $temp_loudong = explode(',',$vo -> loudong);
+                    if(!in_array($userinfo -> louhao,$temp_loudong)){
+                        unset($list_toupiao[$k]);continue;
+                    }
+                }
+                if($vo -> shenfen != '100'){
+                    $temp = explode(',',$vo -> shenfen);
+                    if(!in_array($userinfo -> shenfen,$temp)){
+                        unset($list_toupiao[$k]);continue;
+                    }
+                }
+            }
+        }
+
+
         //dd($list_article);
         return view('home/zhidelist') -> with([
             'list_article'=>$list_article,
