@@ -122,6 +122,7 @@ class MyCenterController extends Controller
                 $res[$k]['userinfo'] = DB::table('user') -> where([
                     'openid' => $vo['openid'],
                 ]) -> first();
+
                 if($vo['status'] == 0){
                     $res[$k]['status_manage_name'] = '进行中';
                     $res[$k]['status_name'] = '待解决';
@@ -130,6 +131,13 @@ class MyCenterController extends Controller
                     $res[$k]['status_name'] = '已解决';
                 }
                 $res[$k]['created_at'] = date('Y-m-d H:i',$vo['created_at']);
+
+                //如果有帮助他的人 则把帮助他的人信息列出来
+                if($vo['openid_help']){
+                    $res[$k]['helpinfo'] = DB::table('user') -> where([
+                        'openid' => $vo['openid_help']
+                    ]) -> first();
+                }
 
             }
         }

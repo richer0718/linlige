@@ -55,7 +55,7 @@
 @endif
 <div class="fixed-height"></div>
 <script>
-    function nohlep(){
+    function nohelp(){
         var url = '{{url('home/querenhelp')}}';
         var id = {{session('helpres')}} ;
 

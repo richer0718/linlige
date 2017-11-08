@@ -460,8 +460,19 @@
                 //html += '<span>'+data[i].created_at+'</span>';
                 html += '<div><i class="iconfont icon-good"></i> ';
                 html += '<span onclick="dianzan(this,'+data[i].id+')" >'+data[i].dianzan+'</span> ';
-                html += '</div></footer><div class="property-reply flex-justify"><div class="demand-time">';
-                html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                html += '</div></footer><div class="property-reply flex-justify">';
+
+                if(data[i].openid_help){
+                    html +='<div class="demand-time">';
+                    html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                }else{
+                    html +='<div class="demand-time neighbor">';
+                    html += '<h4>需求时间</h4><sapn>'+data[i].date+'</sapn><p>好邻居：'+data[i]['helpinfo'].name+'</p><span>(已接任务)</span></div>';
+                }
+
+
+
+
                 html += '<div class="demand-btn"><a  ';
                 if(!data[i].openid_help){
                     html += 'class="hover" onclick="helphim('+data[i].id+')" ';
