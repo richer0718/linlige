@@ -398,6 +398,7 @@
 
         //友邻互助
         if(index == 1){
+            var myopenid = "{{ session('openid') }}";
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
@@ -467,28 +468,67 @@
 
                 //html += '<span>'+data[i].created_at+'</span>';
                 html += '<div><i class="iconfont icon-good"></i> ';
-                html += '<span onclick="dianzan(this,'+data[i].id+')" >'+data[i].dianzan+'</span> ';
+                html += '<span  >'+data[i].dianzan+'</span> ';
                 html += '</div></footer><div class="property-reply flex-justify">';
 
-                if(!data[i].openid_help){
-                    html +='<div class="demand-time">';
-                    html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+
+                if(data[i].is_manage){
+                    //如果是自己的
+                    if(data[i].openid_help){
+                        html +='<div class="demand-time neighbor">';
+                        html += '<h4>需求时间<sapn> '+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
+                    }else{
+                        html +='<div class="demand-time">';
+                        html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                    }
+                    if(data[i].openid_help){
+                        html += '<div class="demand-btn"><a  ';
+                        html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
+                        html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
+                    }else{
+                        html += '<div class="demand-btn"><a  ';
+                        html += ' onclick="helphim('+ data[i].id +')" ';
+                        html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
+                    }
                 }else{
-                    html +='<div class="demand-time neighbor">';
-                    html += '<h4>需求时间<sapn> '+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
+                    //如果不是自己的
+                    //如果有人帮
+                    if(data[i].openid_help){
+                        //判断下是不是自己帮的
+                        if(data[i].openid_help == myopenid){
+                            //是自己帮的
+                            if(data[i].status == 0){
+                                //还没有解决
+                                html += '<div class="demand-time neighbor">';
+                                html+= '<p>请确保任务完成，再点击按钮</p>';
+                                html += '</div>';
+                                html += '<div class="demand-btn demand-btn-no">';
+                                html += '<a >已完成</a>';
+                                html += '</div>';
+
+                            }else{
+                                //已解决
+                            }
+                        }else{
+                            //如果有人帮 且不是自己
+                            html +='<div class="demand-time">';
+                            html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                            html += '<div class="demand-btn"><a  ';
+                            html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
+                        }
+                    }else{
+                        //如果没人帮
+                        html +='<div class="demand-time">';
+                        html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                        html += '<div class="demand-btn"><a  ';
+                        html += ' onclick="helphim('+ data[i].id +')" ';
+                        html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
+                    }
                 }
 
 
 
-                if(data[i].openid_help){
-                html += '<div class="demand-btn"><a  ';
-                html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
-                html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
-                }else{
-                    html += '<div class="demand-btn"><a  ';
-                    html += ' onclick="helphim('+ data[i].id +')" ';
-                    html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
-                }
+
 
                 html +='</div></section>';
             }
