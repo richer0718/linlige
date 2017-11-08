@@ -56,7 +56,7 @@
                         @if($vol -> imgs[0])
                             <div class="answer-img flex">
                                 @foreach($vol -> imgs as $value)
-                                    <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;">
+                                    <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;" onclick="showimg3(th)">
 
                                     </div>
                                 @endforeach
@@ -381,6 +381,15 @@
     $('#galleryImg').css('width',win);
     //原来的图片显示
     function showimg1(th){
+        //alert($(th).attr('src'));
+        $('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
+
+        //$('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
+        $('#gallery').show();
+        $('.weui-gallery__opr').hide();
+    }
+
+    function showimg3(th){
         //alert($(th).attr('src'));
         $('#galleryImg').css('background-image',"url("+$(th).attr('src')+")");
 
