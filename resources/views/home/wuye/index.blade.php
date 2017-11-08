@@ -56,7 +56,7 @@
                         @if($vol -> imgs[0])
                             <div class="answer-img flex">
                                 @foreach($vol -> imgs as $value)
-                                    <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;" onclick="showimg3(th)">
+                                    <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;" onclick="showimg3(this)">
 
                                     </div>
                                 @endforeach
