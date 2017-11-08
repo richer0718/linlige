@@ -14,7 +14,10 @@ class WxModel extends Model
 
     //检查openid在不在user表中，如果不在 则储存
     public function checkOpenid(){
-        $this -> getOpenId();
+        if(session('openid')){
+            $this -> getOpenId();
+        }
+
         $isset = DB::table('user') -> where([
             'openid' => session('openid'),
 
