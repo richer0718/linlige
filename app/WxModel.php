@@ -24,11 +24,14 @@ class WxModel extends Model
         ]) -> first();
 
         if(!$isset){
-            $userinfo = $this -> getUserInfo();
-            session([
-                'headimgurl' => $userinfo['headimgurl'],
-                'sex' => $userinfo['sex']
-            ]);
+            if(!session('headimgurl')){
+                $userinfo = $this -> getUserInfo();
+                session([
+                    'headimgurl' => $userinfo['headimgurl'],
+                    'sex' => $userinfo['sex']
+                ]);
+            }
+
 
             //没有 就取让他注册
             return 'redirect_reg';

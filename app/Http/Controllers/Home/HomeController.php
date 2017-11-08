@@ -842,22 +842,10 @@ class HomeController extends Controller
     public function reg($isreg = null){
         $options = [
             /**
-             * Debug 模式，bool 值：true/false
-             *
-             * 当值为 false 时，所有的日志都不会记录
-             */
-            'debug'  => true,
-            /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */
-            'app_id'  => 'wx68099d0c30ed4f39',         // AppID
-            'secret'  => 'd4624c36b6795d1d99dcf0547af5443d',     // AppSecret
-            'token'   => 'yangxiaojie',          // Token
-            'log' => [
-                'level'      => 'debug',
-                'permission' => 0777,
-                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
-            ],
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
         ];
         $app = new Application($options);
         $js = $app -> js;
