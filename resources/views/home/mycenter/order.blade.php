@@ -104,7 +104,13 @@
                         html += '</div>';
                         html += '</div>';
                         html += '</div>';
-                        html += '<div class="flex pick-up"><span>'+i.peisong_type+'</span><div class="flex-1">'+i.address+' '+i.user_info.tel+'</div></div>';
+                        html += '<div class="flex pick-up"><span>'+i.peisong_type+'</span><div class="flex-1">';
+                        if(i.peisong_type == '送货上门'){
+                            html += i.address;
+                        }
+
+
+                        html += ' '+i.user_info.tel+'</div></div>';
                         html += '<div class="goods-total flex-justify">';
                         html += '<div>合计  <span><i>¥</i>'+i.goods_info.price_no+'</span></div>';
                         if(i.status == 0){
