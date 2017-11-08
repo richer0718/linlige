@@ -51,18 +51,9 @@
                 success: function(data){
 
                     if(data == 'success'){
-                        //询问框
-                        layer.confirm('您已成功提交注册信息，请等待审核<br>您可浏览小区', {
-                            btn: ['立即前往','暂不查看'] //按钮
-                        }, function(){
-                            location.href='{{ url('/home') }}';
-                        }, function(){
-                            layer.msg('ok');
-                        });
+                        layer.msg('您已成功提交注册信息，请等待审核<br>您可浏览小区');
                         setTimeout(function(){location.href='{{ url('/home') }}';},1000);
-
                     }
-
                 },
                 error: function(xhr, type){
                     layer.msg('Ajax error!')

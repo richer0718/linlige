@@ -16,7 +16,7 @@
     <article class="vote-main" id="article1" >
         @if(!empty($list_article))
             @foreach($list_article as $vo)
-                <section class="vote-list flex-justify" onclick="location.href='{{url('/home/zhidedetail/'.$vo->id)}}' ">
+                <section class="vote-list flex-justify" onclick="location.href='{{url('/home/zhidedetail/'.$vo->id)}}' " style="padding: 0.2rem 0.25rem 0.32rem 0.25rem;">
                     <div class="flex-1">
                         <h3><span>{{$vo -> title}}</span>@if($vo -> ishot == 1)<img src="{{asset('images/hot.png')}}" />@endif</h3>
                         <p>{{date('Y-m-d H:i',$vo->created_at)}}</p>
@@ -30,7 +30,7 @@
     <article class="vote-main" id="article2" style="display:none;padding: 0.25rem 0.25rem 0.32rem;">
         @if(!empty($list_toupiao))
             @foreach($list_toupiao as $vo)
-                <section class="vote-list flex-justify" onclick="location.href='{{ url('home/toupiaodetail',['id'=>$vo -> id]) }}' " >
+                <section class="vote-list flex-justify" onclick="location.href='{{ url('home/toupiaodetail',['id'=>$vo -> id]) }}' " style="padding: 0.2rem 0.25rem 0.32rem 0.25rem;" >
                     <div class="flex-1">
                         <h3><span>{{$vo -> title}}</span>@if($vo -> ishot == 1)<img src="{{asset('images/hot.png')}}" />@endif</h3>
                         <p>{{date('Y-m-d H:i',$vo->created_at)}}</p>
