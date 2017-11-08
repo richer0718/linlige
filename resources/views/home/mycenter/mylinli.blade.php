@@ -480,7 +480,7 @@
 
 
 
-                if(!data[i].openid_help){
+                if(data[i].openid_help){
                 html += '<div class="demand-btn"><a  ';
                 html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
                 html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
