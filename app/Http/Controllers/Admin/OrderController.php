@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class OrderController extends Controller
 {
@@ -167,6 +169,40 @@ class OrderController extends Controller
             'fahuo_status' => 1,
             'show_status' => '已发货',
         ]);
+
+        //发送模版消息
+        //查找openid
+        $data = DB::table('order') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        $goods_info = DB::table('goods') -> where([
+            'id' => $data -> goods_id
+        ]) -> first();
+        $info = DB::table('user') -> where([
+            'openid' => $data -> openid
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.url5'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的宝贝'.$goods_info -> title.'已发货，物流单号为'.$request -> input('danhao').'，请注意查收~',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
         return redirect('admin/orderlist') -> with('fahuores','yes');
 
     }

@@ -104,7 +104,7 @@
                         html += '</div>';
                         html += '</div>';
                         html += '</div>';
-                        html += '<div class="flex pick-up"><span>'+i.peisong_type+'</span><div class="flex-1">';
+                        html += '<div class="flex pick-up"><span>'+i.peisong_type+'</span><div class="flex-1" style="line-height:1.3;">';
                         if(i.peisong_type == '送货上门'){
                             html += i.address;
                         }

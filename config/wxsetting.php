@@ -8,6 +8,7 @@ return [
     'url2' => 'http://m.tianluyangfa.com/laravel/public/home/mall', //商城跳转
     'url3' => 'http://m.tianluyangfa.com/laravel/public/home/market', //跳蚤市场
     'url4' => 'http://m.tianluyangfa.com/laravel/public/home/myorder', //商城支付完毕发送模版消息进入订单
+    'url5' => 'http://m.tianluyangfa.com/laravel/public/home/myorder', //发货
     'helpurl' => 'http://m.tianluyangfa.com/laravel/public/home/helpPage/', //帮助
     'machid' => 1453827602,
     'businesskey' => 'AAAAAAAAaaaaaaaa1111111100000000',

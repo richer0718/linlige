@@ -6,7 +6,7 @@
 </head>
 <body>
 <header class="public-header">
-    <i class="iconfont icon-fanhui" onclick="history.go(-1)"></i>
+    <i class="iconfont icon-fanhui" onclick="history.go(-1)" style="top:37%;"></i>
     <img src="{{asset('images/logo.png')}}">
 </header>
 <article class="sale">

@@ -7,7 +7,7 @@
 </head>
 <body>
 <header class="public-header">
-    <i class="iconfont icon-fanhui" onclick="location.href='{{ url('home').'/'.$index }}' "></i>
+    <i class="iconfont icon-fanhui" onclick="location.href='{{ url('home').'/'.$index }}' " style="top:37%;" ></i>
     <img src="{{asset('images/logo.png')}}" />
 </header>
 

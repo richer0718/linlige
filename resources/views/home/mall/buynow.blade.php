@@ -181,7 +181,7 @@
                 if(!$.trim($('#address').val())){
                     layer.msg('请填写收货地址');return false;
                 }
-                address = $.trim($('#address').val());
+                address = $('#city').val()  + $.trim($('#address').val());
             }
             var url = '{{ url('home/payRequest') }}';
             var remark = $('#remark').val();
