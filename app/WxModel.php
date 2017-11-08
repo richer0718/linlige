@@ -14,11 +14,7 @@ class WxModel extends Model
 
     //检查openid在不在user表中，如果不在 则储存
     public function checkOpenid(){
-        //session(['openid' => null]);
-        if(!session('openid')){
-            //获取openid
-            $this -> getOpenId();
-        }
+        $this -> getOpenId();
         $isset = DB::table('user') -> where([
             'openid' => session('openid'),
 
@@ -148,13 +144,6 @@ class WxModel extends Model
         $userinfo = file_get_contents($url);
         $userinfo = json_decode($userinfo,true);
 
-        if(isset($userinfo['errcode'])){
-            session([
-                'openid'=>null
-            ]);
-            $this -> checkOpenid();
-        }
-        //dd($userinfo);
         return $userinfo;
     }
 
