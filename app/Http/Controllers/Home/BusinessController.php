@@ -289,7 +289,6 @@ class BusinessController extends Controller
 
     //支付成功回调地址
     public function payServiceNotify(){
-        file_put_contents('88888.txt','23423423423');
         $options = [
             /**
              * Debug 模式，bool 值：true/false
@@ -306,9 +305,7 @@ class BusinessController extends Controller
             'payment' => [
                 'merchant_id'        => config('wxsetting.machid'),
                 'key'                => config('wxsetting.businesskey'),
-                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
-                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
-                'notify_url'         => config('wxsetting.noticy_url'),      // 你也可以在下单时单独设置来想覆盖它
+                'notify_url'         => config('wxsetting.noticy_url_service'),      // 你也可以在下单时单独设置来想覆盖它
             ],
             'log' => [
                 'level'      => 'debug',
@@ -321,7 +318,7 @@ class BusinessController extends Controller
             if($successful){
                 //支付成功
                 //根据订单号更新状态
-                DB::table('business') -> where([
+                DB::table('service') -> where([
                     'order_id' => $notify -> out_trade_no
                 ]) -> update([
                     'flag' => 0,
