@@ -259,13 +259,14 @@
             if(fabu == 1){
                 fabuindex = 2;
                 $('#fabuindex').val(2);
-                $('.property-evaluate').show();
-                $('.property-release').show();
+                $('.property-evaluate').hide();
+                $('.property-release').hide();
             }else{
                 fabuindex = 1;
                 $('#fabuindex').val(1);
-                $('.property-evaluate').hide();
-                $('.property-release').hide();
+
+                $('.property-evaluate').show();
+                $('.property-release').show();
             }
 
 
