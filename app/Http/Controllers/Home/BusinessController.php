@@ -289,6 +289,7 @@ class BusinessController extends Controller
 
     //支付成功回调地址
     public function payServiceNotify(){
+        file_put_contents('88888.txt','23423423423');
         $options = [
             /**
              * Debug 模式，bool 值：true/false
