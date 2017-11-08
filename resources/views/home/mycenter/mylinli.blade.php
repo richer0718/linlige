@@ -475,7 +475,7 @@
                     html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
                 }else{
                     html +='<div class="demand-time neighbor">';
-                    html += '<h4>需求时间<sapn>'+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
+                    html += '<h4>需求时间<sapn> '+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
                 }
 
 
@@ -483,10 +483,10 @@
 
                 html += '<div class="demand-btn"><a  ';
                 if(!data[i].openid_help){
-                    html += 'class="hover" onclick="helphim('+data[i].id+')" ';
+                    html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
                 }
 
-                html += ' >帮TA</a><a href="tel:'+ data[i]['userinfo'].tel +'">联系看看</a></div></div></section>';
+                html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'">联系TA</a></div></div></section>';
             }
 
         }
