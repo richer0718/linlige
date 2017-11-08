@@ -284,7 +284,7 @@ class HomeController extends Controller
             }) -> orderBy('created_at','desc') -> get();
         }else{
             $index --;
-            $res = DB::table('service') -> where(['type'=>$index,'xiaoqu'=>session('xiaoqu'),'status'=>0]) -> orderBy('created_at','desc') -> get();
+            $res = DB::table('service') -> where(['type'=>$index,'xiaoqu'=>session('xiaoqu'),'status'=>0,'flag'=>0]) -> orderBy('created_at','desc') -> get();
         }
 
         $res = $this -> object_array($res);
