@@ -11,9 +11,7 @@
     <img src="{{asset('images/logo.png')}}">
 </header>
 
-@if(session('helpres'))
-<img src="{{asset('images/user-comment.png')}}" class="user-comment" id="user-comment"/>
-@endif
+
 
 <article class="user-center">
 
@@ -46,15 +44,65 @@
         </div>
     </a>
 </article>
-<div class="property-evaluate" style="position:fixed;bottom:0;left:0;">
+@if(session('helpres'))
+<div class="property-evaluate" style="position:fixed;bottom:0;left:0;width:100%;">
 
     <div class="flex-align pingjia">
-        <div class="selectbox select" data="yes"><i class="iconfont icon-xiaolian"></i>同意帮助</div>
-        <div class="selectbox" data="no"><i class="iconfont icon-bumanyi"></i>拒绝帮助</div>
+        <div class="selectbox select" data="yes" onclick="needhelp()"><i class="iconfont icon-xiaolian"></i>同意帮助</div>
+        <div class="selectbox" data="no" onclick="nohelp()"><i class="iconfont icon-bumanyi"></i>拒绝帮助</div>
     </div>
 </div>
+@endif
 <div class="fixed-height"></div>
 <script>
+    function nohlep(){
+        var url = '{{url('home/querenhelp')}}';
+        var id = {{session('helpres')}} ;
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {id:id,res:'no'},
+
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                layer.msg('您已拒绝');
+                setTimeout(function(){
+                    location.href='{{ url('home') }}';
+                },1000);
+            },
+            error: function(xhr, type){
+                //alert('Ajax error!')
+            }
+        });
+    }
+    function needhelp(){
+        //确定让他帮你
+        var url = '{{url('home/querenhelp')}}';
+        var id = {{session('helpres')}} ;
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {id:id,res:'yes'},
+
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                layer.msg('确认成功');
+                setTimeout(function(){
+                    location.href='{{ url('home') }}';
+                },1000);
+            },
+            error: function(xhr, type){
+                //alert('Ajax error!')
+            }
+        });
+    }
+
     $(function(){
         $('#enjoy').click(function(){
             var url = '{{url('home/likelinjuchange')}}';
@@ -87,9 +135,11 @@
         })
     })
 
-    @if(session('helpres'))
-        layer.alert('ta愿意帮你，请确认');
-    @endif
+
+
+
+
+
 
     $('#user-comment').click(function(){
         layer.confirm('确定让ta帮你么', {
@@ -120,7 +170,7 @@
 
 
         }, function(){
-//确定让他帮你
+
             var url = '{{url('home/querenhelp')}}';
             var id = {{session('helpres')}} ;
 
