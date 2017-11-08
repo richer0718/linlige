@@ -118,7 +118,7 @@ class HomeController extends Controller
         }
         //如果是第一次进入 则给个标志
         $ismark = 0;
-        if($mark -> ismark == 0){
+        if($mark -> ismark == 0 && $mark -> status == 1){
             $ismark = DB::table('user') -> count();
 
             //再把ismark改为1
