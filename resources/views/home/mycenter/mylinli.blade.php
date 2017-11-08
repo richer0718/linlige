@@ -34,6 +34,14 @@
         .weui-gallery__del {
             display: block;
         }
+        .demand-time h4 span {
+            color: #4ee4c2;
+        }
+        .neighbor p {
+            margin-top: 0.23rem;
+            color: #333;
+            font-size: 0.28rem;
+        }
     </style>
 </head>
 <body>
