@@ -48,8 +48,8 @@
 <div class="property-evaluate" style="position:fixed;bottom:0;left:0;width:100%;">
 
     <div class="flex-align pingjia">
-        <div class="selectbox select" data="yes" onclick="needhelp()"><i class="iconfont icon-xiaolian"></i>同意帮助</div>
-        <div class="selectbox" data="no" onclick="nohelp()"><i class="iconfont icon-bumanyi"></i>拒绝帮助</div>
+        <div class="selectbox select" data="yes" onclick="needhelp()" style="width:50%;"><i class="iconfont icon-xiaolian"></i>同意帮助</div>
+        <div class="selectbox" data="no" onclick="nohelp()" style="width:50%;margin-left:0;" ><i class="iconfont icon-bumanyi"></i>拒绝帮助</div>
     </div>
 </div>
 @endif
