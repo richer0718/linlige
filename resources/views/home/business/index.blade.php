@@ -228,11 +228,14 @@
                      signType: data['signType'], // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                      paySign: data['paySign'], // 支付签名
                      success: function (res) {
-                         alert(JSON.stringify(res));alert(1);
+                         if(res.errMsg == 'chooseWXPay:ok'){
+                             location.reload();
+                         }
                      },
                      complete: function(res) {
-                         //接口调用完成时执行的回调函数，无论成功或失败都会执行。
-                         alert(JSON.stringify(res));
+                         if(res.errMsg == 'chooseWXPay:ok'){
+                             location.reload();
+                         }
                      },
                  });
              },
