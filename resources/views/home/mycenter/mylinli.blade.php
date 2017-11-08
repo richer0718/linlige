@@ -462,7 +462,7 @@
                 html += '<span onclick="dianzan(this,'+data[i].id+')" >'+data[i].dianzan+'</span> ';
                 html += '</div></footer><div class="property-reply flex-justify">';
 
-                if(data[i].openid_help){
+                if(!data[i].openid_help){
                     html +='<div class="demand-time">';
                     html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
                 }else{
