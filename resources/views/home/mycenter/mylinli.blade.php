@@ -209,8 +209,10 @@
             var index = $(this).index();
             if(index == 0){
                 $('.property-evaluate').show();
+                $('.property-release').show();
             }else{
                 $('.property-evaluate').hide();
+                $('.property-release').hide();
             }
             $('#index').val(index);
 
@@ -258,10 +260,12 @@
                 fabuindex = 2;
                 $('#fabuindex').val(2);
                 $('.property-evaluate').show();
+                $('.property-release').show();
             }else{
                 fabuindex = 1;
                 $('#fabuindex').val(1);
                 $('.property-evaluate').hide();
+                $('.property-release').hide();
             }
 
 
