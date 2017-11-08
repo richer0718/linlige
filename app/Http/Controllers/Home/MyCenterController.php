@@ -139,7 +139,7 @@ class MyCenterController extends Controller
                     ]) -> first();
                 }
 
-                if($_SESSION['openid'] == $vo['openid'] ){
+                if(session('openid') == $vo['openid'] ){
                     $res[$k]['is_manage'] = 1;
                 }
 
