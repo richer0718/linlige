@@ -129,7 +129,7 @@
                             <td>@if($vo -> fahuo_status == 0)未发货@else已发货@endif</td>
                             <td>@if($vo -> shouhou_status == 0)未售后@else已售后@endif</td>
                             <td>@if($vo -> peisong_type == 0)货物自提@else送货上门@endif</td>
-                            <td data="{{$vo -> id}}">@if($vo -> fukuan_status == 1 && $vo -> fahuo_status == 0 && $vo -> peisong_type != 0)<a  id="fahuo" data="{{ $vo -> id }}" >发货</a>@endif <a href="{{ url('admin/orderDetail',['id'=>$vo -> id ]) }}" >详情</a> </td>
+                            <td data="{{$vo -> id}}">@if($vo -> fukuan_status == 1 && $vo -> fahuo_status == 0 && $vo -> peisong_type != 0)<a  class="fahuo" data="{{ $vo -> id }}" >发货</a>@endif <a href="{{ url('admin/orderDetail',['id'=>$vo -> id ]) }}" >详情</a> </td>
                         </tr>
                     @endforeach
                 @endunless
@@ -205,7 +205,7 @@
                 $('#editShequ').modal('show')
             @endif
 
-            $('#fahuo').click(function(){
+            $('.fahuo').click(function(){
                 //alert(111);
                 var id = $(this).attr('data');
                 $('#super_id').val(id);
