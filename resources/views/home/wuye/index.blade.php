@@ -57,7 +57,7 @@
                             <div class="answer-img flex">
                                 @foreach($vol -> imgs as $value)
                                     <div style="background:url('{{ asset('images').'/'.$value }}') no-repeat center;background-size:cover;">
-                                        <input type="file" />
+
                                     </div>
                                 @endforeach
 
@@ -135,6 +135,7 @@
             $('#gallery').hide();
         });
         $('.weui-gallery__del').click(function(){
+            $('input[type=file]').val('');
             var imgid = $(this). attr('data');
             var number = $(this). attr('number');
 

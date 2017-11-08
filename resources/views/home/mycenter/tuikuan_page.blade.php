@@ -62,6 +62,7 @@
             $('#gallery').hide();
         });
         $('.weui-gallery__del').click(function(){
+            $('input[type=file]').val('');
             var imgid = $(this). attr('data');
             //删除这个imgid
             var length = $('.superimg').length;

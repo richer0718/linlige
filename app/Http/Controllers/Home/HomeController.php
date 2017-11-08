@@ -521,6 +521,13 @@ class HomeController extends Controller
         ]) -> update([
             'flag' => 1
         ]);
+        //找到new_id 评论减一
+        $pinlun = DB::table('pinlun') -> where([
+            'id' => $id
+        ]) -> first();
+        DB::table('news') -> where([
+            'id' => $pinlun -> news_id
+        ]) -> decrement('liulan');
         echo 'success';
     }
 
