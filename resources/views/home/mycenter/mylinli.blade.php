@@ -503,7 +503,7 @@
                                 html+= '<p>请确保任务完成，再点击按钮</p>';
                                 html += '</div>';
                                 html += '<div class="demand-btn demand-btn-no">';
-                                html += '<a >已完成</a>';
+                                html += '<a onclick="wancheng('+data[i].id+')" >已完成</a>';
                                 html += '</div>';
 
                             }else{
@@ -645,6 +645,43 @@
 
 </script>
 <script>
+    function wancheng(id){
+        layer.confirm('您确认完成吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+
+            //alert(id);return false;
+            var url = '{{ url('home/close_data') }}';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {id:id},
+
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(data){
+                    if(data == 'success'){
+                        layer.msg('已完成');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+
+                    }
+                },
+                error: function(xhr, type){
+                    //alert('Ajax error!')
+                }
+            });
+
+
+        }, function(){
+
+            layer.msg('您已取消', {time:200});
+
+
+        });
+    }
     function delete_data(id){
         layer.confirm('您确认删除吗？', {
             btn: ['确定','取消'] //按钮
