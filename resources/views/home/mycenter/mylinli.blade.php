@@ -538,9 +538,9 @@
 
 
                     }else{
+                        //没有人帮助 - 什么也不用考虑
                         html +='<div class="demand-time">';
                         html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
-                        //没有人帮助 - 什么也不用考虑
                         html += '<div class="demand-btn"><a  ';
                         //html += ' onclick="helphim('+ data[i].id +')" ';
                         html += ' >帮他</a><a>联系看看</a></div>';
@@ -550,6 +550,8 @@
 
                 }else{
                     //没有人帮助 - 什么也不用考虑
+                    html +='<div class="demand-time">';
+                    html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
                     html += '<div class="demand-btn"><a  ';
                     html += ' onclick="helphim('+ data[i].id +')" ';
                     html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
