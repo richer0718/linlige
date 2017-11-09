@@ -507,9 +507,17 @@
 
                             }else{
                                 //没有评价过
-                                html += '<div class="demand-btn">';
-                                html += '<a onclick="pingjia('+data[i].id+')" class="hover">评价</a>';
-                                html += '</div>';
+                                //判断是否完成
+                                if(data[i].status == 1){
+                                    html += '<div class="demand-btn">';
+                                    html += '<a onclick="pingjia('+data[i].id+')" class="hover">评价</a>';
+                                    html += '</div>';
+                                }else{
+                                    html +='<div class="demand-time neighbor">';
+                                    html += '<h4>需求时间<sapn> '+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
+                                    html += '<div class="demand-btn"><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
+                                }
+
                             }
                         }else{
                             //帮助的这个人
