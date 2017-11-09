@@ -533,12 +533,23 @@
 
                             }else{
                                 //没有评价过
-                                html += '<div class="demand-time neighbor">';
-                                html+= '<p>请确保任务完成，再点击按钮</p>';
-                                html += '</div>';
-                                html += '<div class="demand-btn demand-btn-no">';
-                                html += '<a  class="hover" onclick="wancheng()" style="background:#ffffff;">确认完成</a>';
-                                html += '</div>';
+                                //有没有完成
+                                if(data[i].status == 1){
+                                    html += '<div class="demand-time neighbor">';
+                                    html+= '<p>'+data[i].help_pingjia+'</p>';
+                                    html += '</div>';
+                                    html += '<div class="demand-btn demand-btn-no">';
+                                    html += '<a  >已完成</a>';
+                                    html += '</div>';
+                                }else{
+                                    html += '<div class="demand-time neighbor">';
+                                    html+= '<p>请确保任务完成，再点击按钮</p>';
+                                    html += '</div>';
+                                    html += '<div class="demand-btn demand-btn-no">';
+                                    html += '<a  class="hover" onclick="wancheng('+data[i].id+')" style="background:#ffffff;">确认完成</a>';
+                                    html += '</div>';
+                                }
+
                             }
 
 
