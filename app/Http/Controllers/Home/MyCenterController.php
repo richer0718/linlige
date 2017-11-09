@@ -376,4 +376,14 @@ class MyCenterController extends Controller
         return view('home/mycenter/moresetting');
     }
 
+    //互助评价
+    public function helppingjia(Request $request){
+        DB::table('news') -> where([
+            'id' => $request -> input('id')
+        ]) -> update([
+            'help_pingjia' => $request -> input('content')
+        ]);
+        echo 'success';
+    }
+
 }

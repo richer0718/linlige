@@ -107,6 +107,17 @@
 </div>
 <input type="hidden" id="usertype" value="@if($userinfo){{ $userinfo  -> shenfen}}@endif" />
 
+<div class="pop-bg none" id="sendwuye">
+    <div class="send-info">
+        <form>
+            <input type="text" placeholder="请填写评价" name="content" id="pingjia"/>
+            <input type="hidden" name="id" id="news_id" />
+
+            <div class="flex-justify"><a id="quxiao">取消</a><a id="quedingwuye">确定</a></div>
+        </form>
+    </div>
+</div>
+
 </body>
 <script>
     var hei = $(window).height();
@@ -134,6 +145,9 @@
     $('.weui-gallery__opr').click(function(){
         $('#gallery').hide();
     })
+
+
+
 </script>
 
 <script>
@@ -472,62 +486,72 @@
                 html += '</div></footer><div class="property-reply flex-justify">';
 
 
-                if(data[i].is_manage){
-                    //如果是自己的
-                    if(data[i].openid_help){
-                        html +='<div class="demand-time neighbor">';
-                        html += '<h4>需求时间<sapn> '+data[i].date+'</sapn></h4><p>好邻居：'+data[i]['helpinfo'].name+'<span>(已接任务)</span></p></div>';
-                    }else{
-                        html +='<div class="demand-time">';
-                        html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
-                    }
-                    if(data[i].openid_help){
-                        html += '<div class="demand-btn"><a  ';
-                        html += 'class="hover" onclick="close_data('+ data[i].id +')" ';
-                        html += ' >取消发布</a><a href="tel:'+ data[i]['helpinfo'].tel +'" class="hover">联系TA</a></div>';
-                    }else{
-                        html += '<div class="demand-btn"><a  ';
-                        html += ' onclick="helphim('+ data[i].id +')" ';
-                        html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
-                    }
-                }else{
-                    //如果不是自己的
-                    //如果有人帮
-                    if(data[i].openid_help){
-                        //判断下是不是自己帮的
-                        if(data[i].openid_help == myopenid){
-                            //是自己帮的
-                            if(data[i].status == 0){
-                                //还没有解决
+
+                //看下这个有没有人帮助
+                if(data[i].openid_help){
+                    //有人帮助
+                    //判断此人是谁
+                    if(data[i].is_manage ||  data[i].openid_help == myopenid){
+                        //是被帮助的这个人 或者帮助的这个人
+                        if(data[i].is_manage){
+                            //被帮助的这个人
+                            //查看是否评价
+                            if(data[i].help_pingjia){
+                                //直接显示评价
+                                html += '<div class="demand-time neighbor">';
+                                html+= '<p>'+data[i].help_pingjia+'</p>';
+                                html += '</div>';
+                                html += '<div class="demand-btn demand-btn-no">';
+                                html += '<a  >已完成</a>';
+                                html += '</div>';
+
+                            }else{
+                                //没有评价过
+                                html += '<div class="demand-btn">';
+                                html += '<a onclick="pingjia('+data[i].id+')" class="hover">评价</a>';
+                                html += '</div>';
+                            }
+                        }else{
+                            //帮助的这个人
+//查看是否评价
+                            if(data[i].help_pingjia){
+                                //直接显示评价
+                                html += '<div class="demand-time neighbor">';
+                                html+= '<p>'+data[i].help_pingjia+'</p>';
+                                html += '</div>';
+                                html += '<div class="demand-btn demand-btn-no">';
+                                html += '<a  >已完成</a>';
+                                html += '</div>';
+
+                            }else{
+                                //没有评价过
                                 html += '<div class="demand-time neighbor">';
                                 html+= '<p>请确保任务完成，再点击按钮</p>';
                                 html += '</div>';
                                 html += '<div class="demand-btn demand-btn-no">';
-                                html += '<a onclick="wancheng('+data[i].id+')" >已完成</a>';
+                                html += '<a  >确认完成</a>';
                                 html += '</div>';
-
-                            }else{
-                                //已解决
                             }
-                        }else{
-                            //如果有人帮 且不是自己
-                            html +='<div class="demand-time">';
-                            html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
-                            html += '<div class="demand-btn"><a  ';
-                            html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
+
+
                         }
+
+
                     }else{
-                        //如果没人帮
-                        html +='<div class="demand-time">';
-                        html += '<h4>需求时间</h4><p>'+data[i].date+'</p></div>';
+                        //没有人帮助 - 什么也不用考虑
                         html += '<div class="demand-btn"><a  ';
-                        html += ' onclick="helphim('+ data[i].id +')" ';
-                        html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
+                        //html += ' onclick="helphim('+ data[i].id +')" ';
+                        html += ' >帮他</a><a>联系看看</a></div>';
+
                     }
+
+
+                }else{
+                    //没有人帮助 - 什么也不用考虑
+                    html += '<div class="demand-btn"><a  ';
+                    html += ' onclick="helphim('+ data[i].id +')" ';
+                    html += ' >帮他</a><a href="tel:'+ data[i]['userinfo'].tel +'" >联系看看</a></div>';
                 }
-
-
-
 
 
                 html +='</div></section>';
@@ -645,6 +669,8 @@
 
 </script>
 <script>
+
+
     function wancheng(id){
         layer.confirm('您确认完成吗？', {
             btn: ['确定','取消'] //按钮
@@ -918,14 +944,23 @@
 
     }
 
+    function pingjia(id){
+        $('#sendwuye').show();
+        $('#news_id').val(id);
+    }
+
     $('#quxiao').click(function(){
         $('#sendwuye').hide();
     })
+
+
     //确定提交给物业
     $('#quedingwuye').click(function(){
-        var id = $('#fankui_news_id').val();
-        var content = $('#fankui_content').val();
-        var url = '{{url('/home/fankuiRes')}}';
+
+
+        var id = $('#news_id').val();
+        var content = $('#pingjia').val();
+        var url = '{{url('/home/helppingjia')}}';
         $.ajax({
             type: 'POST',
             url: url,
@@ -936,7 +971,7 @@
             },
             success: function(data){
                 if(data == 'success'){
-                    layer.msg('转交成功');
+                    layer.msg('评价成功');
                     $('#sendwuye').hide();
                     setTimeout(function(){location.reload()},1000);
                 }
