@@ -427,7 +427,7 @@
                 }else{
                     html += 'pending';
                 }
-                html += '">'+data[i].status_manage_name+'</span>';
+                html += '">'+data[i].status_name+'</span>';
 
 
                 html += '</h3>';

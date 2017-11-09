@@ -33,7 +33,7 @@
                 <h3><span>{{ $k + 1 }}.</span>{{ $vo -> title }}</h3>
                 <div class="radio-model">
                     @foreach($vo -> detail as $vol)
-                    <div class="flex-align"><label><input @if($vo -> type == 1)type="radio"@else type="checkbox" @endif name="{{ $vo -> id }}" class="inputs" value="{{ $vol -> id }}" ><i class="iconfont"></i>{{ $vol -> name }}</label></div>
+                    <div class="flex-align"><label><input @if($vo -> type == 1)type="radio"@else type="checkbox" @endif name="{{ $vo -> id }}" class="inputs" value="{{ $vol -> id }}" ><i class="iconfont"></i>{{ $vol -> name }}@if($vo -> type == 1) (单选题) @else (多选题) @endif</label></div>
                     @endforeach
                 </div>
             </div>
