@@ -529,7 +529,7 @@
                                 html+= '<p>请确保任务完成，再点击按钮</p>';
                                 html += '</div>';
                                 html += '<div class="demand-btn demand-btn-no">';
-                                html += '<a  class="hover" onclick="wancheng()">确认完成</a>';
+                                html += '<a  class="hover" onclick="wancheng()" style="background:#ffffff;">确认完成</a>';
                                 html += '</div>';
                             }
 
