@@ -114,7 +114,7 @@
                         html += '<div class="goods-total flex-justify">';
                         html += '<div>合计  <span><i>¥</i>'+i.goods_info.price_no+'</span></div>';
                         if(i.status == 0){
-                            html += '<div class="evaluate"><a onclick="tuikuan('+i.order_id+')" >申请退款</a><a onclick="querenshouhuo('+i.order_id+')">确认收货</a></div>';
+                            html += '<div class="evaluate"><a onclick="tuikuan('+i.order_id+')" >申请退款</a><a onclick="querenshouhuo('+"'"+i.order_id+"'"+')">确认收货</a></div>';
                         }
                         if(i.status == 1){
                             html += '<div class="evaluate"><a onclick="tuikuan('+i.order_id+')">退货退款</a><a onclick="pingjia('+i.order_id+')" >评 价</a></div>';
