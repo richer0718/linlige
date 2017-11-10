@@ -178,6 +178,7 @@
     }
 
     function querenshouhuo(orderid){
+        console.log(orderid);
         var url = '{{ url('home/myorder/querenshouhuo') }}';
         //alert(url);return false;
         $.ajax({

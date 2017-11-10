@@ -335,6 +335,7 @@ class MyCenterController extends Controller
     }
     //确认收货
     public function querenshouhuo(Request $request){
+        dd($request -> input('orderid'));
         $res = DB::table('order') -> where([
             'order_id' => $request -> input('orderid')
         ]) -> update([
