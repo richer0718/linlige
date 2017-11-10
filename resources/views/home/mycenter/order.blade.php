@@ -114,13 +114,13 @@
                         html += '<div class="goods-total flex-justify">';
                         html += '<div>合计  <span><i>¥</i>'+i.goods_info.price_no+'</span></div>';
                         if(i.status == 0){
-                            html += '<div class="evaluate"><a onclick="tuikuan('+i.order_id+')" >申请退款</a><a onclick="querenshouhuo('+"'"+i.order_id+"'"+')">确认收货</a></div>';
+                            html += '<div class="evaluate"><a onclick="tuikuan('+"'"+i.order_id+"'"+')" >申请退款</a><a onclick="querenshouhuo('+"'"+i.order_id+"'"+')">确认收货</a></div>';
                         }
                         if(i.status == 1){
-                            html += '<div class="evaluate"><a onclick="tuikuan('+i.order_id+')">退货退款</a><a onclick="pingjia('+i.order_id+')" >评 价</a></div>';
+                            html += '<div class="evaluate"><a onclick="tuikuan('+"'"+i.order_id+"'"+')">退货退款</a><a onclick="pingjia('+"'"+i.order_id+"'"+')" >评 价</a></div>';
                         }
                         if(i.status == 2){
-                            html += '<a onclick="tuikuan('+i.order_id+')" >退货退款</a>';
+                            html += '<a onclick="tuikuan('+"'"+i.order_id+"'"+')" >退货退款</a>';
                         }
                         if(i.status == 3){
                             html += '<a>待审核</a>';
@@ -178,7 +178,7 @@
     }
 
     function querenshouhuo(orderid){
-        console.log(orderid);
+        //console.log(orderid);
         var url = '{{ url('home/myorder/querenshouhuo') }}';
         //alert(url);return false;
         $.ajax({
@@ -192,7 +192,7 @@
             success: function(data){
                 if(data == 'success'){
                     layer.msg('确认收货成功');
-                    //setInterval ("tiaozhuan()", 1000);
+                    setInterval ("tiaozhuan()", 1000);
                 }
 
             },
