@@ -6,11 +6,37 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class WuyeController extends Controller
 {
     //
     public function login(){
+        if(!session('openid')){
+            $options = [
+                /**
+                 * 账号基本信息，请从微信公众平台/开放平台获取
+                 */
+                'app_id'  => config('wxsetting.appid'),         // AppID
+                'secret'  => config('wxsetting.secret'),     // AppSecret
+            ];
+            $app = new Application($options);
+            if (empty($_GET['code'])) {
+                $currentUrl = UrlHelper::current(); // 获取当前页 URL
+                $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+                return $response; // or echo $response;
+            }
+
+            $user = $app->oauth->user();
+
+            if($user){
+                session([
+                    'openid' => $user->getId(),
+                ]);
+            }
+        }
+
+
         //dd(session());
         if(session('login_type') == 'wuye' && session('xiaoqu') && session('username')){
             return redirect('home/wuye/index');
@@ -26,6 +52,14 @@ class WuyeController extends Controller
             'type' => 1
         ]) -> first();
         if($res){
+            //查看他跟openid 绑定了没有
+            if(!$res -> openid){
+                DB::table('business') -> where([
+                    'id' => $res -> id
+                ]) -> update([
+                    'openid' => session('openid')
+                ]);
+            }
             //保存物业用户名称
             session([
                 'username' => $request -> input('username'),

@@ -111,7 +111,7 @@
         <div>
             <img src="{{asset('images/welcome.png')}}" />
             <div>
-                <p>您是第<span>@if(!empty($ismark)){{$ismark}}@endif</span>位</p>
+                <p>您是第<span>@if(!empty($ismark) && $userinfo){{$userinfo -> order_number}}@endif</span>位</p>
                 <p>入驻本小区哦</p>
             </div>
         </div>

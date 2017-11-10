@@ -191,7 +191,7 @@
             success: function(data){
                 if(data == 'success'){
                     layer.msg('确认收货成功');
-                    setInterval ("tiaozhuan()", 1000);
+                    //setInterval ("tiaozhuan()", 1000);
                 }
 
             },

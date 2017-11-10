@@ -124,6 +124,14 @@ class UserController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
+
+
+            //审核通过，排序字段+1 用来看他第几位进入小区的
+            $number = DB::table('user') -> where([
+                'xiaoqu' => $info -> xiaoqu
+            ]) -> max('order_number');
+
+
         }
         //如果是审核不通过，就把他删了，让他重新提交
         if($request -> input('status') == 3){
@@ -136,7 +144,8 @@ class UserController extends Controller
         $res = DB::table('user') -> where([
             'id' => $request -> input('id')
         ]) -> update([
-            'status' => $request -> input('status')
+            'status' => $request -> input('status'),
+            'order_number' => intval($number) + 1
         ]);
         if($res){
             echo 'success';
