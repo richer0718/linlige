@@ -374,11 +374,45 @@ class HomeController extends Controller
     }
     //关闭
     public function close_data(Request $request){
+        $newsinfo = DB::table('news') -> where([
+            'id' => $request -> input('id')
+        ]) -> first();
+        if(session('openid') == $newsinfo -> openid_help){
+            //如果不是他本人关的，则是帮助的这个人关的
+            //完成了 给a发送消息
+            $info = DB::table('user') -> where([
+                'openid' => $newsinfo -> openid
+            ]) -> first();
+            $options = [
+                /**
+                 * 账号基本信息，请从微信公众平台/开放平台获取
+                 */
+                'app_id'  => config('wxsetting.appid'),         // AppID
+                'secret'  => config('wxsetting.secret'),     // AppSecret
+            ];
+            $app = new Application($options);
+            $notice = $app->notice;
+            $messageId = $notice->send([
+                'touser' => $info -> openid,
+                'template_id' => config('wxsetting.moban1'),
+                'url' => config('wxsetting.superurl'),
+                'data' => [
+                    'first' => '尊敬的'.$info -> name,
+                    'keyword1' => '您发布的"'.$newsinfo -> title.'"需求，邻居已经完成，快去看看吧',
+                    'keyword2' => date('Y-m-d'),
+                    'keyword3' => '',
+                    'remark' => '感谢您的使用'
+                ],
+            ]);
+        }
+
         DB::table('news') -> where([
             'id' => $request -> input('id')
         ]) -> update([
             'status' => 1
         ]);
+
+
         echo 'success';
     }
 
