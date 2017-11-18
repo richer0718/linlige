@@ -45,11 +45,14 @@ class MyCenterController extends Controller
     }
     //发布给物业
     public function fabuwuye(Request $request){
-        $res = DB::table('user') -> where([
+        $res = DB::table('news') -> where([
+            'id' => $request -> input('id'),
             'openid' => session('openid')
         ]) -> update([
             'wuye_pingjia' => $request -> input('result')
         ]);
+
+
         if($res){
             echo 'success';
         }else{

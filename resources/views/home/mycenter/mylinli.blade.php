@@ -146,12 +146,12 @@
         var id = $(th).attr('data');
         //评价结果
         var result = $('#pingjiawuye_'+id+' .select').attr('data');
-        alert(result);return false;
+        //alert(result);return false;
         var url = '{{url('/home/fabuwuye')}}';
         $.ajax({
             type: 'POST',
             url: url,
-            data: {result:result},
+            data: {result:result,id:id},
             //dataType:'json',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
