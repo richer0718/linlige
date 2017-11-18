@@ -352,6 +352,21 @@
                     html += '">'+data[i].status_name+'</span>';
                 }
 
+                //看有没有物业回复
+                if(data[i].wuye_pingjia){
+                    //满意
+                    html += '<span class="';
+                    if(data[i].wuye_pingjia == 'yes'){
+                        html  += 'resolved';
+                        html += '">满意</span>';
+                    }else{
+                        html += 'pending';
+                        html += '">不满意</span>';
+                    }
+
+
+                }
+
 
                 html +='</h3>';
                 html += '<span>';
