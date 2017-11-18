@@ -214,6 +214,9 @@
 
         })
 
+        //评价点击切换颜色
+
+
         //切换
         $('#navigation a').click(function(){
             var fabuindex = $('#fabuindex').val();
@@ -400,13 +403,13 @@
 
                 if(!data[i].wuye_pingjia){
                     //物业评价
-                    html += '<div class="property-evaluate">';
+                    html += '<div class="property-evaluate" style="margin:0 auto;" >';
                     html += '<h3>请评价物业服务：</h3>';
                     html += '<div class="flex-align pingjia">';
-                    html += '<div class="selectbox select" data="yes"><i class="iconfont icon-xiaolian"></i>满意</div>';
-                    html += '<div class="selectbox" data="no"><i class="iconfont icon-bumanyi"></i>不满意</div>';
+                    html += '<div class="selectbox select" data="yes" onclick="manyi()"><i class="iconfont icon-xiaolian"></i>满意</div>';
+                    html += '<div class="selectbox" data="no" onclick="manyi()" ><i class="iconfont icon-bumanyi"></i>不满意</div>';
                     html += '</div></div>';
-                    html += '<a onclick="fabuwuyu()" class="property-release">评价</a>';
+                    html += '<a onclick="fabuwuyu_manyi('+data[i].id+')" class="property-release">评价</a>';
                 }
 
 
@@ -705,7 +708,14 @@
 
 </script>
 <script>
+    //点击切换满意不满意
+    function manyi(){
+        $(this).parent('.pingjia').children('.selectbox').css('color','#000');
+        $(this).parent('.pingjia').children('.selectbox').children('i').css('color','#000');
+        $(this).css('color','#f4c600');
+        $(this).children('i').css('color','#f4c600');
 
+    }
 
     function wancheng(id){
         layer.confirm('您确认完成吗？', {
@@ -744,6 +754,7 @@
 
         });
     }
+
     function delete_data(id){
         layer.confirm('您确认删除吗？', {
             btn: ['确定','取消'] //按钮
