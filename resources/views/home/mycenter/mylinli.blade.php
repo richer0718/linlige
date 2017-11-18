@@ -418,7 +418,7 @@
                 html += ' </section>';
 
 
-                if(!data[i].wuye_pingjia){
+                if(!data[i].wuye_pingjia && data[i].status == 1){
                     //物业评价
                     html += '<div class="property-evaluate" style="margin:0 auto;" >';
                     html += '<h3>请评价物业服务：</h3>';
