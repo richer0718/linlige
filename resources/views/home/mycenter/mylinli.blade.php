@@ -352,6 +352,7 @@
                     html += '">'+data[i].status_name+'</span>';
                 }
 
+
                 //看有没有物业回复
                 if(data[i].wuye_pingjia){
                     //满意

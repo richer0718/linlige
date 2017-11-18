@@ -27,7 +27,7 @@ Route::get('/homes/look', 'Home\HomeController@look') ;
 Route::any('/home/ajax', 'Home\HomeController@ajax') ;
 Route::any('/home/delete_data', 'Home\HomeController@delete_data') ;
 Route::any('/home/open_data', 'Home\HomeController@open_data') ;
-Route::any('/home/close_data', 'Home\HomeController@close_data') ;
+Route::any('/home/close_data', 'Home\HomeController@close_data');
 Route::any('/home/helppingjia', 'Home\MyCenterController@helppingjia') ;
 //便民服务 ajax 请求
 Route::any('/home/ajax2', 'Home\HomeController@ajax2') ;

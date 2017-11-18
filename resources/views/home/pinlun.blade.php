@@ -16,7 +16,7 @@
 </header>
 <section class="comment-title">
     <header class="comment-head flex-justify">
-        <h3>{{$res['title']}}@if($res['type'] == 3)<strong><em>¥ </em>{{ $res['price'] }}</strong> <a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif @if($res['type'] == 4)<a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif </h3>
+        <h3>{{$res['title']}}@if($res['type'] == 3)<strong><em>¥ </em>{{ $res['price'] }}</strong> <a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif @if($res['type'] == 4)<a href="tel:{{ $res['userinfo'] -> tel }}" ><i class="iconfont icon-dianhua"></i></a>@endif @if($res['type'] == 0) <span class="hygiene">{{ $res['label'] }}</span>@if($res['huifu'])@if($res['status'] == 1)<span class="resolved">{{$res['status_name']}}</span>@else<span class="resolved">{{$res['status_name']}}</span>@endif@endif @endif</h3>
         <span onclick="location.href='{{ url('home/likeman').'/'.$res['userinfo'] -> openid }}'" >{{ $res['userinfo'] -> name }}</span>
     </header>
     @if($res['type'] == 3) <div class="comment-time"><span>时间</span> {{ $res['date'] }} 至 {{ $res['date_right'] }} </div> @endif
