@@ -48,7 +48,7 @@
     </div>
     @endif
     <footer class="comment-foot flex-justify">
-        <span>{{ date('Y-m-d H:i:s',$res['created_at']) }}@if($res['type'] == 0 && $res['openid_help']){{ ' 帮助者：'.$res['helpinfo'] -> name }}@endif</span>
+        <span>{{ date('Y-m-d H:i:s',$res['created_at']) }}@if($res['type'] == 1 && $res['openid_help']){{ ' 帮助者：'.$res['helpinfo'] -> name }}@endif</span>
         <div>
             <i class="iconfont icon-good"></i>
             <span id="dianzan_num">{{$res['dianzan']}}</span>
