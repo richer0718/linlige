@@ -26,6 +26,14 @@
                         <span class="pending">未解决</span>
                     @endif
                 @endif
+                @if($res['wuye_pingjia'])
+                    @if($res['wuye_pingjia'] == 'yes')
+                        <span class="resolved">满意</span>
+                        @else
+                        <span class="pending">不满意</span>
+                    @endif
+                @endif
+
             @endif
         </h3>
         <span onclick="location.href='{{ url('home/likeman').'/'.$res['userinfo'] -> openid }}'" >{{ $res['userinfo'] -> name }}</span>
@@ -40,7 +48,7 @@
     </div>
     @endif
     <footer class="comment-foot flex-justify">
-        <span>{{ date('Y-m-d H:i:s',$res['created_at']) }}</span>
+        <span>{{ date('Y-m-d H:i:s',$res['created_at']) }}@if($res['type'] == 0 && $res['openid_help']){{ ' 帮助者：'.$res['helpinfo'] -> name }}@endif</span>
         <div>
             <i class="iconfont icon-good"></i>
             <span id="dianzan_num">{{$res['dianzan']}}</span>

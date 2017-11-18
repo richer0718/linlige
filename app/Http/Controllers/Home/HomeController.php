@@ -524,8 +524,15 @@ class HomeController extends Controller
         $res = (array)$res;
         if($res['img']){
             $res['img'] = explode(',',$res['img']);
-
         }
+        //查看是否有人帮助
+        //如果有帮助他的人 则把帮助他的人信息列出来
+        if($res['openid_help']){
+            $res['helpinfo'] = DB::table('user') -> where([
+                'openid' => $res['openid_help']
+            ]) -> first();
+        }
+
         //看物业回复
         //查找每条记录的物业回复
         $res['wuye_huifu'] = DB::table('wuye_huifu') -> where([
