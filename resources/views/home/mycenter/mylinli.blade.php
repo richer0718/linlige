@@ -710,6 +710,7 @@
 <script>
     //点击切换满意不满意
     function manyi(){
+        alert(111);
         $(this).parent('.pingjia').children('.selectbox').css('color','#000');
         $(this).parent('.pingjia').children('.selectbox').children('i').css('color','#000');
         $(this).css('color','#f4c600');
