@@ -393,11 +393,6 @@
                  })
                  }
                  */
-
-
-                html += ' </section>';
-
-
                 if(!data[i].wuye_pingjia){
                     //物业评价
                     html += '<div class="property-evaluate">';
@@ -408,6 +403,11 @@
                     html += '</div></div>';
                     html += '<a onclick="fabuwuyu()" class="property-release">评价</a>';
                 }
+
+                html += ' </section>';
+
+
+
 
 
             }
