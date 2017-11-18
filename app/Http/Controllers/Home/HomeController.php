@@ -322,7 +322,7 @@ class HomeController extends Controller
         $messageId = $notice->send([
             'touser' => $info -> openid,
             'template_id' => config('wxsetting.moban1'),
-            'url' => config('wxsetting.superurl'),
+            'url' => config('wxsetting.youlin_url').$request -> input('id'),
             'data' => [
                 'first' => '尊敬的'.$info -> name,
                 'keyword1' => '您的反馈已提交给物业，请等待处理',
@@ -331,6 +331,31 @@ class HomeController extends Controller
                 'remark' => '感谢您的使用'
             ],
         ]);
+
+        //找到小区
+        $xiaoqu = DB::table('business') -> where([
+            'xiaoqu' => $info -> xiaoqu,
+            'type' => 1
+        ]) -> get();
+        foreach($xiaoqu as $vo){
+            //找到每个openid
+            if($vo -> openid){
+                $messageId = $notice->send([
+                    'touser' => $vo -> openid,
+                    'template_id' => config('wxsetting.moban1'),
+                    'url' => config('wxsetting.youlin_url').$request -> input('id'),
+                    'data' => [
+                        'first' => '您好',
+                        'keyword1' => '您有反馈需要处理',
+                        'keyword2' => date('Y-m-d'),
+                        'keyword3' => '',
+                        'remark' => '感谢您的使用'
+                    ],
+                ]);
+            }
+        }
+
+
 
         echo 'success';
     }
@@ -395,7 +420,7 @@ class HomeController extends Controller
             $messageId = $notice->send([
                 'touser' => $info -> openid,
                 'template_id' => config('wxsetting.moban1'),
-                'url' => config('wxsetting.superurl'),
+                'url' => config('wxsetting.youlin_url').$request -> input('id'),
                 'data' => [
                     'first' => '尊敬的'.$info -> name,
                     'keyword1' => '您发布的"'.$newsinfo -> title.'"需求，邻居已经完成，快去看看吧',
@@ -1162,7 +1187,7 @@ class HomeController extends Controller
             $messageId = $notice->send([
                 'touser' => $info -> openid,
                 'template_id' => config('wxsetting.moban1'),
-                'url' => config('wxsetting.superurl'),
+                'url' => config('wxsetting.youlin_url').$request -> input('id'),
                 'data' => [
                     'first' => '尊敬的'.$info -> name,
                     'keyword1' => '邻居已接受您的帮助，快去帮忙吧~',

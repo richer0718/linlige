@@ -56,6 +56,7 @@ class MyCenterController extends Controller
             echo 'error';
         }
     }
+
     public function mylinliajax(Request $request){
         //DB::enableQueryLog();
         $res = null;

@@ -578,6 +578,24 @@
 
 
                 html +='</div></section>';
+
+                if(!data[i].wuye_pingjia){
+                    //物业评价
+                    html += '<div class="property-evaluate">';
+                    html += '<h3>请评价物业服务：</h3>';
+                    html += '<div class="flex-align pingjia">';
+                    html += '<div class="selectbox select" data="yes"><i class="iconfont icon-xiaolian"></i>满意</div>';
+                    html += '<div class="selectbox" data="no"><i class="iconfont icon-bumanyi"></i>不满意</div>';
+                    html += '</div></div>';
+                    html += '<a onclick="fabuwuyu()" class="property-release">评价</a>';
+                }
+
+
+
+
+
+
+
             }
 
         }

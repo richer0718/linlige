@@ -15,6 +15,7 @@ return [
     'moban1' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8', //模版消息，后台审核
     'noticy_url' => 'http://m.tianluyangfa.com/laravel/public/payNotify', //商城支付回调
     'noticy_url_service' => 'http://m.tianluyangfa.com/laravel/public/payServiceNotify', //服务支付回调
+    'youlin_url' => 'http://m.tianluyangfa.com/laravel/public/home/pinlun/',//友邻互助详情
 
 ];
 
