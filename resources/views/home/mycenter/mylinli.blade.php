@@ -406,8 +406,8 @@
                     html += '<div class="property-evaluate" style="margin:0 auto;" >';
                     html += '<h3>请评价物业服务：</h3>';
                     html += '<div class="flex-align pingjia">';
-                    html += '<div class="selectbox select" data="yes" onclick="manyi()"><i class="iconfont icon-xiaolian"></i>满意</div>';
-                    html += '<div class="selectbox" data="no" onclick="manyi()" ><i class="iconfont icon-bumanyi"></i>不满意</div>';
+                    html += '<div class="selectbox select" data="yes" onclick="manyi(this)"><i class="iconfont icon-xiaolian"></i>满意</div>';
+                    html += '<div class="selectbox" data="no" onclick="manyi(this)" ><i class="iconfont icon-bumanyi"></i>不满意</div>';
                     html += '</div></div>';
                     html += '<a onclick="fabuwuyu_manyi('+data[i].id+')" class="property-release">评价</a>';
                 }
@@ -709,12 +709,12 @@
 </script>
 <script>
     //点击切换满意不满意
-    function manyi(){
+    function manyi(th){
         alert(111);
-        //$(this).parent('.pingjia').children('.selectbox').css('color','#000');
-        //$(this).parent('.pingjia').children('.selectbox').children('i').css('color','#000');
-        $(this).css('color','#f4c600');
-        $(this).children('i').css('color','#f4c600');
+        $(th).parent('.pingjia').children('.selectbox').css('color','#000');
+        $(th).parent('.pingjia').children('.selectbox').children('i').css('color','#000');
+        $(th).css('color','#f4c600');
+        $(th).children('i').css('color','#f4c600');
 
     }
 
