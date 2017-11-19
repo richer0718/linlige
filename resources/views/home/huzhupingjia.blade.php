@@ -18,15 +18,15 @@
     @if(!empty($res))
         @foreach($res as $vo)
 
-            <section class="comment-title bigbox-{{ $vo['id'] }}"  >
-                <header class="comment-head flex-justify"  onclick="location.href='{{url('home/pinlun').'/'.$vo['id']}}' " >
-                    <h3>{{ $vo['title'] }}@if(!empty($vo['label']))<span class="hygiene">{{ $vo['label'] }}</span>@endif @if(!empty($vo['huifu']))<span @if($vo['status'] == 0)class="pending"@else class="resolved"@endif >@if($vo['status'] == 0)待解决@else已解决@endif</span>@endif</h3>
+            <section class="comment-title bigbox-{{ $vo -> id }}"  >
+                <header class="comment-head flex-justify"  onclick="location.href='{{url('home/pinlun').'/'.$vo -> id}}' " >
+                    <h3>{{ $vo['title'] }}@if(!empty($vo -> label))<span class="hygiene">{{ $vo -> label }}</span>@endif @if(!empty($vo -> huifu))<span @if($vo -> status == 0)class="pending"@else class="resolved"@endif >@if($vo -> status == 0)待解决@else已解决@endif</span>@endif</h3>
                     <span>{{ $vo['userinfo'] -> name }}</span>
                 </header>
-                <p onclick="location.href='{{url('home/pinlun').'/'.$vo['id']}}' " >{{ $vo['miaoshu'] }}</p>
-                @if(!empty($vo['img']))
+                <p onclick="location.href='{{url('home/pinlun').'/'.$vo -> id}}' " >{{ $vo -> miaoshu }}</p>
+                @if(!empty($vo -> img))
                     <div class="comment-img clearfix" >
-                        @foreach($vo['img'] as $vol)
+                        @foreach($vo -> img as $vol)
                             <div>
                                 <img style="width:100%;height:100%;" class="lazy" src="{{ asset('images/lazyload.png') }}" data-original="{{asset('images').'/'.$vol}}" onclick="showimg1(this)" />
                             </div>
@@ -34,12 +34,12 @@
                     </div>
                 @endif
                 <footer class="comment-foot flex-justify">
-                    <span>{{ date('Y-m-d H:i',$vo['created_at'] ) }}</span>
+                    <span>{{ date('Y-m-d H:i',$vo->created_at ) }}</span>
                     <div>
                         <i class="iconfont icon-good"></i>
-                        <span>{{ $vo['dianzan'] }}</span>
+                        <span>{{ $vo->dianzan }}</span>
                         <img src="{{asset('images/comment.png')}}" />
-                        <span>{{ $vo['liulan'] }}</span>
+                        <span>{{ $vo->liulan }}</span>
                     </div>
                 </footer>
 
