@@ -20,8 +20,8 @@
 
             <section class="comment-title bigbox-{{ $vo -> id }}"  >
                 <header class="comment-head flex-justify"  onclick="location.href='{{url('home/pinlun').'/'.$vo -> id}}' " >
-                    <h3>{{ $vo['title'] }}@if(!empty($vo -> label))<span class="hygiene">{{ $vo -> label }}</span>@endif @if(!empty($vo -> huifu))<span @if($vo -> status == 0)class="pending"@else class="resolved"@endif >@if($vo -> status == 0)待解决@else已解决@endif</span>@endif</h3>
-                    <span>{{ $vo['userinfo'] -> name }}</span>
+                    <h3>{{ $vo->title }}@if(!empty($vo -> label))<span class="hygiene">{{ $vo -> label }}</span>@endif @if(!empty($vo -> huifu))<span @if($vo -> status == 0)class="pending"@else class="resolved"@endif >@if($vo -> status == 0)待解决@else已解决@endif</span>@endif</h3>
+                    <span>{{ $vo->userinfo -> name }}</span>
                 </header>
                 <p onclick="location.href='{{url('home/pinlun').'/'.$vo -> id}}' " >{{ $vo -> miaoshu }}</p>
                 @if(!empty($vo -> img))
