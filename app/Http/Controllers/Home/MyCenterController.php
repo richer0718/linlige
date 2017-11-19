@@ -184,7 +184,7 @@ class MyCenterController extends Controller
             $openid = session('openid');
         }
         $res = DB::table('news') -> where([
-            'openid' => $openid,
+            'openid_help' => $openid,
             'type' => 1
         ]) -> get();
 
