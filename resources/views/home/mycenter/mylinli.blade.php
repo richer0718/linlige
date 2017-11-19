@@ -324,6 +324,7 @@
         var html = '';
         var usertype = $('#usertype').val();
         if(index == 0){
+            var myopenid = "{{ session('openid') }}";
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
                 var huifu_list = data[i].wuyehuifu;
@@ -419,7 +420,7 @@
                 html += ' </section>';
 
 
-                if(!data[i].wuye_pingjia && data[i].status == 1){
+                if(!data[i].wuye_pingjia && data[i].status == 1 && data[i].openid == myopenid){
                     //物业评价
                     html += '<div class="property-evaluate" style="margin:0 auto;" >';
                     html += '<h3>请评价物业服务：</h3>';
