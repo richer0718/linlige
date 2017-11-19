@@ -195,6 +195,13 @@ class MyCenterController extends Controller
                         'openid' => $vo -> openid_help
                     ]) -> first();
                 }
+                if($vo->img){
+                    $res[$k]->img = explode(',',$vo->img);
+                }
+                $res[$k]->userinfo = DB::table('user') -> where([
+                    'openid' => $vo->openid,
+                ]) -> first();
+
             }
         }
 
