@@ -178,6 +178,32 @@ class MyCenterController extends Controller
         ]);
     }
 
+    //互助评价
+    public function huzhupingjia($openid = ''){
+        if(!$openid){
+            $openid = session('openid');
+        }
+        $res = DB::table('news') -> where([
+            'openid' => $openid,
+            'type' => 1
+        ]) -> get();
+
+        if($res){
+            foreach($res as $k => $vo){
+                if($vo -> openid_help){
+                    $res[$k] -> helpinfo = DB::table('user') -> where([
+                        'openid' => $vo -> openid_help
+                    ]) -> first();
+                }
+            }
+        }
+
+
+        return view('home/huzhupingjia') -> with([
+            'res' => $res
+        ]);
+    }
+
     //喜欢的邻居  取消／选中
     public function likelinjuchange(Request $request){
         $res = DB::table('like_people') -> where([

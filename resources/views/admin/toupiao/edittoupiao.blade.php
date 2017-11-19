@@ -176,7 +176,7 @@
                         <div class="add-article-box-content">
                             <p><label>类型：</label><input type="radio" name="type" value="0" checked />投票<input type="radio" name="type" value="1" />报名</p>
                             <p><label>是否开启：</label><input type="radio" name="status" value="0" checked/>开启 <input type="radio" name="status" value="1" />关闭</p>
-                            <p><label>是否重要：</label><input type="radio" name="ishot" value="0" checked/>重要 <input type="radio" name="ishot" value="1" />不重要</p>
+                            <p><label>是否重要：</label><input type="radio" name="ishot" value="1" @if($toupiao['ishot'] == 1) checked @endif/>重要 <input type="radio" name="ishot" value="0" />不重要</p>
                             <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="{{ date('Y-m-d H:i') }}" /></span></p>
                         </div>
                         <div class="add-article-box-footer">
