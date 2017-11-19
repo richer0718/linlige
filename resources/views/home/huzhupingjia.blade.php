@@ -8,7 +8,7 @@
 <body>
 <header class="public-header">
 
-    <i class="iconfont icon-fanhui" onclick="history.go(-1) " ></i>
+    <i class="iconfont icon-fanhui" onclick="history.go(-1) " style="top:35%;" ></i>
 
     <img src="{{asset('images/logo.png')}}">
 </header>
@@ -42,6 +42,17 @@
                         <span>{{ $vo->liulan }}</span>
                     </div>
                 </footer>
+                @if(!empty($vo -> openid_help) && !empty($vo -> help_pingjia))
+                <div class="property-reply flex-justify">
+                    <div class="demand-time neighbor">
+                        <h4>需求时间 <span>{{ date('Y-m-d H:i',$vo -> created_at) }}</span></h4>
+                        <p>{{ $vo -> help_pingjia }}</p>
+                    </div>
+                    <div class="demand-btn demand-btn-no">
+                        <a >已完成</a>
+                    </div>
+                </div>
+                @endif
 
             </section>
         @endforeach
