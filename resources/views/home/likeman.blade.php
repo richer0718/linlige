@@ -38,7 +38,7 @@
         </div>
     </a>
     <a href="javascript:;">
-        <div class="link-list flex-justify" onclick="location.href='{{ url('home/huzhupingjia') }}' " >
+        <div class="link-list flex-justify" onclick="location.href='{{ url('home/huzhupingjia').'/'.$res -> openid }}' " >
             <div><img src="{{ asset('images/cooperation.png') }}" /><span>友邻互助评价</span></div>
             <i class="icon iconfont icon-icon"></i>
         </div>
