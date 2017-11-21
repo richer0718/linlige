@@ -185,11 +185,14 @@ class MyCenterController extends Controller
         }
         $res = DB::table('news') -> where([
             'openid_help' => $openid,
-            'type' => 1
+            'type' => 1,
         ]) -> get();
 
         if($res){
             foreach($res as $k => $vo){
+                if(!$vo -> help_pingjia){
+                    continue;
+                }
                 if($vo -> openid_help){
                     $res[$k] -> helpinfo = DB::table('user') -> where([
                         'openid' => $vo -> openid_help
