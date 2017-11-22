@@ -62,6 +62,7 @@ Route::any('/home/marketfabuRes', 'Home\MarketController@fabuRes') ;
 Route::get('/home/jindu/{name?}', 'Home\HomeController@jindu')->name('jindu');
 Route::get('/home/reg/{isreg?}', 'Home\HomeController@reg');
 Route::any('/home/regRes', 'Home\HomeController@regRes');
+Route::any('/sendMessage', 'Home\HomeController@sendMessage');
 Route::any('/home/sign', 'Home\HomeController@sign');
 Route::any('/home/signRes', 'Home\HomeController@signRes');
 Route::any('/home/getLoudongFromXiaoqu', 'Home\HomeController@getLoudongFromXiaoqu');

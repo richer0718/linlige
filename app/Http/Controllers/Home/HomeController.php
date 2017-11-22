@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use EasyWeChat\Foundation\Application;
 use EasyWeChat\Support\Url as UrlHelper;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,35 @@ class HomeController extends Controller
     {
         //$this->middleware('auth');
     }
+
+    public function sendMessage(Request $request){
+        require (app_path() . '/Tools/ChuanglanSmsApi.php');
+        //判断是否存在
+        if(!$request -> input('mobile')){
+            return response() -> json(['status'=>'error']);
+        }
+
+        $is_set = Cache::get($request -> input('mobile'));
+        if($is_set){
+            //代表重复获取
+            return response() -> json(['status'=>'waiting']);
+        }
+
+        $api = new \ChuanglanSmsApi();
+        $mobile = $request -> input('mobile');
+        $code = mt_rand(100000,999999);
+
+        $msg = '【商联拓铺】您的验证码是'.$code;
+        $res = $api -> sendSMS( $mobile, $msg);
+        if($res){
+            //存入缓存
+            Cache::put($request -> input('mobile'),$code,2);
+            return response() -> json(['status'=>'success','code'=>$code]);
+        }
+
+    }
+
+
 
     public function object_array($array,$mark = null) {
         if(is_object($array)) {
