@@ -48,7 +48,7 @@ class HomeController extends Controller
             session([
                 $request -> input('mobile') => $code
             ]);
-            return response() -> json(['status'=>'success']);
+            return response() -> json(['status'=>'success','code'=>session($request -> input('mobile'))]);
         }
 
     }

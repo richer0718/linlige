@@ -214,6 +214,7 @@
                 layer.msg('Ajax error!')
             }
         });
+
         if(mark){
             layer.msg('验证码错误');
             return false;
