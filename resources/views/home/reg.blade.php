@@ -88,6 +88,7 @@
         </div>
         <a href="javascript:;" class="submit">下一步</a>
         {{ csrf_field() }}
+        <input type="hidden" id="code_value" />
     </article>
 </form>
 
@@ -116,6 +117,7 @@
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
             success: function(data){
+                $('#code_value').val(data.code)
                 layer.msg('已发送');
             },
             error: function(xhr, type){
@@ -192,6 +194,7 @@
 
         var url = '{{ url('checkMessageCode') }}';
 
+        /*
         $.ajax({
             type: 'POST',
             url: url,
@@ -216,6 +219,11 @@
         });
 
         if(mark){
+            layer.msg('验证码错误');
+            return false;
+        }
+        */
+        if($('#code_value').val() != code){
             layer.msg('验证码错误');
             return false;
         }
