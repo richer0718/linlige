@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use EasyWeChat\Foundation\Application;
 use EasyWeChat\Support\Url as UrlHelper;
-use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -35,11 +34,7 @@ class HomeController extends Controller
             return response() -> json(['status'=>'error']);
         }
 
-        $is_set = is_null(Cache::get($request -> input('mobile')));
-        if(!$is_set){
-            //代表重复获取
-            return response() -> json(['status'=>'waiting']);
-        }
+
 
         $api = new \ChuanglanSmsApi();
         $mobile = $request -> input('mobile');
@@ -50,7 +45,9 @@ class HomeController extends Controller
         //var_dump($res);
         if($res){
             //存入缓存
-            Cache::put($request -> input('mobile'),$code,200);
+            session([
+                $request -> input('mobile') => $code
+            ]);
             return response() -> json(['status'=>'success']);
         }
 
@@ -61,7 +58,7 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         //echo $mobile;
         //echo Cache::get($mobile);exit;
-        $isset = is_null(Cache::get($mobile));
+        $isset = is_null(session($mobile));
         if($isset){
             return response() -> json([
                 'status' => 'error'
@@ -69,7 +66,7 @@ class HomeController extends Controller
         }
 
 
-        $cache = Cache::get($mobile);
+        $cache = session($mobile);
         //var_dump($cache);exit;
         if($cache != $code){
             return response() -> json([
