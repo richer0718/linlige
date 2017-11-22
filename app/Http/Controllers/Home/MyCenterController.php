@@ -197,7 +197,7 @@ class MyCenterController extends Controller
         if($res){
             foreach($res as $k => $vo){
                 if(!$vo -> help_pingjia){
-                    unset($res[$vo]);
+                    unset($res[$k]);
                     continue;
                 }
                 if($vo -> openid_help){
