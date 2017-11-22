@@ -46,9 +46,9 @@ class HomeController extends Controller
         if($res){
             //存入缓存
             session([
-                $request -> input('mobile') => $code
+                $mobile => $code
             ]);
-            return response() -> json(['status'=>'success','code'=>session($request -> input('mobile'))]);
+            return response() -> json(['status'=>'success','code'=>session($mobile)]);
         }
 
     }
@@ -58,7 +58,7 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         //echo $mobile;
         //echo Cache::get($mobile);exit;
-        
+
 
 
         $cache = session($mobile);
