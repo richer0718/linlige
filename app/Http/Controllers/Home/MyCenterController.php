@@ -94,6 +94,15 @@ class MyCenterController extends Controller
                 $ids = [];
             }
 
+            //回复 包括帮助的
+            $bangzhus =DB::table('news') -> where([
+                'openid_help' => session('openid')
+            ]) -> get();
+            if($bangzhus){
+                foreach($bangzhus as $vo){
+                    $ids[] = $vo -> id;
+                }
+            }
 
 
             if(!empty($ids)){
