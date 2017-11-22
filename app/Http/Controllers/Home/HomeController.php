@@ -69,7 +69,7 @@ class HomeController extends Controller
 
 
         $cache = Cache::get($mobile);
-        //var_dump($cache);exit;
+        var_dump($cache);
         if($cache != $mobile){
             return response() -> json([
                 'status' => 'error'
