@@ -195,7 +195,7 @@
         $.ajax({
             type: 'POST',
             url: url,
-            data: {mobile:phone},
+            data: {mobile:phone,code:code},
             dataType:'json',
             async: false,
             headers: {
