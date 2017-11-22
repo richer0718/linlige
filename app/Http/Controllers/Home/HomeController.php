@@ -59,6 +59,7 @@ class HomeController extends Controller
     public function checkMessageCode(Request $request){
         $code = $request -> input('code');
         $mobile = $request -> input('mobile');
+        echo $mobile;
         echo Cache::get($mobile);exit;
         $isset = is_null(Cache::get($mobile));
         if($isset){
