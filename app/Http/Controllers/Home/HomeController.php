@@ -50,7 +50,7 @@ class HomeController extends Controller
         var_dump($res);
         if($res){
             //存入缓存
-            Cache::put($request -> input('mobile'),$code,2);
+            Cache::put($request -> input('mobile'),$code,200);
             return response() -> json(['status'=>'success']);
         }
 
@@ -59,7 +59,7 @@ class HomeController extends Controller
     public function checkMessageCode(Request $request){
         $code = $request -> input('code');
         $mobile = $request -> input('mobile');
-
+        echo Cache::get($mobile);exit;
         $isset = is_null(Cache::get($mobile));
         if($isset){
             return response() -> json([
