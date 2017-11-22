@@ -47,6 +47,7 @@ class HomeController extends Controller
 
         $msg = '【商联拓铺】您的验证码是'.$code;
         $res = $api -> sendSMS( $mobile, $msg);
+        var_dump($res);
         if($res){
             //存入缓存
             Cache::put($request -> input('mobile'),$code,2);
