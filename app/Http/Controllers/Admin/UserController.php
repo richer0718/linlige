@@ -138,7 +138,7 @@ class UserController extends Controller
             DB::table('user') -> where([
                 'id' => $request -> input('id')
             ]) -> delete();
-            echo 'success';
+            echo 'success';exit;
         }
 
         $res = DB::table('user') -> where([

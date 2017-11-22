@@ -292,6 +292,13 @@ class HomeController extends Controller
             //看下此人是否是这条的发布者
             if(session('openid') == $vo['openid']){
                 $res[$k]['is_manage'] = 'yes';
+            }else{
+                //如果不是，如果status = 1 就把这条隐藏
+                if($vo['status'] == 1){
+                    unset($res[$k]);
+                    continue;
+                }
+
             }
 
             if($vo['status'] == 0){
@@ -431,9 +438,7 @@ class HomeController extends Controller
     public function delete_data(Request $request){
         DB::table('news') -> where([
             'id' => $request -> input('id')
-        ]) -> update([
-            'flag' => 1
-        ]);
+        ]) -> delete();
         echo 'success';
     }
 
@@ -1127,18 +1132,20 @@ class HomeController extends Controller
     }
 
     public function jindu($name){
-        if($name == 'all' || empty($name)){
-
-        }elseif($name == 'dai'){
-            $where['status'] = '0';
-        }elseif($name == 'yi'){
-            $where['status'] = '1';
-        }
-        $where['openid'] = session('openid');
-        $where['type'] = 0;
         //dump($where);
         //查找他自己发的
-        $res = DB::table('news') -> where($where) -> get();
+        $res = DB::table('news') -> where(function($query) use($name){
+            if($name == 'all' || empty($name)){
+
+            }elseif($name == 'dai'){
+                $query -> where('stauts','=',0);
+                $query -> where('huifu','!=','');
+            }elseif($name == 'yi'){
+                $query -> where('stauts','=',1);
+                $query -> where('openid','=',session('openid'));
+                $query -> where('type','=',0);
+            }
+        }) -> get();
         //dd($res);
         $res = $this -> object_array($res);
         foreach($res as $k=> $vo){

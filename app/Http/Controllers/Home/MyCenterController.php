@@ -145,6 +145,12 @@ class MyCenterController extends Controller
 
                 if(session('openid') == $vo['openid'] ){
                     $res[$k]['is_manage'] = 1;
+                }else{
+                    //如果不是，如果status = 1 就把这条隐藏
+                    if($vo['status'] == 1){
+                        unset($res[$k]);
+                        continue;
+                    }
                 }
 
             }
@@ -191,6 +197,7 @@ class MyCenterController extends Controller
         if($res){
             foreach($res as $k => $vo){
                 if(!$vo -> help_pingjia){
+                    unset($res[$vo]);
                     continue;
                 }
                 if($vo -> openid_help){
@@ -201,12 +208,13 @@ class MyCenterController extends Controller
                 if($vo->img){
                     $res[$k]->img = explode(',',$vo->img);
                 }
-                $res[$k]->userinfo = DB::table('user') -> where([
+                $res[$k] -> userinfo = DB::table('user') -> where([
                     'openid' => $vo->openid,
                 ]) -> first();
 
             }
         }
+
 
 
         return view('home/huzhupingjia') -> with([
