@@ -191,11 +191,13 @@
         }
 
         var url = '{{ url('checkMessageCode') }}';
+
         $.ajax({
             type: 'POST',
             url: url,
             data: {mobile:phone},
             dataType:'json',
+            async: false,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
