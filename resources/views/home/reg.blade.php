@@ -94,20 +94,38 @@
 <script>
 
     $(".get-code").click(function(){
+        //验证手机号码
+        var phone = $(".phone").val();
+
+        if(phone == ''){
+            layer.msg('请输入手机号');
+            return false;
+        }
+        var reg = /^1[3578]\d{9}$/;
+        if (!reg.test(phone)) {
+            layer.msg('请输入正确手机号');
+            return false;
+        }
+        var url = '{{ url('sendMessage') }}';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {mobile:phone},
+            dataType:'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                layer.msg('已发送');
+            },
+            error: function(xhr, type){
+                layer.msg('Ajax error!')
+            }
+        });
+
         var num = 60;
         function reduce(){
-            //验证手机号码
-            var phone = $(".phone").val();
 
-            if(phone == ''){
-                layer.msg('请输入手机号');
-                return false;
-            }
-            var reg = /^1[3578]\d{9}$/;
-            if (!reg.test(phone)) {
-                layer.msg('请输入正确手机号');
-                return false;
-            }
 
             if(num==0){
                 $(".get-code").removeAttr("disabled");
@@ -116,23 +134,6 @@
                 clearInterval(time);
                 return false;
             }else{
-                var url = '{{ url('sendMessage') }}';
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {mobile:phone},
-                    dataType:'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-                    success: function(data){
-                        layer.msg('已发送');
-                    },
-                    error: function(xhr, type){
-                        layer.msg('Ajax error!')
-                    }
-                });
-
                 $(".get-code").prop("disabled", true);
                 $(".get-code").val(num+"秒");
                 num--;

@@ -36,7 +36,7 @@ class HomeController extends Controller
         }
 
         $is_set = !is_null(Cache::get($request -> input('mobile')));
-        if($is_set){
+        if(!$is_set){
             //代表重复获取
             return response() -> json(['status'=>'waiting']);
         }
@@ -45,7 +45,7 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         $code = mt_rand(100000,999999);
 
-        $msg = '【青青客】您的验证码是'.$code;
+        $msg = '【商联拓铺】您的验证码是'.$code;
         $res = $api -> sendSMS( $mobile, $msg);
         if($res){
             //存入缓存
