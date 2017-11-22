@@ -15,6 +15,5 @@ class VerifyCsrfToken extends BaseVerifier
         //
         'payNotify',
         'payServiceNotify',
-        'sendMessage',
     ];
 }

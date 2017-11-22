@@ -44,7 +44,7 @@
     </div>
 </article>
 
-<form id="myForm" method="post" action="{{ url('home/sign') }}">
+<form id="myForm" method="post" action="{{ url('home/sign') }}" >
     <article class="register-data">
         <input type="text" name="name" class="name" placeholder="请输入真实姓名"/>
         <input type="tel" name="tel" class="phone" placeholder="请输入手机号"/>
@@ -92,9 +92,23 @@
 </form>
 
 <script>
+
     $(".get-code").click(function(){
         var num = 60;
         function reduce(){
+            //验证手机号码
+            var phone = $(".phone").val();
+
+            if(phone == ''){
+                layer.msg('请输入手机号');
+                return false;
+            }
+            var reg = /^1[3578]\d{9}$/;
+            if (!reg.test(phone)) {
+                layer.msg('请输入正确手机号');
+                return false;
+            }
+
             if(num==0){
                 $(".get-code").removeAttr("disabled");
                 $(".get-code").val("重新发送");
@@ -102,6 +116,23 @@
                 clearInterval(time);
                 return false;
             }else{
+                var url = '{{ url('sendMessage') }}';
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {mobile:phone},
+                    dataType:'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function(data){
+                        layer.msg('已发送');
+                    },
+                    error: function(xhr, type){
+                        layer.msg('Ajax error!')
+                    }
+                });
+
                 $(".get-code").prop("disabled", true);
                 $(".get-code").val(num+"秒");
                 num--;
@@ -157,6 +188,29 @@
             layer.msg('请阅读注册协议');
             return false;
         }
+
+        var url = '{{ url('checkMessageCode') }}';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {mobile:phone},
+            dataType:'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                if(data.status == 'error'){
+                    layer.msg('验证码错误');
+                    return false;
+                }
+
+            },
+            error: function(xhr, type){
+                layer.msg('Ajax error!')
+            }
+        });
+
+
 
         $('#myForm').submit();
 

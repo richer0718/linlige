@@ -35,7 +35,7 @@ class HomeController extends Controller
             return response() -> json(['status'=>'error']);
         }
 
-        $is_set = Cache::get($request -> input('mobile'));
+        $is_set = !is_null(Cache::get($request -> input('mobile')));
         if($is_set){
             //代表重复获取
             return response() -> json(['status'=>'waiting']);
@@ -45,13 +45,38 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         $code = mt_rand(100000,999999);
 
-        $msg = '【商联拓铺】您的验证码是'.$code;
+        $msg = '【青青客】您的验证码是'.$code;
         $res = $api -> sendSMS( $mobile, $msg);
         if($res){
             //存入缓存
             Cache::put($request -> input('mobile'),$code,2);
-            return response() -> json(['status'=>'success','code'=>$code]);
+            return response() -> json(['status'=>'success']);
         }
+
+    }
+
+    public function checkMessageCode(Request $request){
+        $code = $request -> input('code');
+        $mobile = $request -> input('mobile');
+
+        $isset = is_null(Cache::get($mobile));
+        if($isset){
+            return response() -> json([
+                'status' => 'error'
+            ]);
+        }
+
+
+        $cache = Cache::get($mobile);
+        //var_dump($cache);exit;
+        if($cache != $mobile){
+            return response() -> json([
+                'status' => 'error'
+            ]);
+        }
+        return response() -> json([
+            'status' => 'success'
+        ]);
 
     }
 
