@@ -58,12 +58,7 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         //echo $mobile;
         //echo Cache::get($mobile);exit;
-        $isset = is_null(session($mobile));
-        if($isset){
-            return response() -> json([
-                'status' => 'error'
-            ]);
-        }
+        
 
 
         $cache = session($mobile);
