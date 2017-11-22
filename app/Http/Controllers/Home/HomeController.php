@@ -35,7 +35,7 @@ class HomeController extends Controller
             return response() -> json(['status'=>'error']);
         }
 
-        $is_set = !is_null(Cache::get($request -> input('mobile')));
+        $is_set = is_null(Cache::get($request -> input('mobile')));
         if(!$is_set){
             //代表重复获取
             return response() -> json(['status'=>'waiting']);
