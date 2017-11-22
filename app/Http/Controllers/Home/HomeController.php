@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         $msg = '【商联拓铺】您的验证码是'.$code;
         $res = $api -> sendSMS( $mobile, $msg);
-        var_dump($res);
+        //var_dump($res);
         if($res){
             //存入缓存
             Cache::put($request -> input('mobile'),$code,200);
@@ -59,8 +59,8 @@ class HomeController extends Controller
     public function checkMessageCode(Request $request){
         $code = $request -> input('code');
         $mobile = $request -> input('mobile');
-        echo $mobile;
-        echo Cache::get($mobile);exit;
+        //echo $mobile;
+        //echo Cache::get($mobile);exit;
         $isset = is_null(Cache::get($mobile));
         if($isset){
             return response() -> json([
@@ -70,8 +70,8 @@ class HomeController extends Controller
 
 
         $cache = Cache::get($mobile);
-        var_dump($cache);exit;
-        if($cache != $mobile){
+        //var_dump($cache);exit;
+        if($cache != $code){
             return response() -> json([
                 'status' => 'error'
             ]);
