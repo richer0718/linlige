@@ -722,6 +722,62 @@
 
             }
         }
+
+        if(index == 4){
+            for(var i=0; i<data.length; i++) {
+                var img_list = data[i].img;
+
+                html += '<section class="comment-title" ';
+                @if($usertype == 'person')
+                    html += 'onclick="location.href='+"'{{url('home/pinlun/')}}"+'/'+data[i].id+"'"+'"';
+                @else
+                    html += 'onclick="noReg()"';
+                @endif
+                    html +='>';
+                html += '<header class="comment-head flex-justify">';
+                html += '<h3>'+data[i].title+'</h3>';
+                html += '<span>';
+                html += '<a style="color:#999;" href="{{ url('home/likeman')}}'+'/'+data[i]['userinfo'].openid+'"  >'+data[i]['userinfo'].name+'</a>';
+                html += '</span></header>';
+                html += '<p>'+data[i].miaoshu+'</p>';
+
+
+                if(img_list){
+                    html += '<div class="comment-img clearfix">';
+                    for(var j=0;j<img_list.length;j++){
+                        //html += '<div style="' + "background:url('{{asset('images/')}}"+'/'+img_list[j]+"') no-repeat center;background-size:cover;" + '"  onclick="showimg(this)"  ></div>';
+                        html += '<div>';
+                        html += '<img style="width:100%;height:100%;" class="lazy yes" src="{{ asset('images/lazyload.png') }}" data-original="'+"{{asset('images/')}}"+'/'+img_list[j]+'" onclick="showimg(this)" />';
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                }
+
+
+
+                html += '<footer class="comment-foot flex-justify">';
+                html += '<span>'+data[i].created_at;
+
+                if(data[i].is_manage){
+                    html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
+                    if(data[i].status == 0){
+                        html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
+                    }else{
+                        html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
+                    }
+                }
+
+                html += '</span>';
+
+
+
+                html += '<div><i class="iconfont icon-good"></i>';
+                html += '<span>'+data[i].dianzan+'</span><img src="images/comment.png" /><span>'+data[i].liulan+'</span>';
+                html += '</div></footer></section>';
+
+            }
+        }
+
         return html;
     }
 

@@ -11,7 +11,7 @@
 </header>
 <article class="sale">
     <form id="myForm">
-        <div class="return-goods">
+        <div class="return-goods" style="display:none;">
             <span>退货金额</span><input type="tel" class="flex-1" placeholder="请输入退款金额" price />
         </div>
         <div class="sale-text return-goods-text">

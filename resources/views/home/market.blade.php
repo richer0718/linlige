@@ -67,7 +67,7 @@
                 <div>
                     @if(session('openid') == $vo['userinfo'] -> openid)
                     <a style="font-size:10px;" onclick="shanchu({{ $vo['id'] }})">删除 </a>
-                        @if($vo['status'] == 1)
+                        @if($vo['status'] == '已解决')
                             <a style="font-size:10px;" onclick="open_data({{ $vo['id'] }})">开启</a>
                             @else
                             <a style="font-size:10px;" onclick="close_data({{ $vo['id'] }})">关闭</a>

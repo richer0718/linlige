@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <label for="article-title" class="">外链地址(如跳内链则不填)</label>
-                        <input type="text" name="url_out" class="form-control" @if($type == 'edit')value="{{ $res['url_out'] }}" @endif  placeholder="" required autofocus autocomplete="off" />
+                        <input type="text" name="url_out" class="form-control" @if($type == 'edit')value="{{ $res['url_out'] }}" @endif  placeholder=""  autofocus autocomplete="off" />
                     </div>
 
                     @if($type == 'edit')

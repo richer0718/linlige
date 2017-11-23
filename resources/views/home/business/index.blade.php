@@ -88,7 +88,7 @@
 
                 </div>
             </div>
-            <div class="flex-align superselect" style="position:relative;margin-top:0.2rem;" >
+            <div class="flex-align superselect" style="position:relative;margin-top:0.2rem;" id="changeselect" >
                 <span>服务类别</span>
                 <select name="type" style="font-size: 15px;width:100px;" id="type">
                     <option value="0">公共服务</option>
@@ -98,6 +98,13 @@
                 </select>
                 <a id="" class="flex-1"></a>
             </div>
+            <script>
+                $(function(){
+                    $('#changeselect').click(function(){
+                        $('#type').attr('size',4);
+                    })
+                })
+            </script>
             <div class="flex-align" style="margin-top:0.2rem;">
                 <span>联系电话</span>
                 <input type="text" placeholder="请输入电话" id="tel" class="flex-1"/>
