@@ -107,10 +107,13 @@
                         html += '<div class="flex pick-up"><span>'+i.peisong_type+'</span><div class="flex-1" style="line-height:1.3;">';
                         if(i.peisong_type == '送货上门'){
                             html += i.address;
+                            html += ' '+i.user_info.tel;
+                        }else{
+                            html += i.goods_info.zitiaddress;
                         }
 
 
-                        html += ' '+i.user_info.tel+'</div></div>';
+                        html += '</div></div>';
                         html += '<div class="goods-total flex-justify">';
                         html += '<div>合计  <span><i>¥</i>'+i.goods_info.price_no+'</span></div>';
                         if(i.status == 0){

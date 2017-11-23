@@ -397,7 +397,7 @@
 
                 html += '<footer class="comment-foot flex-justify">';
                 html += '<span>'+data[i].created_at;
-                
+
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
                     if(data[i].status == 0){
