@@ -147,7 +147,7 @@
     <script>
         @if(session('tuihuo') == 'agree')
             alert('已同意');
-            @else
+            @elseif(session('tuihuo') == 'agree')
                 alert('已拒绝');
         @endif
     </script>
