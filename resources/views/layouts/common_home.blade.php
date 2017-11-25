@@ -493,6 +493,8 @@
 
         //友邻互助
         if(index == 1){
+            console.info(data);
+            console.log('************');
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
