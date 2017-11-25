@@ -67,6 +67,8 @@ class OrderController extends Controller
                     //dump($goods_ids);
                     if(count($goods_ids)){
                         $query -> whereIn('goods_id',$goods_ids);
+                    }else{
+                        $query -> where('goods_id',9999);
                     }
 
                 }else{
