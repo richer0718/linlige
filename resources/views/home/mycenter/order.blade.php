@@ -7,7 +7,9 @@
 <header class="public-header">
     <i class="iconfont icon-fanhui" onclick="history.go(-1)"></i>
     <img src="{{asset('images/logo.png')}}">
+    <span onclick="location.href='{{ url('home/mall') }}' " style="position:absolute;top:10px;right:5px;" >商城首页</span>
 </header>
+
 <nav class="process flex-justify" id="top-nav">
     <a href="javascript:;" class="hover">
         <i class="iconfont icon-daishouhuo"></i>

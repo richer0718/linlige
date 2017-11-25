@@ -16,6 +16,7 @@ return [
     'noticy_url' => 'http://m.tianluyangfa.com/laravel/public/payNotify', //商城支付回调
     'noticy_url_service' => 'http://m.tianluyangfa.com/laravel/public/payServiceNotify', //服务支付回调
     'youlin_url' => 'http://m.tianluyangfa.com/laravel/public/home/pinlun/',//友邻互助详情
+    'myorder_url' => 'http://m.tianluyangfa.com/laravel/public/home/myorder',//我的订单
 
 ];
 

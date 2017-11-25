@@ -26,7 +26,7 @@
     <img src="{{asset('images/logo.png')}}">
 </header>
 <div class="flex-justify goods-wrap">
-    <div style="background:url('{{asset('images/comment-img.jpg')}}') no-repeat center;background-size:cover;"></div>
+    <div style="background:url('{{asset('uploads/').'/'.$res -> img}}') no-repeat center;background-size:cover;"></div>
     <div class="flex-1 goods-data">
         <h3>{{$res -> title}}</h3>
         <div class="flex-justify">

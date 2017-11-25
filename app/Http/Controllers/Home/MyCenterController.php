@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class MyCenterController extends Controller
 {
@@ -373,10 +375,43 @@ class MyCenterController extends Controller
             'order_id' => $request -> input('orderid')
         ]) -> update([
             'status' => 3,
+            'shouhou_status' => 1,
             'show_status' => '申请退款',
             'tuikuan_content' => $request -> input('content'),
             'tuikuan_imgs' => $request -> input('img'),
         ]);
+
+        //发送模板消息
+        //找到他的openid
+        $order_info = DB::table('order') -> where([
+            'order_id' => $request -> input('orderid')
+        ]) -> first();
+        $info = DB::table('user') -> where([
+            'openid' => $order_info -> openid
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.myorder_url'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的退货申请已经提交，请等待审核',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
+
         echo 'success';
     }
 

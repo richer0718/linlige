@@ -78,6 +78,18 @@
                             <td>订单状态：</td>
                             <td>@if($res -> fukuan_status == 0)未付款@else已付款@endif</td>
                         </tr>
+                        <tr>
+                            <td>售后状态：</td>
+                            <td>@if($res -> shouhou_status == 0)未售后@else申请售后@endif</td>
+                        </tr>
+                        @if($res -> shouhou_status == 1)
+                            <tr>
+                                <td colspan="2">
+                                    <button class="btn btn-default" type="button" onclick="if(confirm('确定同意吗？')){location.href='{{ url('admin/agree').'/'.$res -> id }}'}" >同意</button>
+                                    <button class="btn btn-default" type="button" onclick="if(confirm('确定拒绝吗？')){location.href='{{ url('admin/jujue').'/'.$res -> id }}'}" >拒绝</button>
+                                </td>
+                            </tr>
+                        @endif
                         @if($res -> fahuo_status)
                         <tr>
                             <td>快递名称：</td>
@@ -131,6 +143,14 @@
 
         </div>
     </div>
+
+    <script>
+        @if(session('tuihuo') == 'agree')
+            alert('已同意');
+            @else
+                alert('已拒绝');
+        @endif
+    </script>
 
 
 @stop

@@ -206,4 +206,74 @@ class OrderController extends Controller
         return redirect('admin/orderlist') -> with('fahuores','yes');
 
     }
+
+    //同意退款
+    public function agree($id){
+        $orderinfo = DB::table('order') -> where([
+            'id' => $id
+        ]) -> first();
+        //给他发模版消息
+
+        $info = DB::table('user') -> where([
+            'openid' => $orderinfo -> openid
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.url5'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的退货申请通过了，请等待退款',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
+        return redirect('/admin/orderDetail/'.$id)->with('tuihuo','agree');
+    }
+
+    public function jujue($id){
+        $orderinfo = DB::table('order') -> where([
+            'id' => $id
+        ]) -> first();
+        //给他发模版消息
+
+        $info = DB::table('user') -> where([
+            'openid' => $orderinfo -> openid
+        ]) -> first();
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        $notice = $app->notice;
+        $messageId = $notice->send([
+            'touser' => $info -> openid,
+            'template_id' => config('wxsetting.moban1'),
+            'url' => config('wxsetting.url5'),
+            'data' => [
+                'first' => '尊敬的'.$info -> name,
+                'keyword1' => '您的退货申请被拒绝了',
+                'keyword2' => date('Y-m-d'),
+                'keyword3' => '',
+                'remark' => '感谢您的使用'
+            ],
+        ]);
+
+        return redirect('/admin/orderDetail/'.$id)->with('tuihuo','agree');
+    }
+
 }

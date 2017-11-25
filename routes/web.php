@@ -314,6 +314,9 @@ Route::group(['as' => 'order'],function(){
     Route::any('/admin/orderDetail/{id}', 'Admin\OrderController@orderDetail');
     Route::any('/admin/fahuo/{id}', 'Admin\OrderController@fahuo');
 
+    Route::any('/admin/agree/{id}', 'Admin\OrderController@agree');
+    Route::any('/admin/jujue/{id}', 'Admin\OrderController@jujue');
+
 });
 
 Route::group(['as' => 'yonghu'],function(){
