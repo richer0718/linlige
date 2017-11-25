@@ -107,7 +107,7 @@
 </div>
 <div class="fixed-height"></div>
 <footer class="apply flex-align">
-    <div class="flex-1 total">合计  <span><i>¥</i> <a id="price_number">{{ $res -> price_no*$number }}</a></span></div>
+    <div class="flex-1 total">合计  <span><i>¥</i> <a id="price_number" style="background: #fff;color: #f86257;">{{ $res -> price_no*$number }}</a></span></div>
     <a id="pay">确认支付</a>
 </footer>
 
@@ -153,7 +153,7 @@
                 var price_no = {{ $res -> price_no*$number }};
                 //快递费
                 var price_kuaidi = {{ $res -> price_kuaidi }};
-                $('#price_number').text(price_kuaidi + price_no);
+                $('#price_number').text(price_kuaidi + price_no + '(含'+price_kuaidi+'元快递费)');
 
             }else{
                 //价格
