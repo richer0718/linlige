@@ -51,7 +51,20 @@ class MarketController extends Controller
                 $res[$k]['status'] = '已解决';
             }
 
+            if(session('openid') == $vo['openid'] ){
+                $res[$k]['is_manage'] = 1;
+            }else{
+                //如果不是，如果status = 1 就把这条隐藏
+                if($vo['open_status'] == 1){
+                    unset($res[$k]);
+                    continue;
+                }
+            }
+
+
+
         }
+        shuffle($res);
         //dd($res);
 
         return view('home/market')->with([

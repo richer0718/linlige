@@ -96,11 +96,14 @@
                     <option value="2">家政上门</option>
                     <option value="3">家庭生活</option>
                 </select>
-                <a id="" class="flex-1"></a>
+                <a id="rightchangeselect" class="flex-1"></a>
             </div>
             <script>
                 $(function(){
                     $('#changeselect').click(function(){
+                        $('#type').attr('size',4);
+                    })
+                    $('#rightchangeselect').click(function(){
                         $('#type').attr('size',4);
                     })
                 })

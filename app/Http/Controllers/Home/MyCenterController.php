@@ -164,6 +164,7 @@ class MyCenterController extends Controller
 
             }
         }
+        shuffle($res);
 
 
         return response()->json($res);
