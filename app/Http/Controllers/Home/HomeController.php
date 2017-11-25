@@ -322,6 +322,7 @@ class HomeController extends Controller
 
 
         }
+        shuffle($res);
 
         return response()->json($res);
     }
