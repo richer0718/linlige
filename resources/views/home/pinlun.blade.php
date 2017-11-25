@@ -107,7 +107,7 @@
                         <p>{!! $vo -> content !!}</p>
                     </div>
                     @if(session('openid') == $vo -> userinfo -> openid)
-                    <a style="font-size:10px;position:absolute;right:10px;bottom:10px;" onclick="shanchu({{ $vo -> id }})">删除</a>
+                    <a style="font-size:10px;position:absolute;right:10px;bottom:10px;color:#999;" onclick="shanchu({{ $vo -> id }})">删除</a>
                         @endif
                 </div>
             @endforeach

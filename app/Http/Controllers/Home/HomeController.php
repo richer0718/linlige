@@ -1136,10 +1136,11 @@ class HomeController extends Controller
         //查找他自己发的
         $res = DB::table('news') -> where(function($query) use($name){
             if($name == 'all' || empty($name)){
-
+                $query -> where('openid','=',session('openid'));
             }elseif($name == 'dai'){
                 $query -> where('stauts','=',0);
                 $query -> where('huifu','!=','');
+                $query -> where('openid','=',session('openid'));
             }elseif($name == 'yi'){
                 $query -> where('stauts','=',1);
                 $query -> where('openid','=',session('openid'));
@@ -1148,25 +1149,28 @@ class HomeController extends Controller
         }) -> get();
         //dd($res);
         $res = $this -> object_array($res);
-        foreach($res as $k=> $vo){
-            if($vo['img']){
-                $res[$k]['img'] = explode(',',$vo['img']);
+        if($res){
+            foreach($res as $k=> $vo){
+                if($vo['img']){
+                    $res[$k]['img'] = explode(',',$vo['img']);
+                }
+
+                $res[$k]['userinfo'] = DB::table('user') -> where([
+                    'openid' => $vo['openid'],
+                ]) -> first();
+
+                //查找每条记录的物业回复
+                $temp = DB::table('wuye_huifu') -> where([
+                    'news_id' => $vo['id']
+                ]) -> get();
+                $temp = $this -> object_array($temp);
+                if($temp){
+                    $res[$k]['wuyehuifu'] = $temp;
+                }
+
             }
-
-            $res[$k]['userinfo'] = DB::table('user') -> where([
-                'openid' => $vo['openid'],
-            ]) -> first();
-
-            //查找每条记录的物业回复
-            $temp = DB::table('wuye_huifu') -> where([
-                'news_id' => $vo['id']
-            ]) -> get();
-            $temp = $this -> object_array($temp);
-            if($temp){
-                $res[$k]['wuyehuifu'] = $temp;
-            }
-
         }
+
 
 
 
