@@ -156,7 +156,7 @@ class MyCenterController extends Controller
                     $res[$k]['is_manage'] = 1;
                 }else{
                     //如果不是，如果status = 1 就把这条隐藏
-                    if($vo['status'] == 1){
+                    if($vo['open_status'] == 1){
                         unset($res[$k]);
                         continue;
                     }

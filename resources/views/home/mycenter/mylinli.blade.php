@@ -400,7 +400,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -507,7 +507,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -666,7 +666,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -719,7 +719,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -771,7 +771,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';

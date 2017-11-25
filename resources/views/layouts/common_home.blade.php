@@ -458,7 +458,7 @@
                 html += '<span>'+data[i].created_at;
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -550,7 +550,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -629,7 +629,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';
@@ -664,7 +664,7 @@
                 html +='>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong><a href="tel:'+ data[i]['userinfo'].tel +'"><i class="iconfont icon-dianhua" ></i></a>';
 
                 html += '<span class="';
-                if(data[i].status == 1){
+                if(data[i].open_status == 1){
                     html  += 'resolved';
                 }else{
                     html += 'pending';
@@ -695,7 +695,7 @@
 
                 if(data[i].is_manage){
                     html += ' <a onclick="delete_data('+ data[i].id +')">删除</a>';
-                    if(data[i].status == 0){
+                    if(data[i].open_status == 0){
                         html += ' <a onclick="close_data('+ data[i].id +')">关闭</a>';
                     }else{
                         html += ' <a onclick="open_data('+ data[i].id +')">开启</a>';

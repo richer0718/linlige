@@ -293,8 +293,9 @@ class HomeController extends Controller
             if(session('openid') == $vo['openid']){
                 $res[$k]['is_manage'] = 'yes';
             }else{
+
                 //如果不是，如果status = 1 就把这条隐藏
-                if($vo['status'] == 1){
+                if($vo['open_status'] == 1){
                     unset($res[$k]);
                     continue;
                 }
@@ -447,7 +448,7 @@ class HomeController extends Controller
         DB::table('news') -> where([
             'id' => $request -> input('id')
         ]) -> update([
-            'status' => 0
+            'open_status' => 0
         ]);
         echo 'success';
     }
@@ -488,7 +489,7 @@ class HomeController extends Controller
         DB::table('news') -> where([
             'id' => $request -> input('id')
         ]) -> update([
-            'status' => 1
+            'open_status' => 1
         ]);
 
 
@@ -1136,14 +1137,14 @@ class HomeController extends Controller
         //查找他自己发的
         $res = DB::table('news') -> where(function($query) use($name){
             if($name == 'all' || empty($name)){
-                $query -> where('openid','=',session('openid'));
+                //$query -> where('openid','=',session('openid'));
             }elseif($name == 'dai'){
                 $query -> where('status','=',0);
                 $query -> where('huifu','!=','');
-                $query -> where('openid','=',session('openid'));
+                //$query -> where('openid','=',session('openid'));
             }elseif($name == 'yi'){
                 $query -> where('status','=',1);
-                $query -> where('openid','=',session('openid'));
+                //$query -> where('openid','=',session('openid'));
                 $query -> where('type','=',0);
             }
         }) -> get();
