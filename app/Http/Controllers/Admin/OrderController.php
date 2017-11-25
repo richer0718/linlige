@@ -64,7 +64,10 @@ class OrderController extends Controller
                         $goods_ids[] = $vo -> id;
                     }
                     //dump($goods_ids);
-                    $query -> whereIn('goods_id',$goods_ids);
+                    if($goods_ids){
+                        $query -> whereIn('goods_id',$goods_ids);
+                    }
+
                 }else{
                     $query -> where('goods_id',9999);
                 }
