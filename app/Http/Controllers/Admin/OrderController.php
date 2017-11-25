@@ -60,11 +60,12 @@ class OrderController extends Controller
                 $goods = DB::table('goods') -> where('gongying_id','=',$_POST['gongyingshang']) -> get();
                 if($goods){
                     //dump($goods);
+                    $goods_ids = [];
                     foreach($goods as $vo){
                         $goods_ids[] = $vo -> id;
                     }
                     //dump($goods_ids);
-                    if($goods_ids){
+                    if(count($goods_ids)){
                         $query -> whereIn('goods_id',$goods_ids);
                     }
 
