@@ -1138,11 +1138,11 @@ class HomeController extends Controller
             if($name == 'all' || empty($name)){
                 $query -> where('openid','=',session('openid'));
             }elseif($name == 'dai'){
-                $query -> where('stauts','=',0);
+                $query -> where('status','=',0);
                 $query -> where('huifu','!=','');
                 $query -> where('openid','=',session('openid'));
             }elseif($name == 'yi'){
-                $query -> where('stauts','=',1);
+                $query -> where('status','=',1);
                 $query -> where('openid','=',session('openid'));
                 $query -> where('type','=',0);
             }
