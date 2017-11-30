@@ -806,7 +806,7 @@ class HomeController extends Controller
             'article_id' => $res -> id
         ]) -> first();
         if($res -> is_old == 1){
-            $res -> content = str_replace($res -> content,'/ueditor/php/upload/',asset('ueditor').'/php/upload/');
+            $res -> content = str_replace('/ueditor/php/upload/',asset('ueditor').'/php/upload/',$res -> content);
         }
         //dd($res);
 
