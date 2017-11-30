@@ -14,7 +14,7 @@
     <div class="article-time">{{date('Y-m-d H:i',$data->created_at)}}</div>
     <div class="article-main">
         @if($data -> is_old == 1)
-            {{ htmlspecialchars_decode($data -> content) }}
+            {!! htmlspecialchars_decode($data -> content) !!}
             @else
             {!! $data -> content !!}
         @endif
