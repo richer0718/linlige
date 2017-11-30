@@ -13,7 +13,12 @@
     <h3>{{$data -> title}}</h3>
     <div class="article-time">{{date('Y-m-d H:i',$data->created_at)}}</div>
     <div class="article-main">
-        {!! $data -> content !!}
+        @if($data -> is_old == 1)
+            {{ htmlspecialchars_decode($data -> content) }}
+            @else
+            {!! $data -> content !!}
+        @endif
+
     </div>
 </article>
 <div class="interaction" style="padding-bottom:20px;">

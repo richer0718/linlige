@@ -805,6 +805,9 @@ class HomeController extends Controller
             'openid' => session('openid'),
             'article_id' => $res -> id
         ]) -> first();
+        if($res -> is_old == 1){
+            $res -> content = str_replace($res -> content,'/ueditor/php/upload/',asset().'/ueditor/php/upload/');
+        }
         //dd($res);
 
         return view('home/zhidedetail') -> with([
