@@ -9,7 +9,6 @@ return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
-    'PHPWord' => array($vendorDir . '/phpword/phpword/Library'),
     'PHPExcel' => array($vendorDir . '/phpoffice/phpexcel/Classes'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Maatwebsite\\Excel\\' => array($vendorDir . '/maatwebsite/excel/src'),
