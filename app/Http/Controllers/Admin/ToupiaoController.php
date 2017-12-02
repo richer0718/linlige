@@ -553,17 +553,24 @@ class ToupiaoController extends Controller
         $selfurl =  $_SERVER['PHP_SELF'];
         //去掉index.php
         $url_arr = explode('/',$selfurl);
+        //dump($url_arr);exit;
         unset($url_arr[count($url_arr) - 1]);
+        $public_url = $url_arr;
+
         $url_arr[] = 'admin';
         $url_arr[] = 'pdfPage';
         $url_arr[] = $id;
         $url_pdf = implode('/',$url_arr);
 
-        $pdfurl = $_SERVER['HTTP_HOST'].$url_pdf;
+        $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
+        //echo $pdfurl;exit;
 
+        exec("wkhtmltopdf '.$pdfurl.' /webdata/laravel/public/pdf/pdf.pdf 2>&1",$output);
 
-        exec("wkhtmltopdf http://www.baidu.com /webdata/laravel/public/pdf/pdf.pdf",$output);
-        dump ($output);
+        if(count($output)){
+            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
+            dump($save_file);exit;
+        }
         //return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         //return PdfWrapper::loadFile('http://www.github.com')->inline('github.pdf');
         //return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
