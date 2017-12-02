@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpWord\PhpWord;
+use Barryvdh\DomPDF\PDF;
 
 class ToupiaoController extends Controller
 {
@@ -365,7 +365,8 @@ class ToupiaoController extends Controller
         return view('admin/toupiao/toupiaoRes') -> with([
             'title_list' => $title_list,
             'result_list' => $result_list,
-            'tiankongs' => $tiankongs
+            'tiankongs' => $tiankongs,
+            'id' => $id
         ]);
         /*
         foreach($title_list as $k => $vo){
@@ -543,5 +544,95 @@ class ToupiaoController extends Controller
             });
         })->export('xls');
         */
+    }
+
+
+    //导出pdf
+    public function exportPdf($id){
+        ///linli/public/index.php
+        $selfurl =  $_SERVER['PHP_SELF'];
+        //去掉index.php
+        $url_arr = explode('/',$selfurl);
+        unset($url_arr[count($url_arr) - 1]);
+        $url_arr[] = 'admin';
+        $url_arr[] = 'pdfPage';
+        $url_arr[] = $id;
+        $url_pdf = implode('/',$url_arr);
+
+        $pdfurl = $_SERVER['HTTP_HOST'].$url_pdf;
+
+
+        exec("wkhtmltopdf http://www.baidu.com /webdata/laravel/public/pdf/.pdf",$output);
+        dump ($output);
+        //return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+        //return PdfWrapper::loadFile('http://www.github.com')->inline('github.pdf');
+        //return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+    }
+
+    public function pdfPage($id){
+        //先通过投票id查找title列表
+        $title_list = DB::table('toupiao_title') -> where([
+            'fid' => $id
+        ]) -> get();
+
+        //查看有没有填空题
+        $tiankongs = DB::table('tiankong') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
+        //看下有没有回答填空题
+
+        //查找答案
+        $result_list = DB::table('toupiao_result') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
+
+        if($result_list){
+            foreach($result_list as $k => $vo){
+                //var_dump($vo);
+                //var_dump($result_list);
+                //$result_list[$k] -> results = explode(',',$vo -> result);
+                if($vo -> result){
+                    $temp = json_decode($vo -> result,true);
+                    //dd($temp);
+                    foreach($temp as $key => $value){
+                        if(!is_array($value)){
+                            //不是array 直接显示结果
+                            $temp_new[$key] = DB::table('toupiao_detail') -> where([
+                                'id' => $value
+                            ]) -> first()->name;
+                        }else{
+                            //多选 遍历value 拼接结果
+                            $temp_value = [];
+                            foreach($value as $value_value){
+                                $temp_value[] = DB::table('toupiao_detail') -> where([
+                                    'id' => $value_value
+                                ]) -> first()->name;
+                            }
+                            $temp_new[$key] = implode(',',$temp_value);
+                        }
+
+                    }
+
+                    $result_list[$k] -> results = $temp_new;
+
+                    $result_list[$k] -> userinfo = DB::table('user') -> where([
+                        'openid' => $vo -> openid
+                    ]) -> first();
+                }
+                if($vo -> tiankong_res){
+                    $vo -> tiankong_res = explode('&&',$vo -> tiankong_res);
+                }
+
+
+            }
+        }
+
+
+        //dd($result_list);
+        return view('admin/toupiao/pdfPage') -> with([
+            'title_list' => $title_list,
+            'result_list' => $result_list,
+            'tiankongs' => $tiankongs
+        ]);
     }
 }

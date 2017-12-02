@@ -10,7 +10,11 @@
     </style>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main" style="height:800px;overflow-y: scroll;padding-bottom:100px;">
         <div class="row">
-                <h1 class="page-header">投票详情</h1>
+            <h1 class="page-header">投票详情</h1>
+            <ol class="breadcrumb">
+                <li><a data-toggle="modal" href="{{ url('admin/exportPdf').'/'.$id }}">导出投票结果</a></li>
+            </ol>
+
                 <div class="col-md-12">
 
                     <table class="table table-striped table-bordered" >

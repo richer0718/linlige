@@ -5,7 +5,9 @@
         <h1 class="page-header">投票列表</h1>
         <ol class="breadcrumb">
             <li><a data-toggle="modal" href="{{ url('admin/addtoupiao') }}">新增投票</a></li>
+            <!--
             <li><a data-toggle="modal" href="{{ url('admin/exportExcel') }}">导出投票结果</a></li>
+            -->
         </ol>
         <h1 class="page-header">管理 <span class="badge"></span></h1>
         <div class="table-responsive"  >
