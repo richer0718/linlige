@@ -549,6 +549,7 @@ class ToupiaoController extends Controller
 
     //导出pdf
     public function exportPdf($id){
+        header("Content-type:text/html;charset=utf-8");
         ///linli/public/index.php
         $selfurl =  $_SERVER['PHP_SELF'];
         //去掉index.php
@@ -566,11 +567,12 @@ class ToupiaoController extends Controller
         //echo $pdfurl;exit;
 
         exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1",$output);
-        echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
-        dump($output);
+        //echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
+        //dump($output);
         if(count($output)){
             $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
-            dump($save_file);exit;
+            echo "<a href='".$save_file."'>下载</a>";
+            //dump($save_file);exit;
         }
         //return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         //return PdfWrapper::loadFile('http://www.github.com')->inline('github.pdf');

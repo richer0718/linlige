@@ -12,7 +12,7 @@
         <div class="row">
             <h1 class="page-header">投票详情</h1>
             <ol class="breadcrumb">
-                <li><a data-toggle="modal" href="{{ url('admin/exportPdf').'/'.$id }}">导出投票结果</a></li>
+                <li><a data-toggle="modal" href="{{ url('admin/exportPdf').'/'.$id }}" target="_blank">导出投票结果</a></li>
             </ol>
 
                 <div class="col-md-12">
