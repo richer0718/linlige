@@ -306,6 +306,8 @@ Route::group(['as' => 'toupiao'],function(){
     Route::any('/admin/exportExcel', 'Admin\ToupiaoController@exportExcel');
     Route::any('/admin/exportPdf/{id}', 'Admin\ToupiaoController@exportPdf');
     Route::any('/admin/pdfPage/{id}', 'Admin\ToupiaoController@pdfPage');
+    Route::any('/admin/pdfNumberPage/{id}', 'Admin\ToupiaoController@pdfNumberPage');
+    Route::any('/admin/exportNumberPdf/{id}', 'Admin\ToupiaoController@exportNumberPdf');
 });
 
 Route::group(['as' => 'order'],function(){

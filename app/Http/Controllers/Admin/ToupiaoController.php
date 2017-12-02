@@ -566,7 +566,7 @@ class ToupiaoController extends Controller
         $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
         //echo $pdfurl;exit;
 
-        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1",$output);
+        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".time().".pdf 2>&1",$output);
         //echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
         //dump($output);
         if(count($output)){
@@ -574,9 +574,35 @@ class ToupiaoController extends Controller
             echo "<a href='".$save_file."'>下载</a>";
             //dump($save_file);exit;
         }
-        //return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
-        //return PdfWrapper::loadFile('http://www.github.com')->inline('github.pdf');
-        //return Pdf::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+    }
+
+    //导出统计url
+    public function exportNumberPdf($id){
+        header("Content-type:text/html;charset=utf-8");
+        ///linli/public/index.php
+        $selfurl =  $_SERVER['PHP_SELF'];
+        //去掉index.php
+        $url_arr = explode('/',$selfurl);
+        //dump($url_arr);exit;
+        unset($url_arr[count($url_arr) - 1]);
+        $public_url = $url_arr;
+
+        $url_arr[] = 'admin';
+        $url_arr[] = 'pdfNumberPage';
+        $url_arr[] = $id;
+        $url_pdf = implode('/',$url_arr);
+
+        $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
+        //echo $pdfurl;exit;
+
+        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".time().".pdf 2>&1",$output);
+        //echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
+        //dump($output);
+        if(count($output)){
+            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
+            echo "<a href='".$save_file."'>下载</a>";
+            //dump($save_file);exit;
+        }
     }
 
     public function pdfPage($id){
@@ -645,4 +671,73 @@ class ToupiaoController extends Controller
             'tiankongs' => $tiankongs
         ]);
     }
+
+    //pdf 页统计
+    //统计每道题每个选项有多少人
+    public function pdfNumberPage($id){
+        //先通过投票id查找title列表
+        $title_list = DB::table('toupiao_title') -> where([
+            'fid' => $id
+        ]) -> get();
+        //查找答案
+        $result_list = DB::table('toupiao_result') -> where([
+            'toupiao_id' => $id
+        ]) -> get();
+
+
+        //把每个人的选项取出来
+        $lists = [];
+        foreach($result_list as $k => $vo){
+            $lists[] = json_decode($vo -> result,true);
+        }
+
+
+
+        //找每道题的选项
+        foreach($title_list as $k => $vo){
+            $temp = DB::table('toupiao_detail') -> where([
+                'fid' => $vo -> id
+            ]) ->get();
+
+
+            //dump($temp);
+            foreach($temp as $key => $value){
+                $temp[$key] -> sum = 0;
+                //dump($value);exit;
+                //看下 每个人 $k 的选项是什么
+                foreach($lists as $voo){
+                    //每个人
+                    foreach($voo as $kkk => $vvv){
+
+                        if(intval($vvv) == $value -> id){
+                            //说明是此道题
+                            $temp[$key] -> sum ++;
+                        }
+                    }
+
+                }
+            }
+
+            $temp_str = '';
+            foreach($temp as $kkkk => $vvvv){
+                $temp_str .= $vvvv->name.':'.$vvvv -> sum.'人 ';
+            }
+            //dump($temp_str);exit;
+            $title_list[$k] -> xuanxiang = $temp_str;
+            //统计
+
+        }
+
+        //dump($title_list);
+
+        return view('admin/toupiao/pdfNumberPage') -> with([
+            'title_list' => $title_list
+        ]);
+
+    }
+
+
+
+
+
 }
