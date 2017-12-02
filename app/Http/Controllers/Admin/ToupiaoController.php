@@ -562,7 +562,7 @@ class ToupiaoController extends Controller
         $pdfurl = $_SERVER['HTTP_HOST'].$url_pdf;
 
 
-        exec("wkhtmltopdf http://www.baidu.com /webdata/laravel/public/pdf/.pdf",$output);
+        exec("wkhtmltopdf http://www.baidu.com /webdata/laravel/public/pdf/ff.pdf",$output);
         dump ($output);
         //return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
         //return PdfWrapper::loadFile('http://www.github.com')->inline('github.pdf');
