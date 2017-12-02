@@ -565,12 +565,12 @@ class ToupiaoController extends Controller
 
         $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
         //echo $pdfurl;exit;
-
-        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".time().".pdf 2>&1",$output);
+        $time = time();
+        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".$time.".pdf 2>&1",$output);
         //echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
         //dump($output);
         if(count($output)){
-            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
+            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf'.$time.'.pdf';
             echo "<a href='".$save_file."'>下载</a>";
             //dump($save_file);exit;
         }
@@ -594,12 +594,12 @@ class ToupiaoController extends Controller
 
         $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
         //echo $pdfurl;exit;
-
-        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".time().".pdf 2>&1",$output);
+        $time = time();
+        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf".$time.".pdf 2>&1",$output);
         //echo "wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
         //dump($output);
         if(count($output)){
-            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
+            $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf'.$time.'.pdf';
             echo "<a href='".$save_file."'>下载</a>";
             //dump($save_file);exit;
         }
