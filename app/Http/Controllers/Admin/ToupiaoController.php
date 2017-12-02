@@ -565,9 +565,9 @@ class ToupiaoController extends Controller
         $pdfurl = 'http://'.$_SERVER['HTTP_HOST'].$url_pdf;
         //echo $pdfurl;exit;
 
-        exec("wkhtmltopdf '.$pdfurl.' /webdata/laravel/public/pdf/pdf.pdf 2>&1",$output);
-        echo "wkhtmltopdf '.$pdfurl.' /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
-        dump($output);
+        exec("wkhtmltopdf ".$pdfurl." /webdata/laravel/public/pdf/pdf.pdf 2>&1",$output);
+        //echo "wkhtmltopdf '.$pdfurl.' /webdata/laravel/public/pdf/pdf.pdf 2>&1" ;
+        //dump($output);
         if(count($output)){
             $save_file = 'http://'.$_SERVER['HTTP_HOST'].implode('/',$public_url).'/pdf/pdf.pdf';
             dump($save_file);exit;
