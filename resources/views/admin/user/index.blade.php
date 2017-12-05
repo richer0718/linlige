@@ -94,7 +94,7 @@
                             },
                             success: function(data){
                                 layer.alert('审核成功');
-                                location.reload();
+                                //location.reload();
                             },
                             error: function(xhr, type){
                                 layer.alert('Ajax error!')
@@ -114,7 +114,7 @@
                             },
                             success: function(data){
                                 layer.alert('审核成功');
-                                location.reload();
+                                //location.reload();
                             },
                             error: function(xhr, type){
                                 layer.alert('Ajax error!')

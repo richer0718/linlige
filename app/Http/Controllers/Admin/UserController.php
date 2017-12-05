@@ -98,6 +98,7 @@ class UserController extends Controller
 
 
         if($request -> input('status') == 3){
+            echo 111;
             //审核不通过
             $messageId = $notice->send([
                 'touser' => $info -> openid,
@@ -111,6 +112,7 @@ class UserController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
+            var_dump($messageId);
         }else{
             $messageId = $notice->send([
                 'touser' => $info -> openid,
