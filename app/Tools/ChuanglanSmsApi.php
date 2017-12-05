@@ -12,9 +12,9 @@ class ChuanglanSmsApi {
 	//查询余额的接口地址
 	const API_BALANCE_QUERY_URL='http://sms.253.com/msg/balance?';
 
-	const API_ACCOUNT='N6096854';//短信账号从 https://zz.253.com/site/login.html 里面获取。
+	const API_ACCOUNT='N3321642';//短信账号从 https://zz.253.com/site/login.html 里面获取。
 
-	const API_PASSWORD='Tch91888';//短信密码从 from https://zz.253.com/site/login.html 里面获取。
+	const API_PASSWORD='t8xoIdKYRnd059';//短信密码从 from https://zz.253.com/site/login.html 里面获取。
 
 	/**
 	 * 发送短信需要的接口参数

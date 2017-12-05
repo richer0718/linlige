@@ -40,7 +40,7 @@ class HomeController extends Controller
         $mobile = $request -> input('mobile');
         $code = mt_rand(100000,999999);
 
-        $msg = '【商联拓铺】您的验证码是'.$code;
+        $msg = '【邻里格】您的验证码是'.$code;
         $res = $api -> sendSMS( $mobile, $msg);
         //var_dump($res);
         if($res){
