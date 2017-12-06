@@ -12,7 +12,7 @@ return [
     'helpurl' => 'http://www.szyeweihui.com/public/home/helpPage/', //帮助
     'machid' => 1453827602,
     'businesskey' => 'AAAAAAAAaaaaaaaa1111111100000000',
-    'moban1' => '2MVJnykezlQT7wahfemeHg54KnYdyp36mmimn9TXTR8', //模版消息，后台审核
+    'moban1' => 'u9nht_e-YU4ST9KAogf9JEs3JdJOExhXrXoqG53--8I', //模版消息，后台审核
     'noticy_url' => 'http://www.szyeweihui.com/public/payNotify', //商城支付回调
     'noticy_url_service' => 'http://www.szyeweihui.com/public/payServiceNotify', //服务支付回调
     'youlin_url' => 'http://www.szyeweihui.com/public/home/pinlun/',//友邻互助详情
