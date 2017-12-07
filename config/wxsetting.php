@@ -10,8 +10,8 @@ return [
     'url4' => 'http://www.szyeweihui.com/public/home/myorder', //商城支付完毕发送模版消息进入订单
     'url5' => 'http://www.szyeweihui.com/public/home/myorder', //发货
     'helpurl' => 'http://www.szyeweihui.com/public/home/helpPage/', //帮助
-    'machid' => 1313535001,
-    'businesskey' => 'abcdefghijklmnopqrstxyz123456789',
+    'machid' => 1389457702,
+    'businesskey' => 'abcdefghijklmnopqrstuvwxyz123456',
     'moban1' => 'u9nht_e-YU4ST9KAogf9JEs3JdJOExhXrXoqG53--8I', //模版消息，后台审核
     'noticy_url' => 'http://www.szyeweihui.com/public/payNotify', //商城支付回调
     'noticy_url_service' => 'http://www.szyeweihui.com/public/payServiceNotify', //服务支付回调
@@ -19,5 +19,8 @@ return [
     'myorder_url' => 'http://www.szyeweihui.com/public/home/myorder',//我的订单
 
 ];
+
+
+
 
 
