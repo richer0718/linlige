@@ -1269,6 +1269,12 @@ class HomeController extends Controller
                 ],
             ]);
 
+            DB::table('news') -> where([
+                'id' => $id
+            ]) -> update([
+                'is_help' => 1
+            ]);
+
 
         }else{
             //允许帮助
