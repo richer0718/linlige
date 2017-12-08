@@ -64,7 +64,7 @@ class MyCenterController extends Controller
 
     public function mylinliajax(Request $request){
         //DB::enableQueryLog();
-        $res = null;
+        $res = [];
         $index = $request -> input('index');
         $fabuindex = $request -> input('fabuindex');
         $where = array();
