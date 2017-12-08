@@ -559,7 +559,8 @@
                         }else{
                             //帮助的这个人
                             //查看是否评价
-                            if(data[i].is_help){
+                            if(data[i].is_help == 1){
+
                                 if(data[i].help_pingjia){
                                     //直接显示评价
                                     html += '<div class="demand-time neighbor">';
@@ -589,6 +590,7 @@
                                     }
 
                                 }
+
                             }
 
 
