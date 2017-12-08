@@ -24,8 +24,12 @@ class WxModel extends Model
         ]) -> first();
 
         if(!$isset){
+
             if(!session('headimgurl')){
                 $userinfo = $this -> getUserInfo();
+                if($userinfo['subscribe'] == 0){
+                    exit;
+                }
                 session([
                     'headimgurl' => $userinfo['headimgurl'],
                     'sex' => $userinfo['sex']
