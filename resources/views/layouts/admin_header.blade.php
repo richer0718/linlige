@@ -1,4 +1,4 @@
-<header style="height:50px;">
+<header style="height:50px;@if(session('header') == 'hidder') display:none; @endif  ">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">

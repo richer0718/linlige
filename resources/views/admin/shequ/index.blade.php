@@ -36,7 +36,7 @@
                             <td>{{ $vo['manage'] -> username or '' }}</td>
                             <td>{{ $vo['manage'] -> password or '' }}</td>
                             <td>{{ date('Y-m-d H:i',$vo['created_at']) }}</td>
-                            <td data="{{$vo['id']}}"><a href="{{ url('admin/enterXiaoqu').'/'.$vo['id'] }}" >进入</a> <a  name="edit"  href="{{ url('admin/editShequ',['id'=>$vo['id']]) }}">修改</a>@if($vo['status'] == 0) <a href="{{ url('admin/changeShequ',['id'=>$vo['id'],'status' => $vo['status'] ]) }}">禁用</a>@else <a href="{{ url('admin/changeShequ',['id'=>$vo['id'],'status' => $vo['status'] ]) }}" >启用</a>@endif </td>
+                            <td data="{{$vo['id']}}"><a  onclick="enterXiaoqu({{ $vo['id'] }})" >进入</a> <a  name="edit"  href="{{ url('admin/editShequ',['id'=>$vo['id']]) }}">修改</a>@if($vo['status'] == 0) <a href="{{ url('admin/changeShequ',['id'=>$vo['id'],'status' => $vo['status'] ]) }}">禁用</a>@else <a href="{{ url('admin/changeShequ',['id'=>$vo['id'],'status' => $vo['status'] ]) }}" >启用</a>@endif </td>
                         </tr>
                     @endforeach
                 @endunless
@@ -201,6 +201,30 @@
 
     </script>
     <script>
+        function enterXiaoqu(id){
+            layer.open({
+                type: 2,
+                title: '进入小区',
+                shadeClose: false,
+                shade: 0.8,
+                area: ['90%', '90%'],
+                content: '{{ url('admin/enterXiaoqu') }}'+'/'+id, //iframe的url
+                cancel: function(){
+                    //关闭清除session('header')
+                    <?php
+                        session([
+                            'xiaoqu' => null,
+                            'type' => 0,
+                            'entertype' => null,
+                            'header' => null
+                        ]);
+                    ?>
+                    location.reload();
+                }
+            });
+        }
+
+
         $(function(){
             @if (session('show'))
                 $('#editShequ').modal('show')

@@ -115,7 +115,8 @@ class ShequController extends Controller
         session([
             'xiaoqu' => $id,
             'type' => 1,
-            'entertype' => 'super'
+            'entertype' => 'super',
+            'header' => 'hidder'
         ]);
         //跳转到小区的管理页面
         return redirect('admin/yonghu/1');

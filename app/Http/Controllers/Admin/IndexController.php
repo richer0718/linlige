@@ -14,6 +14,7 @@ class IndexController extends Controller
 
     }
     public function loginout(Request $request){
+        /*
         if(session('entertype') == 'super'){
             session([
                 'xiaoqu' => null,
@@ -22,6 +23,7 @@ class IndexController extends Controller
             ]);
             return redirect('admin/shequ');
         }
+        */
         $request->session()->flush();
         return redirect('admin/login');
     }
