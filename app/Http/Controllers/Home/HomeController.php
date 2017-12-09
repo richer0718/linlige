@@ -485,13 +485,17 @@ class HomeController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
+
+
+        }else{
+            DB::table('news') -> where([
+                'id' => $request -> input('id')
+            ]) -> update([
+                'open_status' => 1
+            ]);
         }
 
-        DB::table('news') -> where([
-            'id' => $request -> input('id')
-        ]) -> update([
-            'open_status' => 1
-        ]);
+
 
 
         echo 'success';
@@ -1313,7 +1317,8 @@ class HomeController extends Controller
             DB::table('news') -> where([
                 'id' => $id
             ]) -> update([
-                'openid_help' => ''
+                'openid_help' => '',
+                'is_help' => 0
             ]);
             echo 'success';
         }

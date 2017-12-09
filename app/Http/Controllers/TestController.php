@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
     public function test(){
-        //echo 11;exit;
-        $name = $this-> ask('What is your name?');
+        return view('home/test');
     }
 
 
