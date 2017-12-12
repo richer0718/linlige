@@ -56,7 +56,7 @@
                 @foreach($vo['img'] as $vol)
 
                     <div>
-                        <img style="width:100%;height:auto;" class="lazy"  src="{{asset('images').'/'.$vol}}" onclick="showimg(this)" />
+                        <img style="width:100%;height:auto;"  src="{{asset('images').'/'.$vol}}" onclick="showimg(this)" />
                     </div>
                 @endforeach
             </div>
