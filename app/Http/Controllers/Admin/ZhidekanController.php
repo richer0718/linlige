@@ -30,6 +30,7 @@ class ZhidekanController extends Controller
             if($request -> input('fabu_user')){
                 $query -> where('fabu_user','=',$request -> input('fabu_user'));
             }
+            $query -> orWhere('is_old','=',1);
         }) -> paginate(15);
         //dd($res);
         return view('admin/zhide/index')->with([

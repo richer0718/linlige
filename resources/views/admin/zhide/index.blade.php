@@ -48,7 +48,10 @@
                             <td>{{ $vo->dianzan }}</td>
                             <td>@if($vo -> ishot == 1)重要@else不重要@endif</td>
                             <td>{{ date('Y-m-d H:i',$vo->created_at) }}</td>
-                            <td data="{{$vo->id}}"><a  name="edit"  href="{{ url('admin/editZhide',['id'=>$vo->id]) }}">修改</a> <a name="delete" >删除</a> </td>
+                            <td data="{{$vo->id}}">
+                                @if($vo -> is_old != 1)<a  name="edit"  href="{{ url('admin/editZhide',['id'=>$vo->id]) }}">修改</a> @endif
+                                <a name="delete" >删除</a>
+                            </td>
                         </tr>
                     @endforeach
                 @endif

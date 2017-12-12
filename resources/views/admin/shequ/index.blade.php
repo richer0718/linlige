@@ -207,7 +207,7 @@
                 title: '进入小区',
                 shadeClose: false,
                 shade: 0.8,
-                area: ['90%', '90%'],
+                area: ['100%', '100%'],
                 content: '{{ url('admin/enterXiaoqu') }}'+'/'+id, //iframe的url
                 cancel: function(){
                     //关闭清除session('header')
