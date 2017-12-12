@@ -56,7 +56,7 @@
     <div>
         <a id="fangxinban" onclick="fangxinban()" >
             <img src="{{asset('images/rest.png')}}" />
-            <h4>放心班</h4>
+            <h4>其他</h4>
         </a>
     </div>
 </div>
