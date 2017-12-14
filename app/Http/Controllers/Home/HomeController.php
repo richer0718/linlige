@@ -322,7 +322,7 @@ class HomeController extends Controller
 
 
         }
-        shuffle($res);
+        //shuffle($res);
 
         return response()->json($res);
     }
@@ -536,7 +536,7 @@ class HomeController extends Controller
         );
         */
 
-        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->resize(200, 200)->save(public_path().'/images/'.$newFileName,100 );
+        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->save(public_path().'/images/'.$newFileName,100 );
 
         /*
         if(!Storage::exists($savePath)){
