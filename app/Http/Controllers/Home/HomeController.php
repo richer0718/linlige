@@ -319,6 +319,10 @@ class HomeController extends Controller
             if($temp){
                 $res[$k]['wuyehuifu'] = $temp;
             }
+		
+		if(mb_strlen($vo['title']) > 10){
+			$res[$k]['title'] = mb_substr($vo['title'],0,10).'...';
+		}
 
 
         }
