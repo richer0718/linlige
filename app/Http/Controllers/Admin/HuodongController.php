@@ -121,6 +121,8 @@ class HuodongController extends Controller
             $notice = $app->notice;
             $users = DB::table('user') -> select('openid') ->  where('status',1) ->  get();
             foreach($users as $vo){
+                $user = $app->user->get($vo -> openid);
+                dd($user);
                 $messageId = $notice->send([
                     'touser' => $vo -> openid,
                     'template_id' => config('wxsetting.moban2'),
