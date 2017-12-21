@@ -108,6 +108,7 @@ class HuodongController extends Controller
     }
 
     public function sendMessage(Request $request){
+        set_time_limit(0);
         if($request -> input('first')){
 
             $options = [
