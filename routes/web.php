@@ -287,6 +287,11 @@ Route::group(['as' => 'linlihudong'],function(){
 
 Route::group(['as' => 'tiaozao'],function(){
     Route::any('/admin/tiaozao/{id}', 'Admin\HuodongController@index');
+
+});
+Route::group(['as' => 'message'],function(){
+    Route::any('/admin/sendMessage', 'Admin\HuodongController@sendMessage');
+
 });
 
 Route::group(['as' => 'bianminfuwu'],function(){

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use EasyWeChat\Foundation\Application;
+use EasyWeChat\Support\Url as UrlHelper;
 
 class HuodongController extends Controller
 {
@@ -104,4 +106,44 @@ class HuodongController extends Controller
         return redirect('admin/checkPinlun/'.$newsid);
 
     }
+
+    public function sendMessage(Request $request){
+        if($request -> input('first')){
+
+            $options = [
+                /**
+                 * 账号基本信息，请从微信公众平台/开放平台获取
+                 */
+                'app_id'  => config('wxsetting.appid'),         // AppID
+                'secret'  => config('wxsetting.secret'),     // AppSecret
+            ];
+            $app = new Application($options);
+            $notice = $app->notice;
+            $users = DB::table('user') -> select('openid') ->  where('status',1) ->  get();
+            foreach($users as $vo){
+                $messageId = $notice->send([
+                    'touser' => $vo -> openid,
+                    'template_id' => config('wxsetting.moban2'),
+                    'url' => config('wxsetting.superurl'),
+                    'data' => [
+                        'first' => $request -> input('first'),
+                        'keyword1' => '所有会员',
+                        'keyword2' => date('Y-m-d'),
+                        'remark' => '祝邻居们有个美好的一天！'
+                    ],
+                ]);
+            }
+
+
+            return view('admin/sendMessage')->with([
+                'sendres' => 'success'
+            ]);
+
+        }
+        return view('admin/sendMessage')->with([
+            'sendres' => 'no'
+        ]);
+    }
+
+
 }

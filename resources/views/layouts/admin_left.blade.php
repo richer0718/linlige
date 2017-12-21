@@ -91,6 +91,7 @@
             </ul>
         </li>
             <li  @if(Route::currentRouteName() == 'tiaozao' )class="active" @endif><a href="{{url('admin/tiaozao/4')}}">跳蚤市场</a></li>
+            <li   @if(Route::currentRouteName() == 'message' )class="active" @endif ><a href="{{url('admin/sendMessage')}}">群发消息</a></li>
         @endif
 
 
