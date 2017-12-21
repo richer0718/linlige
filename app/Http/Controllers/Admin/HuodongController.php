@@ -120,11 +120,12 @@ class HuodongController extends Controller
             $app = new Application($options);
             $notice = $app->notice;
             $users = DB::table('user') -> select('openid') ->  where('status',1) ->  get();
-            foreach($users as $vo){
+            foreach($users as $key => $vo){
                 $user = $app->user->get($vo -> openid);
                 if(!isset($user -> subscribe_time)){
                     continue;
                 }
+                echo $key;echo "<br>";continue;
                 $messageId = $notice->send([
                     'touser' => $vo -> openid,
                     'template_id' => config('wxsetting.moban2'),
