@@ -126,7 +126,7 @@ class HuodongController extends Controller
                 if(!isset($user -> subscribe_time)){
                     continue;
                 }
-                echo $key;echo "<br>";continue;
+                //echo $key;echo "<br>";continue;
                 $messageId = $notice->send([
                     'touser' => $vo -> openid,
                     'template_id' => config('wxsetting.moban2'),
