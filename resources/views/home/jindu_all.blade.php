@@ -48,7 +48,7 @@
 <article class="community-details">
     @if(!empty($res))
         @foreach($res as $vo)
-
+            @if($vo['userinfo'])
             <section class="comment-title" >
                 <header class="comment-head flex-justify" onclick="location.href='{{ url('home/pinlun',['id'=>$vo['id']]) }}'"  >
                     <h3>{{ $vo['title'] }}</h3>
@@ -80,7 +80,7 @@
                     @endforeach
                 @endif
             </section>
-
+            @endif
         @endforeach
     @endif
 </article>
