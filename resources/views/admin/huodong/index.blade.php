@@ -30,6 +30,7 @@
                 <tbody>
                 @unless(!$res)
                     @foreach($res as $vo)
+                        @if($vo -> userinfo)
                         <tr>
                             <td>{{$vo -> id}}</td>
                             <td>{{$vo -> userinfo -> name}}</td>
@@ -43,6 +44,7 @@
                             <td>{{ date('Y-m-d H:i',$vo -> created_at) }}</td>
                             <td data="{{$vo -> id}}"><a  name="edit"  href="{{ url('admin/checkPinlun',['id'=>$vo -> id]) }}">查看评论</a>@if($vo -> flag  == 0)<a href="{{ url('admin/changeLinli',['id'=>$vo -> id,'flag' => $vo -> flag,'index' => $index ]) }}"> 隐藏</a> @else <a href="{{ url('admin/changeLinli',['id'=>$vo -> id,'flag' => $vo -> flag,'index' => $index ]) }}" > 显示</a>@endif </td>
                         </tr>
+                        @endif
                     @endforeach
                 @endunless
                 </tbody>
