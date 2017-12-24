@@ -32,7 +32,8 @@
         <img src="{{asset('images/nav4.png')}}" />
         <h4>喜欢的邻居</h4>
     </a>
-    <a href="">
+    <!-- href="{{ url('home/xitongMessage') }}" -->
+    <a >
         <img src="{{asset('images/nav5.png')}}" />
         <h4>系统消息</h4>
     </a>

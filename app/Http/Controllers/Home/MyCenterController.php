@@ -480,4 +480,9 @@ class MyCenterController extends Controller
         echo 'success';
     }
 
+    //系统消息
+    public function xitongMessage(){
+        return view('home/mycenter/xitongMessage');
+    }
+
 }

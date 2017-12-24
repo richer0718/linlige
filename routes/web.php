@@ -112,6 +112,7 @@ Route::any('/home/myorder/fabiaopinglun', 'Home\MyCenterController@fabiaopinglun
 Route::any('/home/likelinju/{openid?}', 'Home\MyCenterController@likelinju');
 Route::any('/home/huzhupingjia/{openid?}', 'Home\MyCenterController@huzhupingjia');
 Route::any('/home/likelinjuchange', 'Home\MyCenterController@likelinjuchange');
+Route::any('/home/xitongMessage', 'Home\MyCenterController@xitongMessage');
 
 Route::any('/home/myshoucang', 'Home\MyCenterController@myshoucang');
 Route::any('/home/aboutus', 'Home\MyCenterController@aboutus');
