@@ -311,6 +311,12 @@ class MallController extends Controller
                     ],
                 ]);
 
+                DB::table('message') -> insert([
+                    'openid' => $info -> openid,
+                    'message' => '您的订单已提交，请等待发货~',
+                    'created_at' => time()
+                ]);
+
 
             }
             return true; // 或者错误消息

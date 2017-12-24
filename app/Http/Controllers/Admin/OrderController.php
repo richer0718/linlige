@@ -208,6 +208,11 @@ class OrderController extends Controller
                 'remark' => '感谢您的使用'
             ],
         ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的宝贝'.$goods_info -> title.'已发货，物流单号为'.$request -> input('danhao').'，请注意查收~',
+            'created_at' => time()
+        ]);
 
         return redirect('admin/orderlist') -> with('fahuores','yes');
 
@@ -244,6 +249,11 @@ class OrderController extends Controller
                 'remark' => '感谢您的使用'
             ],
         ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的退货申请通过了，请等待退款',
+            'created_at' => time()
+        ]);
 
         return redirect('/admin/orderDetail/'.$id)->with('tuihuo','agree');
     }
@@ -277,6 +287,11 @@ class OrderController extends Controller
                 'keyword3' => '',
                 'remark' => '感谢您的使用'
             ],
+        ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的退货申请被拒绝了',
+            'created_at' => time()
         ]);
 
         return redirect('/admin/orderDetail/'.$id)->with('tuihuo','agree');

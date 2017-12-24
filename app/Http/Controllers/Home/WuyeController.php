@@ -150,6 +150,12 @@ class WuyeController extends Controller
             ],
         ]);
 
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的建议有了新回复，点击查看',
+            'created_at' => time()
+        ]);
+
 
         echo 'success';
     }
@@ -188,6 +194,11 @@ class WuyeController extends Controller
                 'keyword3' => '',
                 'remark' => '感谢您的使用'
             ],
+        ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的建议已得到了处理回复，点击查看',
+            'created_at' => time()
         ]);
 
 

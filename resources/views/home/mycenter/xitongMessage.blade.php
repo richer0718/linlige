@@ -12,23 +12,14 @@
         <img src="{{asset('images/logo.png')}}">
     </header>
     <article class="prompt">
+        @if($res)
+            @foreach($res as $vo)
         <section>
-            <p>2017-07-17  12:00</p>
-            <div>您发布的“北区的儿童游乐区沙坑问题”已由管理员转派给了物业了，请耐心等待。</div>
-        </section><section>
-            <p>2017-07-17  12:00</p>
-            <div>您发布的“北区的儿童游乐区沙坑问题。</div>
+            <p>{{ date('Y-m-d H:i',$vo -> created_at) }}</p>
+            <div>{{ $vo -> message }}</div>
         </section>
-        <section>
-            <p>2017-07-17  12:00</p>
-            <div>【您发布的“北区的儿童游乐区沙坑问题您发
-                布的“北区的儿童游乐区沙坑问题您发布的
-                “北区的儿童游乐区沙坑问题</div>
-        </section>
-        <section>
-            <p>2017-07-17  12:00</p>
-            <div>您发布的“北区的儿童游乐区沙坑问题</div>
-        </section>
+            @endforeach
+        @endif
     </article>
 </body>
 </html>

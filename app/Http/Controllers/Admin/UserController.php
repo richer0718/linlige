@@ -98,7 +98,6 @@ class UserController extends Controller
 
 
         if($request -> input('status') == 3){
-            echo 111;
             //审核不通过
             $messageId = $notice->send([
                 'touser' => $info -> openid,
@@ -112,7 +111,11 @@ class UserController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
-            var_dump($messageId);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '您的注册申请已被退回，请重新申请',
+                'created_at' => time()
+            ]);
         }else{
             $messageId = $notice->send([
                 'touser' => $info -> openid,
@@ -125,6 +128,11 @@ class UserController extends Controller
                     'keyword3' => '',
                     'remark' => '感谢您的使用'
                 ],
+            ]);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '您的注册申请已被审核通过',
+                'created_at' => time()
             ]);
 
 

@@ -393,6 +393,11 @@ class HomeController extends Controller
                 'remark' => '感谢您的使用'
             ],
         ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的反馈已提交给物业，请等待处理',
+            'created_at' => time()
+        ]);
 
         //找到小区
         $xiaoqu = DB::table('business') -> where([
@@ -413,6 +418,11 @@ class HomeController extends Controller
                         'keyword3' => '',
                         'remark' => '感谢您的使用'
                     ],
+                ]);
+                DB::table('message') -> insert([
+                    'openid' => $info -> openid,
+                    'message' => '您有反馈需要处理',
+                    'created_at' => time()
                 ]);
             }
         }
@@ -488,6 +498,11 @@ class HomeController extends Controller
                     'keyword3' => '',
                     'remark' => '感谢您的使用'
                 ],
+            ]);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '您发布的"'.$newsinfo -> title.'"需求，邻居已经完成，快去看看吧',
+                'created_at' => time()
             ]);
 
 
@@ -999,6 +1014,12 @@ class HomeController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '您发布的需求已有邻居愿意帮忙，快去看看吧~',
+                'created_at' => time()
+            ]);
+
 
 
 
@@ -1284,6 +1305,11 @@ class HomeController extends Controller
                     'remark' => '感谢您的使用'
                 ],
             ]);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '邻居已接受您的帮助，快去帮忙吧~',
+                'created_at' => time()
+            ]);
 
             DB::table('news') -> where([
                 'id' => $id
@@ -1321,6 +1347,11 @@ class HomeController extends Controller
                     'keyword3' => '',
                     'remark' => '感谢您的使用'
                 ],
+            ]);
+            DB::table('message') -> insert([
+                'openid' => $info -> openid,
+                'message' => '对方拒绝了您的帮助请求~',
+                'created_at' => time()
             ]);
 
 

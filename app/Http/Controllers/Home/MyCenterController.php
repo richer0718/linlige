@@ -410,6 +410,11 @@ class MyCenterController extends Controller
                 'remark' => '感谢您的使用'
             ],
         ]);
+        DB::table('message') -> insert([
+            'openid' => $info -> openid,
+            'message' => '您的退货申请已经提交，请等待审核',
+            'created_at' => time()
+        ]);
 
 
         echo 'success';
@@ -482,7 +487,13 @@ class MyCenterController extends Controller
 
     //系统消息
     public function xitongMessage(){
-        return view('home/mycenter/xitongMessage');
+        $res = DB::table('message') -> where([
+            'openid' => session('openid')
+        ]) -> get();
+
+        return view('home/mycenter/xitongMessage') -> with([
+            'res' => $res
+        ]);
     }
 
 }

@@ -138,6 +138,11 @@ class HuodongController extends Controller
                         'remark' => '祝邻居们有个美好的一天！'
                     ],
                 ]);
+                DB::table('message') -> insert([
+                    'openid' => $vo -> openid,
+                    'message' => $request -> input('first'),
+                    'created_at' => time()
+                ]);
             }
 
 
