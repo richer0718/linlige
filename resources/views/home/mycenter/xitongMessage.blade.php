@@ -11,16 +11,18 @@
         <i class="iconfont icon-fanhui" onclick="history.go(-1)"></i>
         <img src="{{asset('images/logo.png')}}">
     </header>
+    @if($res)
     <article class="prompt">
-        @if($res)
+
             @foreach($res as $vo)
         <section>
             <p>{{ date('Y-m-d H:i',$vo -> created_at) }}</p>
             <div>{{ $vo -> message }}</div>
         </section>
             @endforeach
-        @endif
+
     </article>
+    @endif
 </body>
 </html>
 
