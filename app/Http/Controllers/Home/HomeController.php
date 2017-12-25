@@ -179,7 +179,7 @@ class HomeController extends Controller
         }
         //循环数据 - 今日值得看
         $model_article = new Article();
-        $list_article = $model_article -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')]) -> orWhere(['is_old'=>1]) -> orderBy('created_at','desc') -> limit(2) -> get();
+        $list_article = $model_article -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')])  -> orderBy('created_at','desc') -> limit(2) -> get();
         //var_dump($list_article);exit;
 
         //判断此人的身份
@@ -785,7 +785,7 @@ class HomeController extends Controller
 
 
         //循环数据 - 今日值得看
-        $list_article = DB::table('article') -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')])-> orWhere(['is_old'=>1]) -> orderBy('created_at','desc')  -> get();
+        $list_article = DB::table('article') -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')]) -> orderBy('created_at','desc')  -> get();
         //var_dump($list_article);exit;
         //投票
         $list_toupiao = DB::table('toupiao') -> where(['flag'=>'0','xiaoqu'=>session('xiaoqu')]) -> orderBy('created_at','desc')  -> get();
