@@ -38,12 +38,12 @@
             @foreach($res2 as $vo)
         <section class="flex">
             <div class="coupon-time">
-                <h3><i>¥</i><span> 5</span></h3>
+                <h3><i>¥</i><span> {{ $vo -> price }}</span></h3>
                 <h4>有效期至</h4>
-                <p>2017-08-28</p>
+                <p>{{ date('Y-m-d',$vo -> date) }}</p>
             </div>
             <div class="coupon-content flex-1">
-                <h3>忆香云5元折扣券</h3>
+                <h3>{{ $vo -> title }}</h3>
                 <p>请在“忆香云”APP下单时使用</p>
                 <p>验证码：65425897</p>
                 <div><a href="javascript:;">立即领取</a></div>
