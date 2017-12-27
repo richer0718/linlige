@@ -173,11 +173,19 @@ class HuodongController extends Controller
         DB::table('ticket') -> insert([
             'title' => $request -> input('title'),
             'price' => $request -> input('price'),
-            'date' => $request -> input('date'),
+            'date' => strtotime($request -> input('date')),
             'number' => $request -> input('number'),
             'number_res' => $request -> input('number'),
+            'created_at' => time()
         ]);
         return redirect('admin/ticket') -> with('addres','success');
+    }
+
+    public function delTicket($id){
+        DB::table('ticket') -> where([
+            'id' => $id
+        ]) -> delete();
+        return redirect('admin/ticket');
     }
 
 

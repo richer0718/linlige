@@ -286,7 +286,32 @@ class MyCenterController extends Controller
 
     //优惠券
     public function ticket(){
-        return view('home/mycenter/ticket');
+        $arr1 = [];
+        $arr2 = [];
+        $tickets = DB::table('ticket') -> get();
+        foreach($tickets as $vo){
+            $temp = DB::table('get_ticket') -> where([
+                'openid' => session('openid'),
+                'ticket_id' => $vo -> id
+            ]) -> first();
+            if(count($temp)){
+                //领取的
+                $arr1[] = $temp;
+            }else{
+                //如果没有过期 或者 number_res > 0
+                if($vo -> date > time() && $vo -> number_res > 0){
+                    //没领取的
+                    $arr2[] = $temp;
+                }
+            }
+
+        }
+
+
+        return view('home/mycenter/ticket') -> with([
+            'res1' => $arr1,
+            'res2' => $arr2
+        ]);
     }
 
     public function mydata(){

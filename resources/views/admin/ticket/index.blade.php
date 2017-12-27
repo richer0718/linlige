@@ -34,11 +34,11 @@
                             <td>{{$vo -> id }}</td>
                             <td>{{$vo -> title }}</td>
                             <td>{{$vo -> price }}</td>
-                            <td>{{$vo -> date }}</td>
+                            <td>{{date('Y-m-d',$vo -> date) }}</td>
                             <td>{{$vo -> number }}</td>
                             <td>{{$vo -> number_has }}</td>
                             <td>{{$vo -> number_res }}</td>
-                            <td></td>
+                            <td><a href="{{ url('admin/delTicket').'/'.$vo->id }}">删除</a></td>
                         </tr>
                     @endforeach
                 @endunless

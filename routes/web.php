@@ -298,6 +298,7 @@ Route::group(['as' => 'ticket'],function(){
     Route::any('/admin/ticket', 'Admin\HuodongController@ticket');
     Route::any('/admin/addTicket', 'Admin\HuodongController@addTicket');
     Route::any('/admin/addTicketRes', 'Admin\HuodongController@addTicketRes');
+    Route::any('/admin/delTicket/{id}', 'Admin\HuodongController@delTicket');
 
 });
 
