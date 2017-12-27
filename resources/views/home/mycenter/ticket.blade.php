@@ -24,6 +24,7 @@
             </div>
             <div class="coupon-content flex-1">
                 <h3>{{ $vo -> title }}</h3>
+                <p>验证码：{{ $vo -> code }}</p>
                 <!--
                 <p>请在“忆香云”APP下单时使用</p>
                 <p>验证码：65425897</p>
