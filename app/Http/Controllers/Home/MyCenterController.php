@@ -301,7 +301,7 @@ class MyCenterController extends Controller
                 //如果没有过期 或者 number_res > 0
                 if($vo -> date > time() && $vo -> number_res > 0){
                     //没领取的
-                    $arr2[] = $temp;
+                    $arr2[] = $vo;
                 }
             }
 
