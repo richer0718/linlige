@@ -118,6 +118,7 @@ Route::any('/home/myshoucang', 'Home\MyCenterController@myshoucang');
 Route::any('/home/aboutus', 'Home\MyCenterController@aboutus');
 Route::any('/home/moresetting', 'Home\MyCenterController@moresetting');
 Route::any('/home/ticket', 'Home\MyCenterController@ticket');
+Route::any('/home/getTicket', 'Home\MyCenterController@getTicket');
 Route::any('/home/mydata', 'Home\MyCenterController@mydata');
 //商城
 Route::any('/home/orderlist', 'Home\MyCenterController@orderlist');

@@ -296,7 +296,8 @@ class MyCenterController extends Controller
             ]) -> first();
             if(count($temp)){
                 //领取的
-                $arr1[] = $temp;
+                $vo -> code = $temp -> code;
+                $arr1[] = $vo;
             }else{
                 //如果没有过期 或者 number_res > 0
                 if($vo -> date > time() && $vo -> number_res > 0){
@@ -312,6 +313,33 @@ class MyCenterController extends Controller
             'res1' => $arr1,
             'res2' => $arr2
         ]);
+    }
+
+    public function getTicket(Request $request){
+        //领取优惠券
+        //看他是否领了
+        $res = DB::table('get_ticket') -> where([
+            'openid' => session('openid'),
+            'ticket_id' => $request -> input('id')
+        ]) -> first();
+        if(!count($res)){
+            DB::table('get_ticket') -> insert([
+               'ticket_id' => $request -> input('id'),
+                'openid' => session('openid'),
+                'created_at' => time(),
+                'code' => rand(10000000,99999999)
+            ]);
+
+            DB::table('ticket') -> where([
+                'id' => $request -> input('id'),
+            ]) -> decrement('number_res');
+
+            DB::table('ticket') -> where([
+                'id' => $request -> input('id'),
+            ]) -> increment('number_has');
+
+
+        }
     }
 
     public function mydata(){

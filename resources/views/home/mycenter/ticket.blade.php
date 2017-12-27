@@ -44,9 +44,11 @@
             </div>
             <div class="coupon-content flex-1">
                 <h3>{{ $vo -> title }}</h3>
+                <!--
                 <p>请在“忆香云”APP下单时使用</p>
-                <p>验证码：65425897</p>
-                <div><a href="javascript:;">立即领取</a></div>
+                <p>验证码：65425897</p>'
+                -->
+                <div><a onclick="lingqu({{ $vo -> id }})" >立即领取</a></div>
             </div>
         </section>
             @endforeach
@@ -58,6 +60,29 @@
 
 </body>
 <script>
+
+    function lingqu(id){
+        var url = '{{ url('home/getTicket') }}';
+        //领取
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {id:id},
+
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(data){
+                layer.msg('领取成功');
+                location.reload();
+
+            },
+            error: function(xhr, type){
+                layer.msg('Ajax error!')
+            }
+        });
+    }
+
     $(function(){
         $('#topnav a').click(function(){
             var index = $(this).index()+1;
