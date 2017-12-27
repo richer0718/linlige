@@ -156,5 +156,29 @@ class HuodongController extends Controller
         ]);
     }
 
+    public function ticket(){
+
+        $res = DB::table('ticket') -> get();
+
+        return view('admin/ticket/index')->with([
+            'res' => $res
+        ]);
+    }
+
+    public function addTicket(){
+        return view('admin/ticket/addTicket');
+    }
+
+    public function addTicketRes(Request $request){
+        DB::table('ticket') -> insert([
+            'title' => $request -> input('title'),
+            'price' => $request -> input('price'),
+            'date' => $request -> input('date'),
+            'number' => $request -> input('number'),
+            'number_res' => $request -> input('number'),
+        ]);
+        return redirect('admin/ticket') -> with('addres','success');
+    }
+
 
 }

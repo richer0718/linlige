@@ -294,6 +294,14 @@ Route::group(['as' => 'message'],function(){
     Route::any('/admin/sendMessage', 'Admin\HuodongController@sendMessage');
 
 });
+Route::group(['as' => 'ticket'],function(){
+    Route::any('/admin/ticket', 'Admin\HuodongController@ticket');
+    Route::any('/admin/addTicket', 'Admin\HuodongController@addTicket');
+    Route::any('/admin/addTicketRes', 'Admin\HuodongController@addTicketRes');
+
+});
+
+
 
 Route::group(['as' => 'bianminfuwu'],function(){
     Route::any('/admin/bianminfuwu', 'Admin\BianminController@index');
