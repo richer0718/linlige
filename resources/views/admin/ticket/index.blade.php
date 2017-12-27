@@ -34,7 +34,7 @@
                             <td>{{$vo -> id }}</td>
                             <td>{{$vo -> title }}</td>
                             <td>{{$vo -> price }}</td>
-                            <td>{{date('Y-m-d H:i',$vo -> date) }}</td>
+                            <td>{{$vo -> date }}</td>
                             <td>{{$vo -> number }}</td>
                             <td>{{$vo -> number_has }}</td>
                             <td>{{$vo -> number_res }}</td>
