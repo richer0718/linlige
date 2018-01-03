@@ -27,6 +27,19 @@ class MallController extends Controller
 
     //商城
     public function index(){
+        $options = [
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+
         $model = new WxModel();
         $model -> checkOpenid();
         //轮播
