@@ -23,6 +23,7 @@ class WxModel extends Model
 
         ]) -> first();
 
+
         if(!$isset){
 
             if(!session('headimgurl')){
@@ -40,6 +41,20 @@ class WxModel extends Model
             //没有 就取让他注册
             return 'redirect_reg';
         }else{
+            //查看他有没有头像
+            if($isset -> img_mark == 0){
+                //如果没有头像
+                $userinfo = $this -> getUserInfo();
+                //更新头像
+                DB::table('user') -> where([
+                    'openid' => session('openid'),
+
+                ]) -> update([
+                    'img' => $userinfo['headimgurl'],
+                    'img_mark' => 1
+                ]);
+            }
+
             //'status' => 1  审核成功后状态未1
             session([
                 'xiaoqu' => $isset -> xiaoqu,
