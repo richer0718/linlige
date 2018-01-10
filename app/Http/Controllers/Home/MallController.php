@@ -92,8 +92,7 @@ class MallController extends Controller
             ],
         ];
         $app = new Application($options);
-        $payment = $app->payment;
-        dd($payment);
+
 
 
 
@@ -132,7 +131,8 @@ class MallController extends Controller
         return view('home/malldetail') -> with([
             'res' => $res,
             'orders' => $orders,
-            'people' => $newarr
+            'people' => $newarr,
+            'app' => $app
         ]);
     }
 
