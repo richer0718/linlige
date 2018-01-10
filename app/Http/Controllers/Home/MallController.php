@@ -68,6 +68,35 @@ class MallController extends Controller
 
 
     public function malldetail($id){
+        $options = [
+            /**
+             * Debug 模式，bool 值：true/false
+             *
+             * 当值为 false 时，所有的日志都不会记录
+             */
+            'debug'  => true,
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+            //'token'   => 'yangxiaojie',          // Token
+            'payment' => [
+                'merchant_id'        => config('wxsetting.machid'),
+                'key'                => config('wxsetting.businesskey'),
+            ],
+            'log' => [
+                'level'      => 'debug',
+                'permission' => 0777,
+                'file'       => storage_path('/tmp/easywechat/easywechat_'.date('Ymd').'.log'),
+            ],
+        ];
+        $app = new Application($options);
+        $payment = $app->payment;
+        dd($payment);
+
+
+
         $res = DB::table('goods') -> where(['id'=>$id]) -> first();
         if($res -> imgs){
             $res -> imgs = explode(',',$res -> imgs);
