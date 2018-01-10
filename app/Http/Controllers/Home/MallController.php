@@ -39,6 +39,7 @@ class MallController extends Controller
             $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
             return $response; // or echo $response;
         }
+        $js = $app -> js;
 
         $model = new WxModel();
         $model -> checkOpenid();
@@ -62,7 +63,8 @@ class MallController extends Controller
         return view('home/mall')->with([
             'res' => $res,
             'res_lunbo' => $res_lunbo,
-            'res_fenlei' => $res_fenlei
+            'res_fenlei' => $res_fenlei,
+            'js' => $js
         ]);
     }
 

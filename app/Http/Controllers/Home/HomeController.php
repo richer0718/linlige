@@ -137,6 +137,24 @@ class HomeController extends Controller
     //首页
     public function index($id=0)
     {
+
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+        $js = $app -> js;
+
+
         $manage_xiaoqu = '';
         if(session('is_manage')){
 
@@ -225,7 +243,8 @@ class HomeController extends Controller
             'usertype' => $usertype,
             'manage_xiaoqu' => $manage_xiaoqu,
             'select_id' => $id,
-            'first_look' => 0
+            'first_look' => 0,
+            'js' => $js
         ]);
     }
 
@@ -908,6 +927,22 @@ class HomeController extends Controller
 
     //投票详情
     public function toupiaodetail($id){
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+        $js = $app -> js;
+
         $toupiaodetail = DB::table('toupiao') -> where([
             'id' => $id
         ]) -> first();
@@ -929,7 +964,8 @@ class HomeController extends Controller
             'res' => $res,
             'id' => $id,
             'toupiaodetail'=>$toupiaodetail,
-            'tiankongtis' => $tiankongtis
+            'tiankongtis' => $tiankongtis,
+            'js' => $js
         ]);
     }
 

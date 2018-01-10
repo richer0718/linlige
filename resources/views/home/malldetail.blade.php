@@ -4,7 +4,7 @@
     @include('layouts.common')
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
-        wx.config(<?php echo $js->config(array('onMenuShareAppMessage', 'onMenuShareWeibo'), true) ?>);
+        wx.config(<?php echo $js->config(array('onMenuShareAppMessage', 'onMenuShareWeibo'), false) ?>);
     </script>
     <script>
         wx.ready(function(){
@@ -15,7 +15,7 @@
                 title: '邻里格', // 分享标题
                 desc: '', // 分享描述
                 link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: 'http://www.szyeweihui.com/public/images/logo.jpg', // 分享图标
+                imgUrl: '{{ asset('uploads').'/'.$res -> imgs[0] }}', // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
