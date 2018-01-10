@@ -7,6 +7,14 @@
         wx.config(<?php echo $js->config(array('onMenuShareAppMessage', 'onMenuShareWeibo'), true) ?>);
     </script>
     <script>
+        wx.checkJsApi({
+            jsApiList: ['onMenuShareAppMessage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+            success: function(res) {
+                // 以键值对的形式返回，可用的api值true，不可用为false
+                // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+            }
+        });
+
         wx.onMenuShareAppMessage({
             title: '分享标题', // 分享标题
             desc: '', // 分享描述
