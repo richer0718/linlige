@@ -11,7 +11,7 @@
 </style>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
-    wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), false) ?>);
+    wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true) ?>);
 </script>
 <div class="register-pop" style="z-index:100;" >
     <i class="iconfont icon-cancel"></i>
