@@ -76,6 +76,12 @@ class MallController extends Controller
             'secret'  => config('wxsetting.secret'),     // AppSecret
         ];
         $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
         $js = $app -> js;
 
 
