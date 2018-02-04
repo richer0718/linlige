@@ -250,6 +250,22 @@ class HomeController extends Controller
 
     //查看人气小区
     public function look(){
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+        $js = $app -> js;
+        
         $select_id = 0;
         session([
             'xiaoqu'=>'13'
@@ -274,7 +290,8 @@ class HomeController extends Controller
             'usertype' => 'visit',
             'manage_xiaoqu' => '',
             'select_id' => $select_id,
-            'first_look' => 1
+            'first_look' => 1,
+            'js' => $js
 
         ]);
     }
