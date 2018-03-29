@@ -1,4 +1,4 @@
-<header style="height:50px;@if(session('header') == 'hidder') display:none; @endif  ">
+<header style="height:50px;  ">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -10,7 +10,7 @@
                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ session('username') }} </a>
 
                     </li>
-                    <li><a href="{{url('admin/loginout')}}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+                    <li style="@if(session('header') == 'hidder') display:none; @endif"><a href="{{url('admin/loginout')}}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
                     <li><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
                 </ul>
                 <form action="" method="post" class="navbar-form navbar-right" role="search">

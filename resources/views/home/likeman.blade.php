@@ -147,9 +147,11 @@
         }, function(){
             //确定让他帮你
             var url = '{{url('home/querenhelp')}}';
+                    @if(session('helpres'))
             var id = {{session('helpres')}} ;
+            @endif
 
-            $.ajax({
+$.ajax({
                 type: 'POST',
                 url: url,
                 data: {id:id,res:'yes'},
@@ -172,7 +174,10 @@
         }, function(){
 
             var url = '{{url('home/querenhelp')}}';
+            @if(session('helpres'))
             var id = {{session('helpres')}} ;
+                    @endif
+
 
             $.ajax({
                 type: 'POST',

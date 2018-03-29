@@ -265,7 +265,7 @@ class HomeController extends Controller
             return $response; // or echo $response;
         }
         $js = $app -> js;
-        
+
         $select_id = 0;
         session([
             'xiaoqu'=>'13'
@@ -342,7 +342,7 @@ class HomeController extends Controller
                 $res[$k]['status_manage_name'] = '进行中';
                 $res[$k]['status_name'] = '待解决';
             }else{
-                $res[$k]['status_manage_name'] = '已结束';
+                $res[$k]['status_manage_name'] = '已完成';
                 $res[$k]['status_name'] = '已解决';
             }
             $res[$k]['created_at'] = date('Y-m-d H:i',$vo['created_at']);
@@ -591,7 +591,7 @@ class HomeController extends Controller
         );
         */
 
-        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->save(public_path().'/images/'.$newFileName,100 );
+        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->save(public_path().'/images/'.$newFileName,80 );
 
         /*
         if(!Storage::exists($savePath)){
@@ -862,6 +862,22 @@ class HomeController extends Controller
         if(!$res){
             return redirect('/home');
         }
+        $options = [
+            /**
+             * 账号基本信息，请从微信公众平台/开放平台获取
+             */
+            'app_id'  => config('wxsetting.appid'),         // AppID
+            'secret'  => config('wxsetting.secret'),     // AppSecret
+        ];
+        $app = new Application($options);
+        if (empty($_GET['code'])) {
+            $currentUrl = url()->full();; // 获取当前页 URL
+            //var_dump($currentUrl);exit;
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect($currentUrl);
+            return $response; // or echo $response;
+        }
+        $js = $app -> js;
+
         //dd($res);
         //看这篇文章 此人有没有收藏过 点赞过
         $res -> zan = DB::table('zan_article') -> where([
@@ -879,7 +895,7 @@ class HomeController extends Controller
 
         return view('home/zhidedetail') -> with([
             'data'=>$res,
-
+            'js' => $js
         ]);
     }
     //收藏
@@ -1319,7 +1335,8 @@ class HomeController extends Controller
 
         return view('home/likeman') -> with([
             'res' => $res,
-            'islook' => $islook
+            'islook' => $islook,
+            'openid' => $openid
         ]);
     }
 

@@ -679,7 +679,7 @@
             }
         }
 
-        //
+        //共享车位
         if(index == 3){
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
@@ -693,7 +693,15 @@
                     html += 'onclick="noReg()"';
                 @endif
 
-                html +='>'+data[i].title+'<strong><em>¥ </em>'+data[i].price+'</strong><a href="tel:'+ data[i]['userinfo'].tel +'"><i class="iconfont icon-dianhua" ></i></a>';
+                html +='>'+data[i].title ;
+                if(data[i].price == '0.00'){
+                    html += '<strong>面议</strong>';
+                }else{
+                    html += '<strong><em>¥ </em>'+data[i].price+'</strong>';
+                }
+
+
+                html += '<a href="tel:'+ data[i]['userinfo'].tel +'"><i class="iconfont icon-dianhua" ></i></a>';
 
                 html += '<span class="';
                 if(data[i].open_status == 1){

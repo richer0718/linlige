@@ -17,22 +17,22 @@
                     <div class="row" style="margin-bottom:10px;">
                         <div class="col-md-3">
                             <label for="article-title" >商品原价</label>
-                            <input type="number"  name="price_pre" class="form-control" placeholder="" @if(isset($res))value="{{ $res->price_pre }}"@endif required autofocus autocomplete="off">
+                            <input type="number"  step="0.01" name="price_pre" class="form-control" placeholder="" @if(isset($res))value="{{ $res->price_pre }}"@endif required autofocus autocomplete="off">
 
                         </div>
                         <div class="col-md-3">
                             <label for="article-title" >商品销价</label>
-                            <input type="number"  name="price_no" class="form-control" @if(isset($res))value="{{ $res->price_no }}"@endif placeholder="" required autofocus autocomplete="off">
+                            <input type="number"  step="0.01" name="price_no" class="form-control" @if(isset($res))value="{{ $res->price_no }}"@endif placeholder="" required autofocus autocomplete="off">
 
                         </div>
                         <div class="col-md-3">
                             <label for="article-title" >商品进价</label>
-                            <input type="number"  name="price_jin" class="form-control" @if(isset($res))value="{{ $res->price_jin }}"@endif placeholder="" required autofocus autocomplete="off">
+                            <input type="number"  step="0.01" name="price_jin" class="form-control" @if(isset($res))value="{{ $res->price_jin }}"@endif placeholder="" required autofocus autocomplete="off">
 
                         </div>
                         <div class="col-md-3">
                             <label for="article-title" >快递价格</label>
-                            <input type="number"  name="price_kuaidi" class="form-control" @if(isset($res))value="{{ $res->price_kuaidi }}"@endif placeholder="" required autofocus autocomplete="off">
+                            <input type="number"  step="0.01" name="price_kuaidi" class="form-control" @if(isset($res))value="{{ $res->price_kuaidi }}"@endif placeholder="" required autofocus autocomplete="off">
 
                         </div>
 
@@ -171,7 +171,7 @@
                     <div class="add-article-box">
                         <h2 class="add-article-box-title"><span>自提地址(如没有自提，则不需要填写)</span></h2>
                         <div class="add-article-box-content">
-                            <label>自提地址：<input type="text" name="zitiaddress"  /></label>
+                            <label>自提地址：<input type="text" name="zitiaddress" @if(isset($res))  value="{{ $res -> zitiaddress}}"  @endif /></label>
                         </div>
                     </div>
 

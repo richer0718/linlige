@@ -140,7 +140,8 @@ class WuyeController extends Controller
         $messageId = $notice->send([
             'touser' => $info -> openid,
             'template_id' => config('wxsetting.moban1'),
-            'url' => config('wxsetting.superurl'),
+            'url' => 'http://www.szyeweihui.com/public/home/pinlun/'.$request -> input('id'),
+            //'url' => config('wxsetting.superurl'),
             'data' => [
                 'first' => '尊敬的'.$info -> name,
                 'keyword1' => '您的建议有了新回复，点击查看',

@@ -31,7 +31,7 @@ class ZhidekanController extends Controller
                 $query -> where('fabu_user','=',$request -> input('fabu_user'));
             }
             //$query -> orWhere('is_old','=',1);
-        }) -> paginate(15);
+        }) -> orderBy('created_at','desc') -> paginate(15);
         //dd($res);
         return view('admin/zhide/index')->with([
             'res' => $res,
