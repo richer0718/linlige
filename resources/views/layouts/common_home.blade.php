@@ -417,7 +417,7 @@
         if(index == 0){
             for(var i=0; i<data.length; i++) {
                 img_list = null;
-                if(data[i].img){
+                if(data[i].img[0]){
                     img_list = data[i].img;
                 }
 
@@ -529,7 +529,7 @@
         if(index == 1){
             for(var i=0; i<data.length; i++) {
                 img_list = null;
-                if(data[i].img){
+                if(data[i].img[0]){
                     img_list = data[i].img;
                 }
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
@@ -619,7 +619,7 @@
         if(index == 2){
             for(var i=0; i<data.length; i++) {
                 img_list = null;
-                if(data[i].img){
+                if(data[i].img[0]){
                     img_list = data[i].img;
                 }
 
@@ -696,7 +696,7 @@
             for(var i=0; i<data.length; i++) {
                 console.info(data[i]);
                 img_list = null;
-                if(data[i].img){
+                if(data[i].img[0]){
                     img_list = data[i].img;
                 }
                 html += '<section class="comment-title" >';
