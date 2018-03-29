@@ -237,8 +237,6 @@
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },
                 success: function(data){
-                    console.info(data);
-                    console.log(data.length);
                     if(data.length){
                         var html = getInfo(index,data);
                         $('#content-box .vo-box').eq(index).append(html);
@@ -416,15 +414,11 @@
         var usertype = $('#usertype').val();
         if(index == 0){
             for(var i=0; i<data.length; i++) {
-                img_list = null;
-                if(data[i].img[0]){
-                    img_list = data[i].img;
-                }
-
+                var img_list = data[i].img;
                 var huifu_list = data[i].wuyehuifu;
                 //邻里说
                 html += '<section class="comment-title" ';
-                
+
 
                 html += ' >';
                 html += '<header class="comment-head flex-justify">';
@@ -527,11 +521,10 @@
 
         //友邻互助
         if(index == 1){
+            console.info(data);
+            console.log('************');
             for(var i=0; i<data.length; i++) {
-                img_list = null;
-                if(data[i].img[0]){
-                    img_list = data[i].img;
-                }
+                var img_list = data[i].img;
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
                 html += '<h3 ';
 
@@ -618,10 +611,7 @@
         //社区活动
         if(index == 2){
             for(var i=0; i<data.length; i++) {
-                img_list = null;
-                if(data[i].img[0]){
-                    img_list = data[i].img;
-                }
+                var img_list = data[i].img;
 
                 html += '<section class="comment-title" ';
 
@@ -689,16 +679,10 @@
 
         //共享车位
         if(index == 3){
-
-            console.info(data);
-            console.log('************');
             console.info(data);
             for(var i=0; i<data.length; i++) {
                 console.info(data[i]);
-                img_list = null;
-                if(data[i].img[0]){
-                    img_list = data[i].img;
-                }
+                var img_list = data[i].img;
                 html += '<section class="comment-title" >';
                 html += '<header class="comment-head flex-justify">';
                 html += '<h3 ';

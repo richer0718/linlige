@@ -362,7 +362,7 @@ class HomeController extends Controller
 
 
         }
-        //shuffle($res);
+        shuffle($res);
         $res['length'] = $count;
 
         return response()->json($res);
