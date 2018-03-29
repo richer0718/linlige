@@ -356,16 +356,22 @@ class HomeController extends Controller
                 $res[$k]['wuyehuifu'] = $temp;
             }
 		
-            if(mb_strlen($vo['title']) > 15){
-                $res[$k]['title'] = mb_substr($vo['title'],0,15).'...';
-            }
+		if(mb_strlen($vo['title']) > 15){
+			$res[$k]['title'] = mb_substr($vo['title'],0,15).'...';
+		}
 
 
         }
-        shuffle($res);
-        $res['length'] = $count;
 
-        return response()->json($res);
+        $newarr = [] ;
+        if($res){
+            foreach($res as $vo){
+                $newarr[] = $vo;
+            }
+        }
+        //shuffle($res);
+
+        return response()->json($newarr);
     }
 
     //服务请求
