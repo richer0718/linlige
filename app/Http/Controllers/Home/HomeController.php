@@ -356,13 +356,14 @@ class HomeController extends Controller
                 $res[$k]['wuyehuifu'] = $temp;
             }
 		
-		if(mb_strlen($vo['title']) > 15){
-			$res[$k]['title'] = mb_substr($vo['title'],0,15).'...';
-		}
+            if(mb_strlen($vo['title']) > 15){
+                $res[$k]['title'] = mb_substr($vo['title'],0,15).'...';
+            }
 
 
         }
         //shuffle($res);
+        $res['length'] = $count;
 
         return response()->json($res);
     }
