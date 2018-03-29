@@ -416,7 +416,11 @@
         var usertype = $('#usertype').val();
         if(index == 0){
             for(var i=0; i<data.length; i++) {
-                var img_list = data[i].img;
+                img_list = null;
+                if(data[i].img){
+                    img_list = data[i].img;
+                }
+
                 var huifu_list = data[i].wuyehuifu;
                 //邻里说
                 html += '<section class="comment-title" ';
@@ -524,7 +528,10 @@
         //友邻互助
         if(index == 1){
             for(var i=0; i<data.length; i++) {
-                var img_list = data[i].img;
+                img_list = null;
+                if(data[i].img){
+                    img_list = data[i].img;
+                }
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
                 html += '<h3 ';
 
@@ -611,7 +618,10 @@
         //社区活动
         if(index == 2){
             for(var i=0; i<data.length; i++) {
-                var img_list = data[i].img;
+                img_list = null;
+                if(data[i].img){
+                    img_list = data[i].img;
+                }
 
                 html += '<section class="comment-title" ';
 
@@ -685,7 +695,10 @@
             console.info(data);
             for(var i=0; i<data.length; i++) {
                 console.info(data[i]);
-                var img_list = data[i].img;
+                img_list = null;
+                if(data[i].img){
+                    img_list = data[i].img;
+                }
                 html += '<section class="comment-title" >';
                 html += '<header class="comment-head flex-justify">';
                 html += '<h3 ';
