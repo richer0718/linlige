@@ -239,8 +239,6 @@
                 success: function(data){
                     if(data.length){
                         var html = getInfo(index,data);
-                        console.info(data);
-                        console.log(11111111);
                         $('#content-box .vo-box').eq(index).append(html);
 
                         $('#box-'+index).val(parseInt(page)+1);
@@ -523,8 +521,6 @@
 
         //友邻互助
         if(index == 1){
-            console.info(data);
-            console.log('************');
             for(var i=0; i<data.length; i++) {
                 var img_list = data[i].img;
                 html += '<section class="comment-title"><header class="comment-head flex-justify">';
@@ -681,6 +677,10 @@
 
         //共享车位
         if(index == 3){
+
+            console.info(data);
+            console.log('************');
+
             console.info(data);
             for(var i=0; i<data.length; i++) {
                 console.info(data[i]);
