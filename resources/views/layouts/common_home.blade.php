@@ -238,6 +238,7 @@
                 },
                 success: function(data){
                     console.info(data);
+                    console.log(data.length);
                     if(data.length){
                         var html = getInfo(index,data);
                         $('#content-box .vo-box').eq(index).append(html);
@@ -681,7 +682,6 @@
 
             console.info(data);
             console.log('************');
-
             console.info(data);
             for(var i=0; i<data.length; i++) {
                 console.info(data[i]);
