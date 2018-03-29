@@ -237,6 +237,7 @@
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },
                 success: function(data){
+                    console.info(data);
                     if(data.length){
                         var html = getInfo(index,data);
                         $('#content-box .vo-box').eq(index).append(html);
