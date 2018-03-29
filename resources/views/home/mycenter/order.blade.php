@@ -130,6 +130,9 @@
                         if(i.status == 3){
                             html += '<a>待审核</a>';
                         }
+                        if(i.status == 4){
+                            html += '<a>退货拒绝</a>';
+                        }
 
                         html += '</div>';
                         html += '</div>';

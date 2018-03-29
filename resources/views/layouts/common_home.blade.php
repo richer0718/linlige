@@ -681,7 +681,9 @@
 
         //共享车位
         if(index == 3){
+            console.info(data);
             for(var i=0; i<data.length; i++) {
+                console.info(data[i]);
                 var img_list = data[i].img;
                 html += '<section class="comment-title" >';
                 html += '<header class="comment-head flex-justify">';

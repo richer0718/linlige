@@ -264,6 +264,12 @@ class OrderController extends Controller
         ]) -> first();
         //给他发模版消息
 
+        DB::table('order') -> where([
+            'id' => $id
+        ]) -> update([
+            'status' => 4
+        ]);
+
         $info = DB::table('user') -> where([
             'openid' => $orderinfo -> openid
         ]) -> first();

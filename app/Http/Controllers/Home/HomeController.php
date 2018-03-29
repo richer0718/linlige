@@ -591,7 +591,7 @@ class HomeController extends Controller
         );
         */
 
-        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->save(public_path().'/images/'.$newFileName,80 );
+        $res = $rew = \Intervention\Image\Facades\Image::make(file_get_contents($file->getRealPath()))->save(public_path().'/images/'.$newFileName,50 );
 
         /*
         if(!Storage::exists($savePath)){

@@ -39,6 +39,7 @@
                         <option value="1"  @if(!empty($_POST['status']) && $_POST['status'] == 1)selected @endif  >待评价</option>
                         <option value="2"   @if(!empty($_POST['status']) && $_POST['status'] == 2)selected @endif   >已完成</option>
                         <option value="3"   @if(!empty($_POST['status']) && $_POST['status'] == 3)selected @endif   >退货／退款</option>
+                        <option value="4"   @if(!empty($_POST['status']) && $_POST['status'] == 4)selected @endif   >退货／退款拒绝</option>
                     </select>
                 </td>
 
@@ -120,8 +121,8 @@
                         <tr>
                             <td>{{$vo -> id }}</td>
                             <td>{{$vo -> order_id }}</td>
-                            <td>{{$vo -> goods_info -> title }}</td>
-                            <td>{{$vo -> user_info -> name }}</td>
+                            <td>@if($vo -> goods_info){{$vo -> goods_info -> title }}@else 空 @endif</td>
+                            <td>@if($vo -> user_info){{$vo -> user_info -> name }}@else 空 @endif</td>
                             <td>{{$vo -> number}}</td>
                             <td>{{$vo -> address}}</td>
                             <td>{{ date('Y-m-d H:i',$vo -> created_at) }}</td>
