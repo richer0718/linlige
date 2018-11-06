@@ -349,5 +349,7 @@ Route::group(['as' => 'yonghu'],function(){
 
 });
 
+Route::any('/api/trackingMore', 'Api\TrackingMoreController@index');
+
 
 
